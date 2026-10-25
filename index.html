@@ -3,1076 +3,1329 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>민소 소송요건 뉴런</title>
+<title>민소(상) 중간 개념서</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@600;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@400;600;700&family=Nanum+Pen+Script&display=swap">
 <style>
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0}
-/* 뉴런식 구성: PART → THEME → [개념 → 구조 → 판례·쟁점 → 필수예제 → Check]. 태그로 '답안/교수님/사담/2학기/보충' 층을 구분 */
+/* 개념서식 구성: Contents → Chapter → Theme(초록 라벨 + 문장형 제목) → 초록 프레임 안의 1.2.3. 개념 + REMARK + [예] → 번호 문제(회색 바) + Comment */
 :root{
-  --paper:#f6f7f9; --card:#ffffff; --ink:#1a2130; --muted:#5a6373; --line:#d8dce4;
-  --accent:#24407a; --accent-soft:#e7ecf6;
-  --ans:#24407a; --ans-bg:#e7ecf6;
-  --prof:#9a5700; --prof-bg:#fbefd9;
-  --aside:#6a7180; --aside-bg:#eceef2;
-  --exam:#b0281f; --exam-bg:#fbe6e3;
-  --ok:#2c6a3d; --ok-bg:#e3f1e6;
-  --out:#6b3fa0; --out-bg:#efe7f8;
-  --serif:"Noto Serif KR","Nanum Myeongjo",serif;
+  --desk:#eef0ef; --paper:#ffffff; --ink:#1c1f1e; --sub:#55605b; --line:#d6dbd8;
+  --mint:#3faa85; --mint-ink:#2b8a69; --mint-soft:#e6f4ee; --mint-line:#a9dac7;
+  --bar:#e7e9e8; --remark:#1c1f1e; --remark-ink:#ffffff;
+  --pen:#d2461e; --pen-soft:#fdf0ea;
+  --ox-o:#2f7d4f; --ox-x:#c23a2b;
+  --out:#7146a8; --out-soft:#f1ebf9;
+  --serif:"Noto Serif KR","Nanum Myeongjo","AppleMyungjo",serif;
   --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --hand:"Nanum Pen Script","Gaegu",cursive;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --paper:#11151c; --card:#181d26; --ink:#e5e8ee; --muted:#9ba3b1; --line:#2a313d;
-  --accent:#93b2ec; --accent-soft:#1b2740;
-  --ans:#93b2ec; --ans-bg:#1b2740;
-  --prof:#f0b45a; --prof-bg:#33270f;
-  --aside:#a3aab7; --aside-bg:#20252e;
-  --exam:#f2897e; --exam-bg:#3a1e1b;
-  --ok:#7ec694; --ok-bg:#16301f;
-  --out:#c4a3ef; --out-bg:#2a1f3a; color-scheme:dark}}
+  --desk:#0f1312; --paper:#171c1b; --ink:#e6ebe8; --sub:#9ea9a4; --line:#2c3532;
+  --mint:#5cc9a2; --mint-ink:#6fd6b0; --mint-soft:#1a2e27; --mint-line:#2f5a4b;
+  --bar:#232a28; --remark:#e6ebe8; --remark-ink:#171c1b;
+  --pen:#ff8a63; --pen-soft:#33221b;
+  --ox-o:#7fd19f; --ox-x:#ff8f82;
+  --out:#c4a3ef; --out-soft:#2a2238; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --paper:#11151c; --card:#181d26; --ink:#e5e8ee; --muted:#9ba3b1; --line:#2a313d;
-  --accent:#93b2ec; --accent-soft:#1b2740;
-  --ans:#93b2ec; --ans-bg:#1b2740;
-  --prof:#f0b45a; --prof-bg:#33270f;
-  --aside:#a3aab7; --aside-bg:#20252e;
-  --exam:#f2897e; --exam-bg:#3a1e1b;
-  --ok:#7ec694; --ok-bg:#16301f;
-  --out:#c4a3ef; --out-bg:#2a1f3a; color-scheme:dark}
+  --desk:#0f1312; --paper:#171c1b; --ink:#e6ebe8; --sub:#9ea9a4; --line:#2c3532;
+  --mint:#5cc9a2; --mint-ink:#6fd6b0; --mint-soft:#1a2e27; --mint-line:#2f5a4b;
+  --bar:#232a28; --remark:#e6ebe8; --remark-ink:#171c1b;
+  --pen:#ff8a63; --pen-soft:#33221b;
+  --ox-o:#7fd19f; --ox-x:#ff8f82;
+  --out:#c4a3ef; --out-soft:#2a2238; color-scheme:dark}
 
-body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.75;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.wrap{max-width:860px;margin:0 auto;padding-block:40px 80px;display:flex;flex-direction:column;gap:44px}
-h1,h2,h3{font-family:var(--serif);text-wrap:balance;line-height:1.35;margin:0}
-h1{font-size:2rem;font-weight:800}
-h2{font-size:1.4rem;font-weight:800}
-h3{font-size:1.08rem;font-weight:600;margin-top:6px}
+body{background:var(--desk);color:var(--ink);font-family:var(--serif);font-size:15.5px;line-height:1.8;
+  padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+.book{max-width:900px;margin:0 auto;padding-block:28px 80px;display:flex;flex-direction:column;gap:28px}
+.page{background:var(--paper);border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:34px 36px 22px;display:flex;flex-direction:column;gap:20px;scroll-margin-top:12px}
+@media (max-width:640px){.page{padding:24px 16px 16px}}
+h1,h2,h3,h4{margin:0;font-family:var(--sans);line-height:1.35;text-wrap:balance}
 p{margin:0}
-section{display:flex;flex-direction:column;gap:16px;scroll-margin-top:16px}
-.eyebrow{font-size:.78rem;letter-spacing:.08em;color:var(--muted);font-weight:600}
-.lede{color:var(--muted);max-width:68ch}
-a{color:var(--accent)}
-.art{font-family:var(--sans);font-weight:600;color:var(--accent);white-space:nowrap}
-ul,ol{margin:0;padding-left:1.25em}
-li+li{margin-top:4px}
-strong{font-weight:700}
+ul,ol{margin:0;padding-left:1.3em}
+li+li{margin-top:3px}
+a{color:var(--mint-ink)}
+b,strong{font-weight:700}
+.sans{font-family:var(--sans)}
+.art{font-family:var(--sans);font-size:.9em;font-weight:600;color:var(--mint-ink);white-space:nowrap}
+.muted{color:var(--sub)}
+.small{font-size:.88rem}
+
+/* ---- Cover / Contents ---- */
+.cover{gap:10px}
+.cover .series{font-family:var(--sans);font-weight:700;letter-spacing:.16em;font-size:.8rem;color:var(--mint-ink)}
+.cover h1{font-size:2.1rem;font-weight:700}
+.cover .lede{color:var(--sub);max-width:62ch}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--sans);font-size:.84rem;color:var(--sub);margin-top:6px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.contents-h{font-family:var(--sans);font-weight:700;font-size:2.6rem;color:var(--mint);letter-spacing:-.01em;line-height:1}
+.chgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 36px}
+@media (max-width:640px){.chgrid{grid-template-columns:1fr}}
+.chsq{width:46px;height:46px;background:var(--mint);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--sans);font-weight:700;font-size:1.35rem;line-height:1;flex:none}
+.chsq small{font-size:.5rem;font-weight:500;letter-spacing:.04em;margin-top:3px}
+:root[data-theme="dark"] .chsq{color:#0f1312}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chsq{color:#0f1312}}
+.chitem{display:flex;flex-direction:column;gap:8px}
+.chitem h3{font-size:1.12rem;font-weight:600;color:var(--mint-ink)}
+.chitem ul{list-style:none;padding:0;font-family:var(--sans);font-size:.88rem}
+.chitem li{margin:0;padding:2px 0}
+.chitem a{color:var(--ink);text-decoration:none}
+.chitem a:hover,.chitem a:focus-visible{color:var(--mint-ink);text-decoration:underline}
+.chitem .pg{color:var(--sub);font-size:.8rem;margin-left:4px}
+
+/* ---- Chapter opener ---- */
+.chopen{flex-direction:row;align-items:flex-start;gap:20px;padding-block:30px}
+.chopen .chsq{width:64px;height:64px;font-size:1.9rem}
+.chopen .t{display:flex;flex-direction:column;gap:8px}
+.chopen .t .k{font-family:var(--sans);font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--mint-ink)}
+.chopen h2{font-size:1.7rem;font-weight:700}
+.chopen p{color:var(--sub)}
+
+/* ---- Theme header ---- */
+.th{display:flex;flex-direction:column;gap:6px}
+.th .lab{font-family:var(--sans);font-size:.82rem;font-weight:600;color:var(--mint-ink)}
+.th .barline{width:130px;height:5px;background:var(--mint)}
+.th h2{font-size:1.55rem;font-weight:700;margin-top:4px}
+.th .src{font-family:var(--sans);font-size:.8rem;color:var(--sub)}
+
+/* ---- Frame (개념 박스) ---- */
+.frame{border:1px solid var(--mint-line);padding:24px 26px;display:flex;flex-direction:column;gap:16px}
+@media (max-width:640px){.frame{padding:18px 14px}}
+.sec{font-family:var(--sans);font-weight:600;font-size:1.08rem;color:var(--mint-ink);margin-top:6px}
+.sec2{font-family:var(--sans);font-weight:600;font-size:.98rem;margin-top:2px}
+.def{padding-left:1em;border-left:3px solid var(--mint)}
+.ind{padding-left:1.1em}
+.circ{padding-left:1.6em;text-indent:-1.3em}
+
+.rm{display:flex;flex-direction:column;gap:6px}
+.rm .rh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--sans);font-weight:600}
+.rlab{display:inline-block;background:var(--remark);color:var(--remark-ink);font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.03em;padding:2px 7px;border-radius:2px;white-space:nowrap}
+.rm .rb{padding-left:1em}
+
+.ex{display:flex;flex-direction:column;gap:6px}
+.ex .eh{font-family:var(--sans);font-weight:700}
+.ex .eh .s{font-weight:600;color:var(--mint-ink);margin-left:6px}
+.ex .q{padding-left:1em}
+.ex .a{padding-left:1em;color:var(--ink);display:flex;flex-direction:column;gap:3px}
+.ex .a::before{content:"풀이";font-family:var(--sans);font-size:.72rem;font-weight:700;color:var(--sub);letter-spacing:.06em}
+.therefore{font-weight:700}
+
+.key{background:var(--mint-soft);padding:12px 16px;font-family:var(--sans);font-weight:500;font-size:.95rem}
+.key b{color:var(--mint-ink)}
+
+/* 교수님 메모 = 손필기 */
+.pen{font-family:var(--hand);color:var(--pen);font-size:1.32rem;line-height:1.42;padding:6px 12px 6px 14px;border-left:2px solid var(--pen);background:var(--pen-soft)}
+.pen::before{content:"✎ 교수님 ";font-weight:400}
+.pen.tutor::before{content:"✎ 튜터 ";}
+
+/* 보충 / 2학기 */
+.out{font-family:var(--sans);font-size:.9rem;background:var(--out-soft);border-left:3px solid var(--out);padding:9px 13px}
+.out .o{font-weight:700;color:var(--out);margin-right:6px}
 
 /* tags */
-.tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.03em;padding:1px 8px;border-radius:4px;vertical-align:2px;margin-right:6px;white-space:nowrap}
-.t-ans{color:var(--ans);background:var(--ans-bg)}
-.t-prof{color:var(--prof);background:var(--prof-bg)}
-.t-aside{color:var(--aside);background:var(--aside-bg)}
-.t-exam{color:var(--exam);background:var(--exam-bg)}
-.t-ok{color:var(--ok);background:var(--ok-bg)}
-.t-out{color:var(--out);background:var(--out-bg)}
-.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.9rem;color:var(--muted)}
-.legend span{display:flex;align-items:center;gap:2px}
+.tag{display:inline-block;font-family:var(--sans);font-size:.7rem;font-weight:700;padding:1px 7px;border-radius:3px;vertical-align:2px;margin-right:4px;white-space:nowrap;border:1px solid currentColor}
+.t-pan{color:var(--mint-ink)}
+.t-gi{color:var(--ox-x)}
+.t-out{color:var(--out)}
 
-/* PART / THEME headers (뉴런식) */
-.part{display:flex;flex-direction:column;gap:6px;padding:22px 0 4px;border-top:3px double var(--ink)}
-.part .pno{font-family:var(--serif);font-weight:800;font-size:.95rem;letter-spacing:.12em;color:var(--accent)}
-.part h2{font-size:1.65rem}
-.part p{color:var(--muted)}
-.theme-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-bottom:8px;border-bottom:2px solid var(--ink)}
-.tno{font-family:var(--serif);font-weight:800;font-size:.82rem;letter-spacing:.1em;color:#fff;background:var(--accent);padding:2px 9px;border-radius:3px;white-space:nowrap;align-self:center}
-:root[data-theme="dark"] .tno{color:#11151c}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tno{color:#11151c}}
-.theme-h .pg{font-size:.8rem;color:var(--muted);margin-left:auto;white-space:nowrap}
-
-/* 개념 박스 */
-.concept{background:var(--card);border:1.5px solid var(--accent);border-radius:6px;padding:14px 16px 14px;display:flex;flex-direction:column;gap:6px;position:relative}
-.concept::before{content:"개념";position:absolute;top:-11px;left:12px;background:var(--paper);padding:0 8px;font-size:.78rem;font-weight:700;color:var(--accent);letter-spacing:.06em}
-.concept .def{font-weight:600}
-.key{background:var(--accent-soft);border-radius:6px;padding:12px 16px;font-weight:600}
-.key b{color:var(--accent)}
-
-/* blocks */
-.block{border-left:3px solid var(--line);padding:4px 0 4px 16px;display:flex;flex-direction:column;gap:8px}
-.block.ans{border-color:var(--ans)}
-.block.prof{border-color:var(--prof);background:linear-gradient(90deg,var(--prof-bg),transparent 70%);padding:10px 14px 10px 16px}
-.block.aside{border-color:var(--aside);color:var(--muted);font-size:.93rem}
-.block.exam{border-color:var(--exam)}
-.block.out{border-color:var(--out);background:linear-gradient(90deg,var(--out-bg),transparent 70%);padding:10px 14px 10px 16px;font-size:.94rem}
-.plain{background:var(--accent-soft);border-radius:6px;padding:14px 16px}
-.plain b{color:var(--accent)}
-
-/* tables */
-.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--card)}
-table{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
-th,td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
-th{font-weight:700;background:var(--accent-soft);color:var(--ink);white-space:nowrap}
-tr:last-child td{border-bottom:none}
-td.k{font-weight:700;white-space:nowrap}
-.bad{color:var(--exam);font-weight:700}
-.good{color:var(--ok);font-weight:700}
-.note{font-size:.85rem;color:var(--muted)}
+/* tables (교재 회색 헤더) */
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:540px;font-family:var(--sans);font-size:.88rem;line-height:1.6}
+th,td{padding:8px 10px;text-align:left;vertical-align:top;border:1px solid var(--line)}
+th{background:var(--bar);font-weight:600;white-space:nowrap}
+td.k{font-weight:600;white-space:nowrap;background:color-mix(in srgb,var(--bar) 45%,transparent)}
+.o{color:var(--ox-o);font-weight:700}
+.x{color:var(--ox-x);font-weight:700}
 
 /* tree */
-.treebox{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:18px 18px 18px 12px;overflow-x:auto}
-.tree,.tree ul{list-style:none;margin:0;padding:0}
-.tree ul{padding-left:22px}
-.tree li{position:relative;padding-left:18px;margin:0}
+.tree,.tree ul{list-style:none;margin:0;padding:0;font-family:var(--sans);font-size:.9rem}
+.tree ul{padding-left:20px}
+.tree li{position:relative;padding-left:16px;margin:0}
 .tree li+li{margin-top:0}
-.tree li::before{content:"";position:absolute;left:0;top:0;bottom:0;border-left:1.5px solid var(--line)}
+.tree li::before{content:"";position:absolute;left:0;top:0;bottom:0;border-left:1.5px solid var(--mint-line)}
 .tree li:last-child::before{bottom:auto;height:1.05em}
-.tree li::after{content:"";position:absolute;left:0;top:1.05em;width:13px;border-top:1.5px solid var(--line)}
+.tree li::after{content:"";position:absolute;left:0;top:1.05em;width:11px;border-top:1.5px solid var(--mint-line)}
 .tree>li{padding-left:0}
 .tree>li::before,.tree>li::after{display:none}
-.node{display:inline-block;padding:3px 0}
-.node .sub{color:var(--muted);font-size:.88rem}
-.pill{display:inline-block;font-size:.8rem;font-weight:700;border:1.5px solid var(--accent);color:var(--accent);border-radius:999px;padding:0 10px;margin-right:6px}
-.pill.p2{border-color:var(--prof);color:var(--prof)}
-.moved{color:var(--prof);font-weight:700}
-.strike{text-decoration:line-through;color:var(--muted)}
+.tree .n{display:inline-block;padding:2px 0}
+.tree .s{color:var(--sub);font-size:.84rem}
+.pill{display:inline-block;font-size:.74rem;font-weight:700;background:var(--mint-soft);color:var(--mint-ink);border-radius:2px;padding:0 7px;margin-right:6px}
+.strike{text-decoration:line-through;color:var(--sub)}
+.moved{color:var(--pen);font-weight:700}
 
-/* flow (단계) */
-.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px}
-.flow .st{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px 12px;font-size:.9rem;display:flex;flex-direction:column;gap:4px;min-width:0}
-.flow .st b{font-size:.95rem}
-.flow .st .r{font-weight:700;color:var(--accent)}
-.flow .st.bad{border-top:4px solid var(--exam);color:var(--ink);font-weight:400}
-.flow .st.ok{border-top:4px solid var(--ok)}
-.flow .st.mid{border-top:4px solid var(--accent)}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;font-family:var(--sans);font-size:.86rem}
+@media (max-width:640px){.steps{grid-template-columns:1fr}}
+.steps.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:760px){.steps.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:440px){.steps.four{grid-template-columns:1fr}}
+.steps>div{border:1px solid var(--line);border-top:3px solid var(--mint);padding:9px 11px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.steps>div.red{border-top-color:var(--ox-x)}
+.steps b.h{font-size:.92rem}
 
-/* timeline */
-.timeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-.phase{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:6px;padding:12px;display:flex;flex-direction:column;gap:6px;font-size:.9rem;min-width:0}
-.phase .when{font-weight:700;font-size:.95rem}
-.phase .verdict{font-weight:700;color:var(--accent)}
-.phase.p1{border-top-color:var(--exam)}
-@media (max-width:720px){.timeline{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:440px){.timeline{grid-template-columns:1fr}}
+/* ---- 문제 (회색 바 + 큰 번호) ---- */
+.prob{display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--line);padding-top:22px}
+.pbar{background:var(--bar);display:flex;align-items:center;gap:14px;padding:8px 14px}
+.pno{font-family:var(--sans);font-weight:700;font-size:2.1rem;color:var(--mint);line-height:1;letter-spacing:-.02em}
+.pbar .pm{display:flex;flex-direction:column;gap:1px;min-width:0}
+.pbar .ps{font-family:var(--sans);font-size:.92rem;font-weight:600;color:var(--mint-ink)}
+.pbar .pt{font-family:var(--sans);font-size:.86rem;font-weight:700}
+.prob .qt{padding:0 4px}
+.prob .qt .sub-q{margin-top:8px}
+.prob details{border:1px dashed var(--line);padding:0}
+.prob summary{cursor:pointer;font-family:var(--sans);font-size:.84rem;font-weight:700;color:var(--mint-ink);padding:8px 12px;list-style:none}
+.prob summary::-webkit-details-marker{display:none}
+.prob summary::after{content:" ▾"}
+.prob details[open] summary::after{content:" ▴"}
+.prob .sol{padding:2px 16px 14px;display:flex;flex-direction:column;gap:7px;font-size:.95rem}
+.prob .sol .st{font-family:var(--sans);font-weight:700;font-size:.88rem;color:var(--mint-ink);margin-top:4px}
+.comment{display:flex;flex-direction:column;gap:6px}
+.comment .cl{display:inline-block;align-self:flex-start;background:var(--mint);color:#fff;font-family:var(--sans);font-size:.72rem;font-weight:700;padding:2px 8px}
+:root[data-theme="dark"] .comment .cl{color:#0f1312}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .comment .cl{color:#0f1312}}
+.comment p{font-size:.92rem}
 
-.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-@media (max-width:640px){.grid2{grid-template-columns:1fr}}
-.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
-.card h3{margin:0}
+/* ---- Check ---- */
+.check{display:flex;flex-direction:column;gap:0;font-size:.94rem}
+.check .ch{font-family:var(--sans);font-weight:700;font-size:.8rem;letter-spacing:.12em;color:var(--mint-ink);margin-bottom:4px}
+.check details{border-top:1px solid var(--line);padding:6px 0}
+.check details:last-child{border-bottom:1px solid var(--line)}
+.check summary{cursor:pointer}
+.check summary::marker{color:var(--mint)}
+.check .an{font-family:var(--sans);font-size:.86rem;color:var(--sub);padding:4px 0 2px 1.2em}
 
-/* 필수예제 · Check */
-details.ex{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--exam);border-radius:6px;padding:12px 16px}
-details.ex>summary{cursor:pointer;list-style:none;display:flex;flex-direction:column;gap:6px}
-details.ex>summary::-webkit-details-marker{display:none}
-details.ex .q-h{font-family:var(--serif);font-weight:800;color:var(--exam);font-size:.9rem;letter-spacing:.05em}
-details.ex .q{font-weight:500}
-details.ex .open{font-size:.82rem;color:var(--accent);font-weight:700}
-details.ex[open] .open{display:none}
-details.ex .sol{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:6px;font-size:.95rem}
-details.ex .sol .h{font-weight:700;color:var(--accent)}
-.check{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:12px 16px;display:flex;flex-direction:column;gap:4px}
-.check .ch{font-family:var(--serif);font-weight:800;font-size:.9rem;color:var(--ok);letter-spacing:.06em}
-.check details{border-top:1px solid var(--line);padding:7px 0 3px}
-.check details:first-of-type{border-top:none}
-.check summary{cursor:pointer;font-size:.94rem}
-.check summary::marker{color:var(--muted)}
-.check .a{font-size:.9rem;color:var(--muted);padding:4px 0 2px 1.1em}
-.check .a b.o{color:var(--ok)}
-.check .a b.x{color:var(--exam)}
-
-nav.toc{display:flex;flex-direction:column;gap:8px}
-nav.toc .row{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
-nav.toc .lab{font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.06em;min-width:52px}
-nav.toc a{font-size:.86rem;text-decoration:none;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:2px 11px;color:var(--ink)}
-nav.toc a:hover,nav.toc a:focus-visible{border-color:var(--accent);color:var(--accent);outline:none}
+/* ---- page footer ---- */
+.pfoot{display:flex;justify-content:space-between;gap:10px;font-family:var(--sans);font-size:.74rem;color:var(--sub);border-top:1px solid var(--line);padding-top:8px;margin-top:6px}
 
 svg text{font-family:var(--sans)}
-.svgbox{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px;overflow-x:auto}
+.svgbox{overflow-x:auto}
 .svgbox svg{display:block;max-width:100%;height:auto;margin:0 auto}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:640px){.grid2{grid-template-columns:1fr}}
+.box{border:1px solid var(--line);padding:12px 14px;display:flex;flex-direction:column;gap:5px;min-width:0}
+.box h4{font-size:.95rem;font-weight:700}
+.top{font-family:var(--sans);font-size:.78rem;text-decoration:none;color:var(--sub);align-self:flex-end}
 </style>
 </head>
 <body>
+<div class="book">
 
-<div class="wrap">
-
-<header style="display:flex;flex-direction:column;gap:14px">
-  <div class="eyebrow">민사소송법(상) · 10–16회 강의 · 중간고사 범위: 관할 → 당사자적격(교과서 249면)</div>
-  <h1>소송요건 뉴런 — 관할부터 당사자적격까지</h1>
-  <p class="lede">속기록에서 잡설과 2학기 예고편을 걷어내고, 교수님이 실제로 깔고 가시는 <strong>틀(어떤 요건이 무엇을 묻고, 흠이 있으면 어떻게 되는가)</strong>을 뼈대로 다시 짰습니다. THEME마다 <strong>개념 → 구조 → 쟁점·판례 → 필수예제 → Check</strong> 순서입니다. 예제와 Check는 눌러야 답이 보입니다.</p>
+<!-- ================= COVER ================= -->
+<section class="page cover" id="top">
+  <div class="series">민사소송법(상) · 김경욱 교수님 · 2026-2 중간고사</div>
+  <h1>소송요건, 관할부터 당사자적격까지</h1>
+  <p class="lede">강의 속기(10–16회)와 튜터링 기출 모범답안을 놓고, 교수님이 깔고 가시는 틀을 뼈대로 다시 썼습니다. 각 Theme은 <b>개념(1·2·3…) → REMARK → [예] → 교내 기출 문제 → Comment → Check</b> 순서입니다. 해설과 Check 답은 눌러야 보입니다. 범위는 교과서 249면, <b>당사자적격까지</b>.</p>
   <div class="legend">
-    <span><span class="tag t-ans">답안</span>통설·판례, 그대로 써도 됨</span>
-    <span><span class="tag t-prof">교수님</span>교수님 강조·개인 견해</span>
-    <span><span class="tag t-exam">기출</span>교내 기출·변시</span>
-    <span><span class="tag t-out">2학기</span>이번 범위 밖, 용어만</span>
-    <span><span class="tag t-aside">사담</span>안 외워도 됨</span>
+    <span><span class="tag t-pan">판례</span>통설·판례, 답안에 그대로</span>
+    <span><span class="pen" style="font-size:1.05rem;padding:0 8px;border-left-width:2px">메모</span>교수님 강조·사견</span>
+    <span><span class="tag t-gi">기출</span>교내 중간·기말</span>
+    <span><span class="tag t-out">2학기</span>이번 범위 밖</span>
   </div>
-  <nav class="toc" aria-label="목차">
-    <div class="row"><span class="lab">지도</span><a href="#map">0. 소송요건 전체 지도</a><a href="#void">무효판결 3개</a></div>
-    <div class="row"><span class="lab">PART Ⅰ</span><a href="#t01">01 국제재판관할</a><a href="#t02">02 관할의 체계</a><a href="#t03">03 직분관할</a><a href="#t04">04 사물관할·소가</a><a href="#t05">05 토지관할</a><a href="#t06">06 관련재판적</a><a href="#t07">07 합의관할</a><a href="#t08">08 변론·지정관할</a><a href="#t09">09 관할의 조사·간과</a><a href="#t10">10 소송의 이송</a></div>
-    <div class="row"><span class="lab">PART Ⅱ</span><a href="#t11">11 당사자 개념</a><a href="#t12">12 당사자 확정</a><a href="#t13">13 성명모용</a><a href="#t14">14 당사자능력</a><a href="#t15">15 소송능력·변론능력</a><a href="#t16">16 당사자적격</a><a href="#t17">17 제3자 소송담당</a><a href="#t18">18 추심 2025 전합</a><a href="#t19">19 참가 3종</a><a href="#t20">20 임의적 소송담당</a></div>
-    <div class="row"><span class="lab">정리</span><a href="#kanggwa">간과판결 총정리</a><a href="#out">2학기로 미룰 것</a><a href="#skip">사담 모음</a></div>
-  </nav>
-</header>
-
-<!-- ============ MAP ============ -->
-<section id="map">
-  <div class="theme-h"><h2>0. 소송요건 전체 지도</h2></div>
-  <p>교수님이 매 시간 "지금 우리 뭐 하고 있어요? <b>소송요건</b> 하고 있습니다"라고 다시 깔고 가시는 틀입니다. 소송요건은 <b>법원·당사자·소송물</b> 세 묶음이고, 이번 시험은 앞의 두 묶음입니다.</p>
-  <div class="treebox"><ul class="tree">
-    <li><span class="node"><b>소송요건</b> <span class="sub">본안판결을 받기 위한 요건 — 없으면 소각하</span></span>
-      <ul>
-        <li><span class="node"><span class="pill">법원</span>재판권(인적 범위 = 면제 / <b>물적 범위 = 국제재판관할</b>) → <b>관할</b> <span class="sub">PART Ⅰ</span></span></li>
-        <li><span class="node"><span class="pill">당사자</span><b>확정(실재)</b> → <b>당사자능력</b> → <b>소송능력</b> → <b>당사자적격</b> → (적법한 대리 <span class="tag t-out">2학기</span>) <span class="sub">PART Ⅱ · 변론능력은 소송요건 아님</span></span></li>
-        <li><span class="node"><span class="pill p2">소송물</span>소의 이익, 중복제소금지, 기판력 저촉 등 <span class="tag t-out">2학기</span></span></li>
-      </ul></li>
-  </ul></div>
-
-  <h3>소장이 들어가면 생기는 일 — 세 단계, 세 가지 결론</h3>
-  <div class="flow">
-    <div class="st bad"><b>① 소장심사</b><span>형식(필수적 기재사항·인지)</span><span>흠 → 보정명령 → 불응 시 <span class="r">소장각하 "명령"</span></span></div>
-    <div class="st mid"><b>② 소송요건 심사</b><span>직권조사</span><span>흠 → 보정 → 안 되면 <span class="r">소각하 "판결"</span></span><span class="note">예외: 관할 흠 → 각하 아니라 <b>이송(결정)</b></span></div>
-    <div class="st ok"><b>③ 본안심리</b><span>변론·증거조사</span><span>이유 있으면 <span class="r">청구인용</span>, 없으면 <span class="r">청구기각</span></span></div>
-  </div>
-  <div class="block ans"><p><span class="tag t-ans">답안</span><b>소송요건 공통 공식</b> — 모든 THEME에서 반복됩니다. ① <b>직권조사사항</b> ② 흠 있으면 <b>보정</b> → 안 되면 <b>소각하</b> ③ 기준 시점은 <b>사실심 변론종결 시</b>(제소 시 없어도 그때까지 갖추면 됨) ④ 존부를 다투는데 법원이 있다고 보면 <b>중간판결 또는 종국판결 이유</b>에서 판단 ⑤ 간과하고 본안판결하면 → 상소·재심 / 무효 중 어디인가.</p></div>
-  <div class="plain"><b>민법과 1:1 대응.</b> 교수님 표현으로 "95% 이상 같다." 당사자능력 ↔ <b>권리능력</b>, 소송능력 ↔ <b>행위능력</b>, 당사자적격 ↔ <b>관리처분권</b>. 각 THEME에서 "민법이면 뭐였지?"를 먼저 떠올리면 원칙이 바로 나오고, 소송법이 <em>다르게</em> 정한 예외만 외우면 됩니다.</div>
-
-  <div id="void" class="block prof" style="scroll-margin-top:16px"><p><span class="tag t-prof">교수님</span><b>"무효인 판결은 세 개만 외우자."</b> ① <b>재판권 없는</b> 판결 ② <b>이미 사망한 사람</b>을 상대로 한 판결(제소 전·소장부본 송달 전 사망) ③ <b>당사자적격 없는 자</b>가 받은 판결(진정한 권리주체에게 효력 없다는 의미). <br>나머지 흠(관할 위반, 성명모용, 계속 중 사망, 능력 흠결 …)은 전부 <b>"유효하지만 위법" → 상소·재심으로 깨거나, 확정되면 치유</b>입니다. 이 한 줄이 PART Ⅰ·Ⅱ의 간과판결 문제를 전부 정리합니다.</p></div>
 </section>
 
-<!-- ============ PART I ============ -->
-<div class="part" id="part1">
-  <div class="pno">PART Ⅰ</div>
-  <h2>법원에 관한 소송요건 — 재판권과 관할</h2>
-  <p>질문은 두 개뿐입니다. <b>"우리나라 법원이 할 수 있나?"</b>(국제재판관할) → <b>"우리나라의 어느 법원이 하나?"</b>(관할). 틀리면? 앞은 각하, 뒤는 <b>이송</b>.</p>
-</div>
+<section class="page" id="contents">
+  <div class="contents-h">Contents</div>
+  <div class="chgrid">
+    <div class="chitem"><div class="chsq">0<small>Intro</small></div><h3>소송요건의 지도</h3>
+      <ul><li><a href="#t00">Theme 0. 소송요건은 본안판결의 문이다</a></li></ul></div>
+    <div class="chitem"><div class="chsq">1<small>Chapter</small></div><h3>법원 — 재판권과 관할</h3>
+      <ul>
+        <li><a href="#t01">Theme 1. 우리 법원이 할 수 있는가, 국제재판관할</a><span class="pg">129</span></li>
+        <li><a href="#t02">Theme 2. 관할은 두 개의 축으로 나뉜다</a><span class="pg">149</span></li>
+        <li><a href="#t03">Theme 3. 토지관할은 재판적이 정한다</a><span class="pg">160</span></li>
+        <li><a href="#t04">Theme 4. 당사자가 관할을 만든다</a><span class="pg">171</span></li>
+        <li><a href="#t05">Theme 5. 관할 흠결은 각하가 아니라 이송이다</a><span class="pg">181</span></li>
+      </ul></div>
+    <div class="chitem"><div class="chsq">2<small>Chapter</small></div><h3>당사자 — 누가 당사자인가</h3>
+      <ul>
+        <li><a href="#t06">Theme 6. 당사자는 판결에 이름이 적히는 사람이다</a><span class="pg">195</span></li>
+        <li><a href="#t07">Theme 7. 확정은 표시설, 사망자만 예외다</a><span class="pg">203</span></li>
+        <li><a href="#t08">Theme 8. 성명모용 — 표시된 자가 당사자다</a><span class="pg">208</span></li>
+      </ul></div>
+    <div class="chitem"><div class="chsq">3<small>Chapter</small></div><h3>당사자의 능력</h3>
+      <ul>
+        <li><a href="#t09">Theme 9. 당사자능력은 권리능력보다 넓다</a><span class="pg">216</span></li>
+        <li><a href="#t10">Theme 10. 소송능력은 행위능력보다 좁다</a><span class="pg">229</span></li>
+      </ul></div>
+    <div class="chitem"><div class="chsq">4<small>Chapter</small></div><h3>당사자적격</h3>
+      <ul>
+        <li><a href="#t11">Theme 11. 적격은 '이 사건'에 대한 자격이다</a><span class="pg">238</span></li>
+        <li><a href="#t12">Theme 12. 남의 권리로 소송한다, 제3자 소송담당</a><span class="pg">242</span></li>
+        <li><a href="#t13">Theme 13. 맡기는 소송담당은 원칙적으로 금지된다</a><span class="pg">246</span></li>
+      </ul></div>
+    <div class="chitem"><div class="chsq">★<small>Final</small></div><h3>한 장 정리</h3>
+      <ul>
+        <li><a href="#fin1">간과판결 총정리</a></li>
+        <li><a href="#fin2">기출 지도 · 2학기로 미룰 것</a></li>
+        <li><a href="#fin3">사담 모음</a></li>
+      </ul></div>
+  </div>
+</section>
+
+<!-- ================= THEME 0 ================= -->
+<section class="page" id="t00">
+  <div class="th"><div class="lab">Theme 0</div><div class="barline"></div><h2>소송요건은 본안판결의 문이다</h2></div>
+  <div class="frame">
+    <h3 class="sec">1. 소송요건의 세 묶음</h3>
+    <p>교수님이 매 시간 "지금 우리 뭐 하고 있어요? 소송요건 하고 있습니다"로 다시 까는 틀입니다. 소송요건은 <b>법원 · 당사자 · 소송물</b>에 관한 것으로 나뉘고, 이번 시험은 앞의 둘입니다.</p>
+    <ul class="tree">
+      <li><span class="n"><b>소송요건</b> <span class="s">본안판결을 받기 위한 요건 — 없으면 소각하</span></span>
+        <ul>
+          <li><span class="n"><span class="pill">법원</span>재판권(인적 범위 = 면제 / <b>물적 범위 = 국제재판관할</b>) → <b>관할</b> <span class="s">Chapter 1</span></span></li>
+          <li><span class="n"><span class="pill">당사자</span><b>확정(실재)</b> → <b>당사자능력</b> → <b>소송능력</b> → <b>당사자적격</b> → 적법한 대리 <span class="tag t-out">2학기</span> <span class="s">Chapter 2–4</span></span></li>
+          <li><span class="n"><span class="pill">소송물</span>소의 이익 · 중복제소금지 · 기판력 <span class="tag t-out">2학기</span></span></li>
+        </ul></li>
+    </ul>
+
+    <h3 class="sec">2. 소장이 들어가면 세 번 걸러진다</h3>
+    <div class="steps">
+      <div class="red"><b class="h">① 소장심사</b><span>필수적 기재사항·인지</span><span>흠 → 보정명령 → 불응 시 <b>소장각하 "명령"</b></span></div>
+      <div><b class="h">② 소송요건 심사</b><span>직권조사</span><span>흠 → 보정 → 안 되면 <b>소각하 "판결"</b></span><span class="muted">예외: 관할 흠 → <b>이송 "결정"</b></span></div>
+      <div><b class="h">③ 본안심리</b><span>변론·증거조사</span><span>이유 있으면 <b>청구인용</b>, 없으면 <b>청구기각</b></span></div>
+    </div>
+
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 1</span>소송요건 공통 공식 — 모든 Theme에서 반복된다</div>
+      <div class="rb">
+        <p class="circ">① <b>직권조사사항</b>이다.</p>
+        <p class="circ">② 흠이 있으면 <b>보정</b>을 명하고, 안 되면 <b>소각하</b>.</p>
+        <p class="circ">③ 존재의 기준 시점은 <b>사실심 변론종결 시</b>. 제소 때 없어도 그때까지 갖추면 된다.</p>
+        <p class="circ">④ 존부를 다투는데 법원이 있다고 보면 <b>중간판결 또는 종국판결 이유</b>에서 판단한다.</p>
+        <p class="circ">⑤ 간과하고 본안판결하면 → <b>무효</b>인가, <b>상소·재심</b>인가, <b>치유</b>인가를 따진다.</p>
+      </div></div>
+
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 2</span>민법과 1:1로 대응한다</div>
+      <div class="rb"><p>당사자능력 ↔ <b>권리능력</b>, 소송능력 ↔ <b>행위능력</b>, 당사자적격 ↔ <b>관리처분권</b>. "95% 이상 같다." 민법의 원칙을 먼저 떠올리고, 소송법이 <em>다르게</em> 정한 예외만 외운다.</p></div></div>
+
+    <p class="pen">무효인 판결은 세 개만 외우자. ① 재판권 없는 판결 ② 이미 죽은 사람을 상대로 한 판결 ③ 당사자적격 없는 자가 받은 판결. 나머지는 전부 "유효하지만 위법" → 상소·재심으로 깨거나, 확정되면 치유.</p>
+  </div>
+  <div class="pfoot"><span>민사소송법(상) | 0. 소송요건의 지도</span><span>Theme 0</span></div>
+</section>
+
+<!-- ================= CHAPTER 1 ================= -->
+<section class="page chopen" id="ch1">
+  <div class="chsq">1<small>Chapter</small></div>
+  <div class="t"><div class="k">CHAPTER 1</div><h2>법원 — 재판권과 관할</h2>
+    <p>질문은 둘뿐이다. <b>우리나라 법원이 할 수 있나</b>(국제재판관할) → <b>우리나라의 어느 법원이 하나</b>(관할). 앞이 틀리면 각하, 뒤가 틀리면 <b>이송</b>. 교내 기출은 관할합의와 이송(특히 이송신청권)에 몰려 있다.</p></div>
+</section>
 
 <!-- T01 -->
-<section id="t01">
-  <div class="theme-h"><span class="tno">THEME 01</span><h2>국제재판관할 (재판권의 물적 범위)</h2><span class="pg">교과서 129–146면</span></div>
-  <div class="concept">
-    <p class="def">외국적 요소가 있는 민사사건을 <b>대한민국 법원이 재판할 수 있는가</b>의 문제.</p>
-    <p class="note">예: 외국인을 상대로 한 소, 외국에 있는 물건에 관한 소, 외국에서 발생한 불법행위로 인한 손배청구.</p>
-  </div>
-  <h3>헷갈리지 말 것 — 세 질문은 서로 다른 법이 답한다</h3>
-  <div class="tbl"><table>
-    <thead><tr><th>질문</th><th>무엇이 정하나</th></tr></thead>
-    <tbody>
-      <tr><td class="k">① 우리 법원이 할 수 있나?</td><td><b>국제재판관할</b> (국제사법의 관할 규정)</td></tr>
-      <tr><td class="k">② 어느 나라 실체법을 적용하나?</td><td><b>준거법</b> — 법정지의 국제사법(저촉규범)</td></tr>
-      <tr><td class="k">③ 어느 나라 절차법으로 하나?</td><td><b>법정지법 원칙</b>(lex fori) — 우리 법원이면 우리 민사소송법</td></tr>
-    </tbody>
-  </table></div>
+<section class="page" id="t01">
+  <div class="th"><div class="lab">Theme 1</div><div class="barline"></div><h2>우리 법원이 할 수 있는가, 국제재판관할</h2><div class="src">교과서 129–146면</div></div>
+  <div class="frame">
+    <h3 class="sec">1. 국제재판관할의 의의</h3>
+    <p class="def">외국적 요소가 있는 민사사건을 <b>대한민국 법원이 재판할 수 있는가</b>의 문제. 재판권의 <b>물적 범위</b>에 해당한다.</p>
+    <p class="ind muted">예: 외국인을 상대로 한 소, 외국에 있는 물건에 관한 소, 외국에서 발생한 불법행위로 인한 손해배상청구.</p>
 
-  <h3>결정 기준의 변천 — 한 줄로 이어진다</h3>
-  <div class="flow">
-    <div class="st mid"><b>역추지설</b><span>국내 <b>토지관할 규정</b>에서 거꾸로 국제재판관할을 읽어냄 (과거 통설·판례)</span></div>
-    <div class="st mid"><b>수정역추지설</b><span>역추지 + 우리나라에서 재판하는 것이 <b>적정·공평·신속·경제에 반하는 특별한 사정</b>이 있으면 부정</span></div>
-    <div class="st ok"><b>국제사법 2조</b><span>2001년 입법: 당사자 또는 분쟁된 사안이 대한민국과 <b>실질적 관련</b>이 있으면 관할 O + <b>국제재판관할 배분의 이념</b>(적정·공평·신속·경제)에 부합하는 합리적 원칙</span></div>
-  </div>
-  <div class="block prof"><p><span class="tag t-prof">교수님</span>우리 판례는 "우리나라 토지와 조금만 관련돼도" 실질적 관련성을 인정해 왔다는 게 요지입니다. 대표 판례: <b>중국에서 인도한 냉동청어 대금 사건</b>(한국 회사 원고), <b>김해공항 중국 민항기 추락 사건</b>(사고지가 한국), <b>일제 징용 피해자의 미쓰비시 상대 손배·임금청구</b>(피해자가 한국인). 결론은 모두 "<b>우리나라에 국제재판관할 있음</b>". 실체법상 청구가 되는지는 별개의 본안 문제.</p></div>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 1</span>세 질문은 서로 다른 법이 답한다</div>
+      <div class="rb tbl"><table>
+        <thead><tr><th>질문</th><th>정하는 것</th></tr></thead>
+        <tbody>
+          <tr><td class="k">우리 법원이 할 수 있나</td><td><b>국제재판관할</b> — 국제사법의 관할 규정</td></tr>
+          <tr><td class="k">어느 나라 실체법을 적용하나</td><td><b>준거법</b> — 법정지의 국제사법(저촉규범)</td></tr>
+          <tr><td class="k">어느 나라 절차법으로 하나</td><td><b>법정지법 원칙</b>(lex fori) — 우리 법원이면 우리 민사소송법</td></tr>
+        </tbody></table></div></div>
 
-  <h3>2022년 개정 국제사법 — 용어가 바뀌었다</h3>
-  <div class="tbl"><table>
-    <thead><tr><th>국제사법</th><th>내용</th><th>국내 민소법의 대응 개념</th></tr></thead>
-    <tbody>
-      <tr><td class="k">일반관할(3조)</td><td>대한민국에 <b>일상거소</b>가 있는 사람에 대한 소 (법인: 주된 사무소·영업소 등)</td><td>보통재판적</td></tr>
-      <tr><td class="k">특별관할</td><td>사무소·영업소 소재지(4조), 재산 소재지(5조), 계약에 관한 소(41조: <b>물품공급 → 인도지, 용역제공 → 제공지</b>만 의무이행지 관할 인정) 등</td><td>특별재판적</td></tr>
-      <tr><td class="k">합의관할·변론관할(8·9조)</td><td>합의하거나 피고가 와서 응소하면 관할 생김</td><td>합의관할·변론관할</td></tr>
-      <tr><td class="k">전속관할(10조)</td><td><b>대한민국 부동산</b>에 관한 물권, 공적 장부에 등기·등록된 권리에 관한 소 등 → 우리 법원만</td><td>—</td></tr>
-      <tr><td class="k">국제소송경합(11조)</td><td>외국법원에 같은 소가 계속 중 + 그 판결의 <b>승인이 예상</b> → 결정으로 소송절차 <b>중지</b> 가능</td><td>(국내: 중복제소금지 <span class="tag t-out">2학기</span>)</td></tr>
-      <tr><td class="k">관할권 불행사(12조)</td><td>외국법원이 더 적절하다는 <b>예외적 사정이 명백</b> → 결정으로 중지하거나 소 <b>각하</b> 가능 (forum non conveniens)</td><td>—</td></tr>
-    </tbody>
-  </table></div>
-  <div class="block prof"><p><span class="tag t-prof">교수님</span>"재판적"이라는 독일·일본식 개념을 버리고 미국식 <b>general / special jurisdiction</b> 용어를 들여온 것에 대해 민소법 교수들이 반발했다는 얘기. 시험 포인트는 <b>국내 = 보통·특별재판적 / 국제사법 = 일반·특별관할</b>이라는 용어 대응뿐입니다. 140면 이하 세부 조항은 "몇 년에 한 번 선택형에 나올까 말까" — 한 번 읽어만 두라고 하셨습니다.</p></div>
-  <div class="block ans"><p><span class="tag t-ans">답안</span><b>흠의 효과</b>: 재판권은 소송요건 → 직권조사, 없으면 소각하. 간과판결은 확정 전 상소로 다투고, 재심사유(451조)에는 없지만 재판권이 아예 없는 판결은 <b>무효</b>(무효판결 ①).</p></div>
-  <div class="block aside"><p><span class="tag t-aside">가볍게</span><b>국제사법공조</b>: 외국 송달·증거조사는 헤이그 송달협약(중앙당국 간 직접 송부)·증거조사협약(외국 당국에 촉탁, 영사가 자국민 조사)으로. 우리나라는 영사가 외국인을 신문하는 방식 등은 유보. 국제 업무 할 때 알면 되는 수준.</p></div>
+    <h3 class="sec">2. 결정 기준은 한 줄로 이어진다</h3>
+    <div class="steps">
+      <div><b class="h">역추지설</b><span>국내 <b>토지관할</b> 규정에서 거꾸로 국제재판관할을 읽어낸다. 과거 통설·판례.</span></div>
+      <div><b class="h">수정역추지설</b><span>역추지 + 우리나라에서 재판하는 것이 <b>적정·공평·신속·경제에 반하는 특별한 사정</b>이 있으면 부정.</span></div>
+      <div><b class="h">국제사법 2조</b><span>당사자 또는 분쟁된 사안이 대한민국과 <b>실질적 관련</b> + 국제재판관할 <b>배분의 이념</b>에 부합하는 합리적 원칙.</span></div>
+    </div>
+    <p class="pen">우리 판례는 "우리 땅과 조금만 관련돼도" 실질적 관련성을 인정해 왔다. 중국에서 인도한 냉동청어 대금, 김해공항 중국 민항기 추락, 징용 피해자의 미쓰비시 상대 소 — 모두 관할 있음. 청구가 되는지는 본안 문제.</p>
+
+    <h3 class="sec">3. 2022년 개정 국제사법은 미국식 용어를 쓴다</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>국제사법</th><th>내용</th><th>민소법 대응</th></tr></thead>
+      <tbody>
+        <tr><td class="k">일반관할 <span class="art">3</span></td><td>대한민국에 <b>일상거소</b>가 있는 사람에 대한 소</td><td>보통재판적</td></tr>
+        <tr><td class="k">특별관할</td><td>사무소·영업소(4), 재산 소재지(5), 계약(41: <b>물품공급 → 인도지 / 용역 → 제공지</b>에만 의무이행지 관할)</td><td>특별재판적</td></tr>
+        <tr><td class="k">합의·변론관할 <span class="art">8·9</span></td><td>합의하거나 피고가 응소하면 관할 발생</td><td>합의·변론관할</td></tr>
+        <tr><td class="k">전속관할 <span class="art">10</span></td><td><b>대한민국 부동산</b>의 물권, 공적 장부에 등기·등록된 권리 등 → 우리 법원만</td><td>—</td></tr>
+        <tr><td class="k">국제소송경합 <span class="art">11</span></td><td>외국 계속 중 + 승인 예상 → 결정으로 <b>중지</b> 가능</td><td>중복제소 <span class="tag t-out">2학기</span></td></tr>
+        <tr><td class="k">관할권 불행사 <span class="art">12</span></td><td>외국법원이 더 적절한 예외적 사정이 <b>명백</b> → 중지 또는 <b>각하</b> 가능</td><td>—</td></tr>
+      </tbody></table></div>
+    <p class="pen">시험 포인트는 용어 대응뿐. 국내 = 보통·특별"재판적", 국제사법 = 일반·특별"관할". 140면 이하 세부 조항은 몇 년에 한 번 선택형.</p>
+
+    <h3 class="sec">4. 흠의 효과</h3>
+    <p>재판권은 소송요건 → 직권조사, 없으면 소각하. 간과판결은 확정 전 상소로 다투고, 재심사유(451조)에는 없지만 재판권이 아예 없는 판결은 <b>무효</b>(무효판결 ①).</p>
+    <p class="small muted">국제사법공조(헤이그 송달·증거조사협약: 중앙당국 직접 송부, 외국 당국에 촉탁, 영사의 자국민 조사)는 국제 업무 할 때 알면 되는 수준.</p>
+  </div>
   <div class="check"><div class="ch">CHECK</div>
-    <details><summary>국제재판관할이 우리나라에 인정되면 적용될 실체법도 당연히 대한민국 법이다.</summary><div class="a"><b class="x">X</b> — 실체법은 국제사법(준거법 규정)이 따로 정함. 절차법만 법정지법.</div></details>
-    <details><summary>2022년 개정 국제사법은 계약에 관한 소에서 모든 계약에 의무이행지 관할을 인정한다.</summary><div class="a"><b class="x">X</b> — 물품공급계약(인도지)·용역제공계약(제공지) 등 일부 전형계약에만 제한적으로 인정(41조).</div></details>
+    <details><summary>국제재판관할이 우리나라에 인정되면 실체법도 당연히 대한민국 법이 적용된다.</summary><div class="an"><span class="x">X</span> 실체법은 준거법 규정이 따로 정한다. 법정지법이 되는 것은 절차법.</div></details>
+    <details><summary>2022년 개정 국제사법은 계약에 관한 소 전반에 의무이행지 관할을 인정한다.</summary><div class="an"><span class="x">X</span> 물품공급(인도지)·용역제공(제공지) 등 일부 전형계약에만.</div></details>
   </div>
+  <div class="pfoot"><span>민사소송법(상) | 1. 법원 — 재판권과 관할</span><span>Theme 1</span></div>
 </section>
 
 <!-- T02 -->
-<section id="t02">
-  <div class="theme-h"><span class="tno">THEME 02</span><h2>관할의 체계 — 축 두 개만 잡으면 끝</h2><span class="pg">149면 이하</span></div>
-  <div class="concept">
-    <p class="def">관할 = 우리나라가 가진 민사재판권을 <b>국내의 어느 법원이 행사할지</b>를 법률로 나눠 놓은 것.</p>
-    <p class="note">재판권이 "할 수 있나"라면, 관할은 "누가 하나". 경찰서 관할 구역 정하듯 미리 딱 정해 둔 것.</p>
+<section class="page" id="t02">
+  <div class="th"><div class="lab">Theme 2</div><div class="barline"></div><h2>관할은 두 개의 축으로 나뉜다</h2><div class="src">교과서 149–158면</div></div>
+  <div class="frame">
+    <h3 class="sec">1. 관할의 의의</h3>
+    <p class="def">우리나라가 가진 민사재판권을 <b>국내의 어느 법원이 행사할지</b>를 법률로 미리 나눠 둔 것. 경찰서 관할 구역을 정하듯.</p>
+
+    <h3 class="sec">2. 두 축</h3>
+    <div class="grid2">
+      <div class="box"><h4>축 ① 발생 근거</h4>
+        <p><b>법정관할</b> — 법률로. 대부분이 여기. = 직분 · 사물 · 토지</p>
+        <p><b>지정관할</b> — 상급법원이 지정</p>
+        <p><b>당사자 거동</b> — 합의관할 · 변론관할(옛 응소관할)</p></div>
+      <div class="box"><h4>축 ② 구속력</h4>
+        <p><b>전속관할</b> — 반드시 그 법원. 합의·변론관할 불가. = <b>직분관할</b> + 법률이 "전속"이라 명시한 것</p>
+        <p><b>임의관할</b> — 나머지 전부. 합의·변론관할로 바뀔 수 있음</p></div>
+    </div>
+    <p class="key">법정관할 3종 중 <b>직분관할만 전속</b>, 나머지(토지·사물)는 명문이 "전속"이라 하지 않는 한 <b>임의관할</b>.</p>
+
+    <div class="ex"><div class="eh">[예1]<span class="s">교수님 예시</span></div>
+      <p class="q">안암동에 사는 내가 2억 원 대여금을 받으려 한다. 어느 법원인가?</p>
+      <div class="a"><p>특별법원이 아니라 일반 지방법원 (<b>직분</b>)</p><p>관할구역법상 서울북부지방법원 (<b>토지</b>)</p><p>5억 원 이하이므로 단독판사 (<b>사물</b>)</p><p class="therefore">∴ 법정관할 셋이 순서대로 법원을 하나로 좁힌다.</p></div></div>
+
+    <h3 class="sec">3. 직분관할 — 유일한 전속관할</h3>
+    <p class="circ">① <b>수소법원 vs 집행법원</b>: 여기서 "법원"은 건물이 아니라 판사. 민사 ○단독이 집행 담당이면 그게 집행법원. 집행법원 업무 상당 부분은 <b>사법보좌관</b>(소송비용확정, 독촉, 공시최고, 이행권고결정, 임차권등기명령 등).</p>
+    <p class="circ">② 간이·급속 사항(제소전화해 등)은 단독, 신중한 재판(제척·기피 재판 등)은 합의부 — 직분관할로 정해진 구분.</p>
+    <p class="circ">③ <b>심급관할</b>: 단독사건의 항소심 = 지방법원 본원 합의부(항소부), 합의부 사건의 항소심 = 고등법원.</p>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 1</span>심급관할은 1심에 따라 고정된다</div>
+      <div class="rb"><p>단독사건의 항소심(지법 항소부) 계속 중 청구를 확장해 5억 원을 넘어도 <b>항소심 관할에는 영향이 없다</b>(판례). 고등법원으로 보낼 필요 없음.</p></div></div>
+
+    <h3 class="sec">4. 사물관할 — 단독이냐 합의부냐</h3>
+    <p class="def">기본 기준은 <b>소가 5억 원</b>: 이하 → 단독, 초과 → 합의부. 그러나 "이건 하나의 예에 불과하다."</p>
+    <div class="tbl"><table>
+      <thead><tr><th>합의부</th><th>단독</th></tr></thead>
+      <tbody><tr>
+        <td><ul>
+          <li>소가 5억 원 초과</li>
+          <li><b>소가 산정불능 재산권상 소</b> (상호사용금지 등) + 명문으로 넣은 것(<b>주주대표소송</b>, 이사 위법행위 유지청구, 신주발행 유지청구 등)</li>
+          <li><b>비재산권상 소</b> (사죄광고·정정보도, <b>해고무효확인</b>, 단체소송 등)</li>
+          <li><b>재정합의</b> 사건</li>
+          <li><b>관련청구</b>: 본소가 합의부면 단독 사건인 반소·병합청구도 합의부</li></ul></td>
+        <td><ul>
+          <li>소가 5억 원 이하</li>
+          <li><b>액수 무관</b>: 수표금·약속어음금, <b>금융기관이 원고</b>인 대여금·구상금·보증금, <b>자동차손배</b>, <b>근로자 업무상 재해</b> 손배</li>
+          <li><b>재정단독</b> 사건 (배당 전 재정결정부 / 배당 후 합의부 스스로)</li></ul></td>
+      </tr></tbody></table></div>
+    <p class="pen">"유지(留止)청구"의 유지는 계속하라가 아니라 금지라는 뜻이다.</p>
+
+    <h3 class="sec">5. 소가(소송목적의 값)</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>경우</th><th>소가</th></tr></thead>
+      <tbody>
+        <tr><td class="k">금전 청구</td><td>청구금액</td></tr>
+        <tr><td class="k">토지의 가액</td><td>개별공시지가 × <b>50/100</b></td></tr>
+        <tr><td class="k">소유권이전등기</td><td>목적물 가액 = 공시지가의 <b>1/2</b></td></tr>
+        <tr><td class="k">토지 인도</td><td>목적물 가액의 1/2 = 공시지가의 <b>1/4</b></td></tr>
+        <tr><td class="k">산정불능 · 비재산권상 소</td><td><b>5,000만 원</b> (회사관계 등 일부는 명문으로 <b>1억 원</b>)</td></tr>
+      </tbody></table></div>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 2</span>소가와 사물관할은 따로 논다</div>
+      <div class="rb"><p>해고무효확인은 소가 5천만 원으로 인지를 붙이지만 <b>합의부</b> 사건. 선택형 함정.</p></div></div>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 3</span>표준시기와 변동</div>
+      <div class="rb"><p class="circ">① 산정의 표준시기는 <b>소 제기 시</b>. 이후 땅값이 올라도 무관.</p>
+      <p class="circ">② 합의부 계속 중 일부 취하로 5억 이하 → 관할 영향 없음.</p>
+      <p class="circ">③ 단독 계속 중 청구취지 확장으로 5억 초과 → <b>변론관할이 생기지 않는 한</b> 합의부로 이송.</p></div></div>
+
+    <h3 class="sec2">병합청구의 소가 — 원칙 합산, 예외 셋</h3>
+    <div class="tbl"><table>
+      <thead><tr><th></th><th>내용</th><th>예</th></tr></thead>
+      <tbody>
+        <tr><td class="k">원칙: 합산</td><td>한 소로 여러 청구 → 합산(비재산권 소끼리도)</td><td>주주가 <b>주총결의취소(1억) + 별개 대여금(10억)</b> → 합산</td></tr>
+        <tr><td class="k">① 이익 동일·중복</td><td>선택적·예비적 병합 → <b>다액</b></td><td>화물 전소: 불법행위 5천 + 채무불이행 5천 → <b>5천</b></td></tr>
+        <tr><td class="k">② 수단인 청구</td><td>불산입</td><td>토지인도 + 지상건물 철거 → 철거 불산입</td></tr>
+        <tr><td class="k">③ 부대청구</td><td><b>과실·손해배상·위약금·비용</b> 불산입</td><td>원금 5천 + 지연이자 → <b>5천</b></td></tr>
+        <tr><td class="k">같은 원인 비재산+재산</td><td>합산 X, <b>다액</b></td><td>이혼 + 그로 인한 위자료</td></tr>
+      </tbody></table></div>
+    <p class="out"><span class="o">2학기</span>"적용 법조가 다르면 소송물이 다른 나라(구실체법설)라 750조·390조로 또 소송할 수 있다 — 후진적", "그래서 판례는 선택적 병합으로 본다." 소송물·병합 형태는 2학기. 여기서는 소가가 <b>다액 하나</b>라는 결론만.</p>
   </div>
-  <div class="grid2">
-    <div class="card"><h3>축 ① 발생 근거</h3>
-      <ul>
-        <li><b>법정관할</b> — 법률로 정함. 대부분이 여기. <span class="note">= 직분관할 · 사물관할 · 토지관할</span></li>
-        <li><b>지정관할</b> — 상급법원이 지정</li>
-        <li><b>당사자 거동</b>에 의한 관할 — <b>합의관할</b> · <b>변론관할</b>(옛 응소관할)</li>
-      </ul></div>
-    <div class="card"><h3>축 ② 구속력</h3>
-      <ul>
-        <li><b>전속관할</b> — 반드시 그 법원. 합의·변론관할 불가. <span class="note">= <b>직분관할</b> + 법률이 "전속"이라고 명시한 것</span></li>
-        <li><b>임의관할</b> — 나머지 전부(토지·사물관할 원칙). 합의·변론관할로 바뀔 수 있음</li>
-      </ul></div>
+  <div class="check"><div class="ch">CHECK</div>
+    <details><summary>해고무효확인의 소는 소가 5,000만 원이므로 단독판사 관할이다.</summary><div class="an"><span class="x">X</span> 비재산권상 소 → 합의부.</div></details>
+    <details><summary>원금 4억 원과 지연손해금 2억 원을 함께 청구하면 합의부 사건이다.</summary><div class="an"><span class="x">X</span> 부대청구 불산입 → 4억, 단독.</div></details>
+    <details><summary>은행이 원고인 10억 원 대여금 청구는 단독판사 관할이다.</summary><div class="an"><span class="o">O</span> 금융기관 원고 대여금은 액수 무관 단독.</div></details>
+    <details><summary>3억 원 단독사건이 항소부에 계속 중 6억 원으로 확장되면 고등법원으로 이송한다.</summary><div class="an"><span class="x">X</span> 심급관할은 전속·고정.</div></details>
   </div>
-  <div class="key">한 줄 암기: <b>법정관할 3종(직분·사물·토지) 중 직분관할만 전속</b>, 나머지는 명문이 "전속"이라 하지 않는 한 <b>임의관할</b>.</div>
-  <div class="plain"><b>교수님 예시로 한 번에.</b> 안암동 사는 내가 2억 대여금을 받으려 한다 → 특별법원 말고 일반 지방법원(<b>직분</b>) → 관할구역법상 서울북부지법(<b>토지</b>) → 5억 이하라 단독판사(<b>사물</b>). 법정관할 셋이 순서대로 법원을 하나로 좁힌다.</div>
+  <div class="pfoot"><span>민사소송법(상) | 1. 법원 — 재판권과 관할</span><span>Theme 2</span></div>
 </section>
 
 <!-- T03 -->
-<section id="t03">
-  <div class="theme-h"><span class="tno">THEME 03</span><h2>직분관할 (= 직무관할) — 유일한 전속관할</h2></div>
-  <div class="concept"><p class="def">재판권의 작용을 <b>어떤 종류의 법원(판사)이 담당하는가</b>에 따른 분배.</p></div>
-  <ul>
-    <li><b>수소법원 vs 집행법원</b>: 여기서 "법원"은 건물이 아니라 판사. 지방법원 민사 제○단독이 집행사건 담당이면 그게 집행법원. 집행법원 업무 상당 부분은 <b>사법보좌관</b>이 처리(소송비용확정, 독촉절차, 공시최고, 이행권고결정, 임차권등기명령 등).</li>
-    <li><b>간이·급속 사항은 단독, 신중한 재판은 합의부</b>: 제소전화해 등은 단독, 제척·기피 재판 등은 합의부 — 사물관할이 아니라 직분관할로 정해진 합의/단독 구분.</li>
-    <li><b>심급관할</b>: 1심 → 2심 → 3심. 단독사건 항소심 = 지방법원 본원 합의부(항소부), 합의부 사건 항소심 = 고등법원.</li>
-  </ul>
-  <div class="block ans"><p><span class="tag t-ans">답안 · 중요</span><b>심급관할은 전속관할 → 1심 법원에 따라 결정되고 고정</b>. 그래서 <b>단독사건의 항소심(지법 항소부) 계속 중 청구를 확장해 합의부 사물관할(5억 초과)에 속하게 되더라도 항소심 관할에는 영향이 없다</b>(판례). 고등법원으로 보낼 필요 없음.</p></div>
-  <div class="check"><div class="ch">CHECK</div>
-    <details><summary>3억 원 대여금 단독사건이 지법 항소부에 계속 중 원고가 6억 원으로 청구를 확장하면 고등법원으로 이송해야 한다.</summary><div class="a"><b class="x">X</b> — 심급관할은 1심 기준으로 정해지는 전속관할. 항소부에서 그대로 심판.</div></details>
+<section class="page" id="t03">
+  <div class="th"><div class="lab">Theme 3</div><div class="barline"></div><h2>토지관할은 재판적이 정한다</h2><div class="src">교과서 160–170면</div></div>
+  <div class="frame">
+    <h3 class="sec">1. 재판적</h3>
+    <p class="def">관할구역 안에 있는 <b>사건과의 관련 지점</b>을 재판적이라 하고, 재판적이 있는 곳의 법원이 토지관할을 가진다.</p>
+    <p class="ind muted">"적(籍)"은 호적·학적의 적. 고대생에게 고려대 학적이 있듯, 안암동에 살면 북부지법에 재판적이 있다. 독일어 Gerichtsstand의 일본식 번역.</p>
+    <p class="key"><b>보통재판적 = 피고의 주소</b>(모든 소에 공통) / <b>특별재판적</b> = 특정한 소에만, 거의 다 <b>원고 편의</b>를 위한 것.</p>
+    <p class="pen">원칙이 피고 주소인 이유: 돈 달라고 하려면 그 사람 문 앞에 가서 해라. 그런데 원고에게 너무 불리하니 특별재판적을 잔뜩 열었고, 의무이행지가 금전채권에서 원고 주소지를 열어서 원칙이 거의 허물어졌다.</p>
+
+    <h3 class="sec">2. 보통재판적 (피고 기준)</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>피고</th><th>보통재판적</th></tr></thead>
+      <tbody>
+        <tr><td class="k">자연인</td><td><b>주소</b> → 거소 → 마지막 주소 (주소 = 생활의 근거, 주민등록과 무관)</td></tr>
+        <tr><td class="k">대사·공사 등</td><td>위로 안 정해지면 <b>대법원 소재지</b></td></tr>
+        <tr><td class="k">법인·단체</td><td><b>주된</b> 사무소·영업소</td></tr>
+        <tr><td class="k">국가</td><td>국가를 대표하는 관청(<b>법무부장관</b> → 과천 → <b>수원지법 안양지원</b>) 또는 <b>대법원</b> 소재지(서울중앙)</td></tr>
+      </tbody></table></div>
+
+    <h3 class="sec">3. 특별재판적</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>재판적</th><th>포인트</th></tr></thead>
+      <tbody>
+        <tr><td class="k">근무지 <span class="art">7</span></td><td><b>피고</b>의 근무지 (원고 근무지 아님)</td></tr>
+        <tr><td class="k">거소지 <span class="art">8</span></td><td>재산권에 관한 소 → <b>피고</b>의 거소지</td></tr>
+        <tr><td class="k">의무이행지 <span class="art">8</span></td><td><b>가장 중요.</b> 특정물인도 = 그 물건이 있던 곳, 그 외 = <b>채권자 현주소</b>(지참채무, 민467②) → 금전채권은 원고 주소지</td></tr>
+        <tr><td class="k">어음·수표 지급지 <span class="art">9</span></td><td>지급지</td></tr>
+        <tr><td class="k">재산 소재지 <span class="art">11</span></td><td>국내 주소 없거나 알 수 없는 사람 상대 재산권 소</td></tr>
+        <tr><td class="k">사무소·영업소 <span class="art">12</span></td><td>"<b>주된</b>"이 빠짐 → <b>지점</b>. 그 업무에 관한 소</td></tr>
+        <tr><td class="k">불법행위지 <span class="art">18</span></td><td><b>가해행위지 + 결과발생지</b></td></tr>
+        <tr><td class="k">부동산 소재지 <span class="art">20</span></td><td><b>부동산 자체에 관한 권리</b>의 소만. 차임·매매대금 청구는 X</td></tr>
+        <tr><td class="k">등기·등록지 <span class="art">21</span></td><td>등기할 공공기관 소재지</td></tr>
+      </tbody></table></div>
+    <div class="ex"><div class="eh">[예1]<span class="s">교수님 사례</span></div>
+      <p class="q">서울에 사는 갑이 해운대에서 제주에서 온 을의 차에 치였고, 울산 병원으로 옮겨지다 사망했다. 유족이 을에게 손배청구를 할 수 있는 법원은?</p>
+      <div class="a"><p>보통재판적: 피고 주소 → <b>제주</b></p><p>의무이행지: 손배채무는 금전 → 채권자 주소 → <b>서울</b></p><p>불법행위지: 행위지 <b>부산</b> + 결과발생지 <b>울산</b></p><p class="therefore">∴ 넷 중 아무 데나 골라 제기(<b>선택관할</b>). "선택적 병합"과는 무관한 말.</p></div></div>
+
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 1</span>지식재산권 — 둘은 거꾸로다 <span class="art">24·36</span></div>
+      <div class="rb tbl"><table>
+        <thead><tr><th></th><th>원칙</th><th>추가 / 이송</th></tr></thead>
+        <tbody>
+          <tr><td class="k">특허권 등 <b>제외</b><br>(저작권 등)·국제거래</td><td>일반 토지관할 (예: 군산)</td><td>그 지역 <b>고등법원 소재지 지방법원에도</b>(군산 → 광주지법, 서울은 서울중앙)</td></tr>
+          <tr><td class="k"><b>특허권 등</b><br>특허·실용신안·디자인·상표·품종보호</td><td><b>고등법원 소재지 지방법원 전속</b></td><td><b>서울중앙</b>에도 가능 / 현저한 손해·지연 시 지역 법원으로 이송 가능</td></tr>
+        </tbody></table></div></div>
+    <p class="pen">이름(직무발명 보상금, 위약금)에 현혹되지 말고 실질이 특허권 등에 관한 것이면 그 관할 규정에 따른다는 게 판례. 심결취소소송(특허심판원 → 특허법원 → 대법원)은 지재법 과목.</p>
+
+    <h3 class="sec">4. 관련재판적 <span class="art">25</span> — 하나만 있으면 끌고 온다</h3>
+    <p class="def">여러 청구 중 <b>하나에 관해 관할</b>이 있으면 관할 없는 나머지 청구도 그 법원에 함께 제기할 수 있다.</p>
+    <div class="grid2">
+      <div class="box"><h4>① 객관적 병합 <span class="art">25①</span></h4><p>같은 당사자 사이 여러 청구. 당사자가 같으니 불만 없음 → <b>제한 없이</b> 인정(원시적·후발적 병합, 합의·변론관할에도).</p></div>
+      <div class="box"><h4>② 공동소송 <span class="art">25②</span></h4><p>관할 없는 피고는 "왜 내 사건을 거기서?" → <b>65조 전문</b>(실질적 견련)만 인정, <b>후문</b>(형식적 견련) 불인정.</p></div>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>65조</th><th>견련</th><th>예</th><th>25②</th></tr></thead>
+      <tbody>
+        <tr><td class="k">전문 ① 권리·의무 <b>공통</b></td><td rowspan="2">실질적</td><td>공유·합유·총유, 연대채무, 불가분채무</td><td class="o" rowspan="2">O</td></tr>
+        <tr><td class="k">전문 ② 발생 <b>원인 공통</b></td><td>같은 사고의 여러 피해자·가해자, 주채무자와 보증인, 공동불법행위</td></tr>
+        <tr><td class="k">후문 ③ 권리·의무와 원인이 <b>동종</b></td><td>형식적</td><td>한 임대인과 여러 임차인, 같은 가게 화장품 피해자들</td><td class="x">X</td></tr>
+      </tbody></table></div>
+    <p class="circ">① <b>경과</b>: 적극설 / 소극설(과거 판례) / 절충설(65조 전문만) → <b>1990년 개정으로 절충설이 25조 2항에 입법</b>.</p>
+    <p class="circ">② <b>관련재판적의 작출 금지</b>(판례): 관할 없는 피고를 끌어오려고 관계없는 자를 공동피고로 끼워 넣는 것은 관할선택권 남용 → <b>신의칙 위반</b>으로 관련재판적 불인정. (전주의 사찰을 서울로 끌어오려 서울의 유지재단을 넣은 사건)</p>
+    <p class="pen">연대채무를 필수적 공동소송이라고 쓰는 답안이 1/5. 연대채무는 통상공동소송이다. 첫 줄에 필수적 공동소송이라 쓰면 그 뒤는 다 거짓말이 된다.</p>
   </div>
+
+  <div class="prob">
+    <div class="pbar"><span class="pno">01</span><div class="pm"><span class="ps">2014년 중간 1-1문 · 10점</span><span class="pt">보통·특별재판적과 관련재판적</span></div></div>
+    <div class="qt"><p>서울에 사는 甲은 대구에 본사를 둔 XX여행사의 대전 빵 투어에 참여하여, 여행사 대표 乙이 운전하는 차량에 탑승하였다. 목포에 사는 丙이 서울로 올라가던 중 대전에서 乙의 차량과 부딪혀 甲이 다쳤다. 甲은 자신의 주소지 관할 법원인 서울중앙지방법원에 乙과 丙을 공동피고로 하여 불법행위에 기한 손해배상청구를 하였다. 관할의 적법에 관하여 논하시오.</p></div>
+    <details><summary>해설 보기</summary><div class="sol">
+      <p class="st">① 보통재판적(2·3·5조)</p><p>법인(여행사)은 주된 사무소 → <b>대구지법</b>, 丙은 주소 → <b>광주지법 목포지원</b>.</p>
+      <p class="st">② 불법행위지(18조)</p><p>사고가 난 <b>대전지법</b>.</p>
+      <p class="st">③ 의무이행지(8조)</p><p>손해배상은 금전 원칙(민763·394) → 지참채무(민467②) → 채권자 甲의 주소 → <b>서울중앙지법</b>. 乙·丙 모두에 대해 서울중앙에 관할 있음.</p>
+      <p class="st">④ 관련재판적(25조)</p><p>이미 각 피고에게 독자적 관할이 있으므로 관련재판적 논의는 불필요. 다만 묻는다면 공동불법행위는 원인 공통(65조 전문) → 25조 2항 적용 가능.</p>
+      <p class="st">결론</p><p>서울중앙지법에 대한 소 제기는 적법.</p>
+    </div></details>
+    <div class="comment"><span class="cl">Comment</span><p>관할 문제의 기본 순서 = <b>보통재판적 → 특별재판적(의무이행지·불법행위지 등) → 관련재판적</b>. 의무이행지에서 "금전 → 지참채무 → 채권자 주소"를 한 문장으로 쓰는 게 득점 포인트.</p></div>
+  </div>
+
+  <div class="prob">
+    <div class="pbar"><span class="pno">02</span><div class="pm"><span class="ps">2022년 중간 1-1문 · 30점</span><span class="pt">불법행위 손배와 의무이행지, 이송결정의 구속력</span></div></div>
+    <div class="qt"><p>서울 서초동에 사는 甲은 휴가차 방문한 춘천에서 자전거를 타던 乙(수원 거주)과 충돌하여 다쳤다. 甲은 춘천지방법원에 乙을 상대로 손해배상청구의 소를 제기하였는데, 춘천지방법원은 직권으로 사건을 서울중앙지방법원에 이송하였다. 서울중앙지방법원에 관할권이 인정되는가?</p></div>
+    <details><summary>해설 보기</summary><div class="sol">
+      <p class="st">① 법정관할</p><p>보통재판적 → 수원지법 / 불법행위지 → 춘천지법 / 의무이행지 → 채권자 주소 → 서울중앙지법.</p>
+      <p class="st">② 쟁점: 불법행위 손배채무에도 의무이행지 관할?</p><p>피해자 주소지에서 일률적으로 제기할 수 있으면 피고가 예측 못 한 곳에서 응소를 강요당한다는 이유로 8조의 의무이행지에서 불법행위 손배채무를 제외한 <b>고등법원 판례</b>가 있다. 그러나 응소 부담은 35조 손해를 피하기 위한 이송으로 해결할 수 있으므로 법문에 반하는 해석을 할 필요는 없다.</p>
+      <p class="st">③ 35조 이송</p><p>관할 있는 춘천지법도 <b>현저한 손해·지연</b>을 피하기 위해 직권 이송 가능. 원·피고 모두 수도권 거주 → 소송수행 부담을 덜기 위한 이송으로 적법.</p>
+      <p class="st">④ 이송결정의 구속력(38조)</p><p>설령 서울중앙에 관할이 없다고 보더라도 이송받은 법원은 이송결정에 따라야 하고 다시 이송하지 못한다.</p>
+      <p class="st">결론</p><p>서울중앙지법에 관할권이 있다.</p>
+    </div></details>
+    <div class="comment"><span class="cl">Comment</span><p>Theme 3(재판적)과 Theme 5(이송)를 한 문제에 묶는 전형. "관할 있는 법원 → 35조 이송 → 38조 기속력" 3단 구성을 기억.</p></div>
+  </div>
+
+  <div class="check"><div class="ch">CHECK</div>
+    <details><summary>원고는 자신의 근무지 법원에 소를 제기할 수 있다.</summary><div class="an"><span class="x">X</span> 근무지 재판적은 피고의 근무지.</div></details>
+    <details><summary>밀린 차임 청구는 건물 소재지 법원에 제기할 수 있다(부동산 소재지 재판적).</summary><div class="an"><span class="x">X</span> 부동산 자체에 관한 권리의 소 아님. 원고 주소지(의무이행지)는 가능.</div></details>
+    <details><summary>임대인이 각지에 사는 여러 임차인을 공동피고로 차임을 청구할 때 한 임차인의 관할법원에 나머지도 끌어올 수 있다.</summary><div class="an"><span class="x">X</span> 동종(65조 후문, 형식적 견련) → 25조 2항 불인정.</div></details>
+  </div>
+  <div class="pfoot"><span>민사소송법(상) | 1. 법원 — 재판권과 관할</span><span>Theme 3</span></div>
 </section>
 
 <!-- T04 -->
-<section id="t04">
-  <div class="theme-h"><span class="tno">THEME 04</span><h2>사물관할 — 단독이냐 합의부냐, 그리고 소가</h2><span class="pg">153–158면</span></div>
-  <div class="concept"><p class="def">같은 지방법원 안에서 1심 사건을 <b>단독판사와 합의부 중 누가</b> 맡는가. 기본 기준은 <b>소송목적의 값(소가) 5억 원</b>.</p></div>
-  <div class="key"><b>5억 원 이하 → 단독 / 5억 원 초과 → 합의부</b>. 그런데 교수님 말씀대로 "이건 하나의 예에 불과하고 다른 원인이 많다."</div>
-  <div class="grid2">
-    <div class="card"><h3>합의부 사건</h3>
-      <ul>
-        <li>소가 5억 원 초과</li>
-        <li><b>소가를 산출할 수 없는 재산권상의 소</b> (예: 상호사용금지청구) + 명문으로 여기에 넣은 것(<b>주주대표소송</b>, 이사 위법행위 유지청구, 신주발행 유지청구 등)</li>
-        <li><b>비재산권상의 소</b> (명예·인격권에 기한 사죄광고·정정보도, <b>해고무효확인</b>, 소비자·개인정보 단체소송 등)</li>
-        <li><b>재정합의</b>사건 (재정결정부가 합의부로 정한 것)</li>
-        <li><b>관련청구</b>: 본소가 합의부 사건이면 단독 사건인 반소·병합청구도 합의부</li>
-      </ul></div>
-    <div class="card"><h3>단독 사건</h3>
-      <ul>
-        <li>소가 5억 원 이하</li>
-        <li><b>액수 무관</b> 단독: 수표금·약속어음금 청구, <b>은행 등 금융기관이 원고</b>인 대여금·구상금·보증금 청구, <b>자동차손배</b> 청구, <b>근로자 업무상 재해</b> 손배청구</li>
-        <li><b>재정단독</b>사건 (배당 전 재정결정부 / 배당 후 합의부 스스로 결정)</li>
-      </ul></div>
-  </div>
-  <div class="block prof"><p><span class="tag t-prof">교수님</span>"<b>유지</b>청구"의 유지(留止)는 "계속하라"가 아니라 <b>금지</b>라는 뜻입니다. 일본식 용어라 계속 바꾸자고 했다는 얘기.</p></div>
+<section class="page" id="t04">
+  <div class="th"><div class="lab">Theme 4</div><div class="barline"></div><h2>당사자가 관할을 만든다</h2><div class="src">교과서 171–181면 · 합의관할 ★★ 변론관할 ★</div></div>
+  <div class="frame">
+    <h3 class="sec">1. 합의관할 <span class="art">29</span></h3>
+    <p class="def">당사자의 <b>합의</b>로 생기는 1심 관할. 서울과 제주 사이에 "분쟁은 대전에서"라고 합의하면 대전에 관할이 생긴다.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>요건</th><th>포인트</th></tr></thead>
+      <tbody>
+        <tr><td class="k">① 제1심 · 임의관할</td><td>전속관할은 합의로 못 바꿈(31조)</td></tr>
+        <tr><td class="k">② 일정한 법률관계</td><td>"모든 분쟁" X / "<b>특정 매매계약</b>에 관한 일체의 분쟁" O</td></tr>
+        <tr><td class="k">③ 법원 특정</td><td>"전국 모든 법원" X / "모든 법원 배제" → 부제소합의로 보면 가능</td></tr>
+        <tr><td class="k">④ 서면</td><td>제소 후 합의는 이송 전제</td></tr>
+      </tbody></table></div>
+    <p class="circ">⑤ <b>성질</b>: 소송법상 효과를 목적으로 하는 소송상 합의(소송능력 필요). 다만 재판 외에서 상대방에 대해 하는 것이므로 의사표시 흠결에 <b>민법 규정 유추</b> 가능(통설) → 착오 취소 가능.</p>
 
-  <h3>소가(소송목적의 값) 산정</h3>
-  <div class="tbl"><table>
-    <thead><tr><th>경우</th><th>소가</th></tr></thead>
-    <tbody>
-      <tr><td class="k">금전 청구</td><td>청구금액 그 자체</td></tr>
-      <tr><td class="k">토지의 가액</td><td>개별공시지가 × <b>50/100</b></td></tr>
-      <tr><td class="k">토지 소유권이전등기</td><td>목적물 가액 = 공시지가의 <b>1/2</b></td></tr>
-      <tr><td class="k">토지 인도청구</td><td>목적물 가액의 1/2 = 공시지가의 <b>1/4</b></td></tr>
-      <tr><td class="k">산정불능 재산권상 소 · 비재산권상 소</td><td><b>5,000만 원</b>으로 봄 (회사관계 등 일부 소는 명문으로 <b>1억 원</b>)</td></tr>
-    </tbody>
-  </table></div>
-  <p class="note">소가 산정불능 사건은 "소가 5천만 원"으로 인지를 붙이지만 <b>사물관할은 합의부</b>입니다. 소가와 관할이 따로 노는 지점 — 선택형 함정.</p>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 1</span>전속적 합의 vs 부가적 합의 — 기출 최다</div>
+      <div class="rb">
+        <p><b>통설·판례</b>: 법정관할 중 어느 하나를 <b>특정하거나 배제</b> → <b>전속적</b> / 법정관할 없는 법원을 <b>추가</b> → <b>부가적</b>. (판례: 여러 법정관할 중 채권자 주소지 법원으로 한 약정 = 전속적)</p>
+        <p class="muted">반대: 일부러 특정 법원을 지정했으면 항상 전속적이라는 견해 / <b>약관</b>에 의한 합의는 부가적으로 봐야 한다는 견해.</p>
+        <p>⚠ <b>전속적 합의 ≠ 전속관할.</b> 여전히 <b>임의관할</b> → 다시 합의 가능, <b>변론관할</b> 생김, <b>35조 이송</b>도 가능.</p>
+      </div></div>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 2</span>약관에 의한 관할합의</div>
+      <div class="rb">
+        <p>고객에게 <b>부당하게 불리한</b> 관할합의 조항은 무효(약관규제법 14조). 판례: "다소 불이익"만으로는 부족하고, 사업자가 <b>거래상 지위를 남용</b>해 건전한 거래질서를 훼손하는 등 부당한 불이익을 주었어야 한다(불이익의 내용·개연성, 거래과정 영향, 관계 법령 등 종합).</p>
+        <p>할부거래법·방문판매법 등은 아예 <b>소비자 주소지 전속</b>.</p>
+      </div></div>
+    <p class="pen">병원 수술동의서 뒷면, 포털 약관 맨 끝에 관할 조항이 있다. 옛날엔 다 본점 소재지 법원이었는데 다 바뀌었다. 카카오 약관은 "민사소송법상 관할법원" — 그럼 왜 적어 놨는지.</p>
 
-  <div class="block ans">
-    <p><span class="tag t-ans">답안</span><b>산정의 표준시기</b>: <b>소 제기 시</b>. 이후 땅값이 올라도 무관.</p>
-    <ul>
-      <li><b>합의부 계속 중 일부 취하로 5억 이하</b>가 되어도 → 관할 영향 없음, 이송 불필요.</li>
-      <li><b>단독 계속 중 청구취지 확장으로 5억 초과</b> → <b>변론관할이 생기지 않는 한</b> 합의부로 이송.</li>
-    </ul>
+    <h3 class="sec2">합의의 효력이 미치는 사람</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>누구</th><th>결론</th><th>이유</th></tr></thead>
+      <tbody>
+        <tr><td class="k">당사자 · 포괄승계인</td><td class="o">미침</td><td>당사자 지위 승계</td></tr>
+        <tr><td class="k">보증인</td><td class="x">안 미침</td><td>주채무와 보증채무는 <b>별개의 채무</b>. 묶고 싶으면 25조 2항(원인 공통)</td></tr>
+        <tr><td class="k">특정승계인 — <b>지명채권</b></td><td class="o">미침</td><td>내용을 자유롭게 정할 수 있는 권리 → 변경된 권리관계를 승계 (판례)</td></tr>
+        <tr><td class="k">특정승계인 — <b>물권</b></td><td class="x">안 미침</td><td>물권법정주의로 내용 정형화, 관할합의를 등기할 방법도 없음 (판례: 근저당 설정자와 근저당권자의 합의는 부동산 양수인에게 X)</td></tr>
+      </tbody></table></div>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 3</span>전속적 국제재판관할 합의의 유효요건(판례)</div>
+      <div class="rb"><p>① 대한민국 법원의 <b>전속관할에 속하지 않을 것</b> ② 지정된 외국법원이 그 외국법상 관할을 가질 것 ③ 그 외국법원과 사건 사이에 <b>합리적 관련성</b> ④ 현저히 불합리·불공정하여 공서양속에 반하지 않을 것. <span class="tag t-gi">가끔 출제</span></p></div></div>
+
+    <h3 class="sec">2. 변론관할 <span class="art">30</span></h3>
+    <p class="def">관할 없는 1심 법원에 소가 제기됐는데 피고가 <b>관할위반을 항변하지 않고 본안에 관해 변론</b>하면 관할이 생긴다. (옛 응소관할)</p>
+    <div class="tbl"><table>
+      <thead><tr><th>요건</th><th>포인트</th></tr></thead>
+      <tbody>
+        <tr><td class="k">① 1심 · 임의관할 위반</td><td>전속관할 위반엔 안 생김</td></tr>
+        <tr><td class="k">② 관할위반 항변 없이</td><td>명시·묵시 불문. "관할이 있다면" 조건부로 본안 변론 = 항변 있는 것</td></tr>
+        <tr><td class="k">③ <b>본안</b>에 관한 변론</td><td>청구의 <b>당부</b>. 소각하만 구하는 진술은 부족</td></tr>
+        <tr><td class="k">④ <b>현실적</b>으로</td><td>법정에 나와 <b>말로</b>. 답변서 진술간주로는 X</td></tr>
+      </tbody></table></div>
+    <p class="pen">관할 없는 사건이 오면 판사가 고른다. 바로 이송하거나, 송달하고 변론관할이 생기는지 기다리거나. 둘 다 평등한 규정이라 그냥 판사 마음.</p>
+
+    <h3 class="sec">3. 지정관할 <span class="art">28</span></h3>
+    <p>관할법원이 재판권을 행사할 수 없거나(판사 전원이 연루 등), 관할구역이 분명하지 않을 때(기내 폭행, 경계 불명) → <b>바로 위 공통 상급법원</b>이 결정으로 지정. 고등법원 단계에 공통 상급법원이 없으면 <b>대법원</b>. "거의 안 쓰여서 지나가겠다."</p>
   </div>
-  <h3>병합청구의 소가 — 원칙 합산, 예외 셋</h3>
-  <div class="tbl"><table>
-    <thead><tr><th></th><th>내용</th><th>교수님 예</th></tr></thead>
-    <tbody>
-      <tr><td class="k">원칙: 합산</td><td>한 소로 여러 청구 → 값을 합산(비재산권상 소끼리도 합산)</td><td>5억 + 2억 = 7억 → 합의부 / 주주가 <b>주총결의취소(1억) + 별개 대여금(10억)</b> → 합산</td></tr>
-      <tr><td class="k">예외 ① 이익 동일·중복</td><td>선택적·예비적 병합 → <b>다액</b> 기준</td><td>운송 중 화물 전소 → 불법행위 손배 5천 + 채무불이행 손배 5천 = 1억 아님, <b>5천</b></td></tr>
-      <tr><td class="k">예외 ② 수단인 청구</td><td>다른 청구의 수단에 불과 → 불산입</td><td>토지인도 + 지상건물 철거 → 철거 불산입</td></tr>
-      <tr><td class="k">예외 ③ 부대청구</td><td><b>과실·손해배상·위약금·비용</b> → 불산입 (실무상 제일 중요)</td><td>원금 5천 + 지연이자 → 소가 5천</td></tr>
-      <tr><td class="k">같은 원인의 비재산 + 재산</td><td>합산 X, <b>다액</b> 기준</td><td>이혼(5천) + 그로 인한 위자료 → 큰 쪽</td></tr>
-    </tbody>
-  </table></div>
-  <div class="block aside"><p><span class="tag t-aside">교수님 잡설 · 2학기 예고</span>"우리나라는 적용 법조가 다르면 소송물이 다른 나라(구실체법설)라서, 같은 손해를 750조로 지고 390조로 또 소송할 수 있다 — 후진적" / "그래서 둘을 병합하면 판례가 <b>선택적 병합</b>으로 본다." 소송물·병합 형태는 2학기. 여기서는 소가가 <b>다액 하나</b>라는 결론만.</p></div>
+
+  <div class="prob">
+    <div class="pbar"><span class="pno">03</span><div class="pm"><span class="ps">2014년 중간 1-2문 · 25점</span><span class="pt">약관에 의한 관할합의의 해석과 효력</span></div></div>
+    <div class="qt"><p>(문제 01의 사안에서) 甲과 여행사 사이에는 약관으로 여행사의 본사 소재지인 대구를 관할법원으로 하는 합의가 있었다. 甲이 서울에 한 소 제기는 적법한가?</p></div>
+    <details><summary>해설 보기</summary><div class="sol">
+      <p class="st">① 일반 요건</p><p>1심·임의관할, 해당 여행계약으로 특정, 대구로 특정, 서면 → 요건 충족.</p>
+      <p class="st">② 해석</p><p>대구는 원래 법정관할(본점 소재지) 중 하나 → 통설·판례상 <b>전속적 합의</b>. (약관이면 부가적이라는 견해도 소개)</p>
+      <p class="st">③ 약관규제법 14조</p><p>본사 소재지 전속 합의는 고객에게 다소 불이익하나, 거래상 지위 남용으로 부당한 불이익을 주었다고 보기 어려움 → <b>유효</b>.</p>
+      <p class="st">④ 변론관할</p><p>서울중앙지법은 관할 없음 → 여행사가 관할위반 항변 없이 본안 변론하면 변론관할 발생.</p>
+      <p class="st">결론</p><p>변론관할이 생기지 않는 한 <b>관할위반</b> → 이송. (부가적 합의설에 따르면 적법)</p>
+    </div></details>
+    <div class="comment"><span class="cl">Comment</span><p>관할합의 문제의 정석 목차 = <b>요건 → 전속적/부가적 해석 → 약관규제법 → 변론관할 → 결론(이송)</b>. 이 다섯 칸이 2014·2016·2018 중간에 그대로 반복된다.</p></div>
+  </div>
+
+  <div class="prob">
+    <div class="pbar"><span class="pno">04</span><div class="pm"><span class="ps">2016년 중간 1-1문 · 10점</span><span class="pt">관할합의에 민법 규정의 유추</span></div></div>
+    <div class="qt"><p>수원에 사는 甲은 대전에 본사가 있는 乙회사와 물품공급계약을 체결하였고, 약관에는 乙의 본사 소재지인 대전지방법원을 관할법원으로 한다는 조항이 있었다. 甲은 착오를 이유로 관할합의를 취소할 수 있는가?</p></div>
+    <details><summary>해설 보기</summary><div class="sol">
+      <p class="st">① 성질</p><p>관할의 변경이라는 소송법상 효과를 목적으로 하는 <b>소송상 합의</b> → 소송능력 필요.</p>
+      <p class="st">② 민법 유추</p><p>판례 없음. 통설: 관할합의는 재판 외에서, 법원이 아닌 상대방에 대하여 하는 것이므로 의사표시의 흠결에 관한 민법 규정 유추 가능.</p>
+      <p class="st">결론</p><p>착오 요건을 갖추면 민법 109조 유추로 <b>취소 주장 가능</b>.</p>
+    </div></details>
+  </div>
+
+  <div class="prob">
+    <div class="pbar"><span class="pno">05</span><div class="pm"><span class="ps">튜터링 예상문제</span><span class="pt">관할합의의 주관적 범위</span></div></div>
+    <div class="qt"><p>대전에 사는 甲은 안암은행(본점 서울 서초) 수원영업점에서 "여신거래 소송은 거래영업점 소재지 지방법원을 전속관할로 한다"는 약관에 따라 1억 원을 대출받고, 자기 소유 빌딩에 근저당권을 설정했다.</p>
+      <p class="sub-q">[1] 은행이 대출금채권을 한국자산관리공사에 양도했다. 공사는 수원지법에 대출금반환의 소를 제기할 수 있는가?</p>
+      <p class="sub-q">[2] 甲이 빌딩을 乙에게 팔았다. 乙이 채무 변제를 이유로 근저당권말소를 청구할 때 약관대로 수원지법에 제기해야 하는가?</p></div>
+    <details><summary>해설 보기</summary><div class="sol">
+      <p class="st">합의 자체</p><p>요건 충족, 약관규제법상 부당한 불이익이라 보기 어려움 → 유효한 전속적 합의.</p>
+      <p class="st">[1] 채권 양수인</p><p>지명채권은 내용을 당사자가 자유롭게 정할 수 있음 → 양수인은 변경된 권리관계를 승계 → <b>합의 효력 미침</b> → 수원지법 제소 가능.</p>
+      <p class="st">[2] 부동산 양수인</p><p>물권은 내용이 정형화(민185) → 근저당 설정자와 근저당권자 사이 관할합의는 <b>양수인에게 안 미침</b> → 수원지법은 법정 토지관할이 있을 때만.</p>
+    </div></details>
+  </div>
+
   <div class="check"><div class="ch">CHECK</div>
-    <details><summary>해고무효확인의 소는 소가 5,000만 원이므로 단독판사 관할이다.</summary><div class="a"><b class="x">X</b> — 비재산권상의 소는 합의부 관할. 소가(인지 기준)와 사물관할은 별개.</div></details>
-    <details><summary>원금 4억 원과 지연손해금 2억 원을 함께 청구하면 합의부 사건이다.</summary><div class="a"><b class="x">X</b> — 부대청구(손해배상·과실 등)는 소가에 산입하지 않음 → 4억, 단독.</div></details>
-    <details><summary>은행이 원고인 10억 원 대여금 청구는 단독판사 관할이다.</summary><div class="a"><b class="o">O</b> — 금융기관 원고 대여금·구상금·보증금은 액수 무관 단독.</div></details>
+    <details><summary>법정관할 법원 중 하나를 관할법원으로 합의했다면 전속관할이므로 다른 법원에 제기된 소에서 변론관할이 생기지 않는다.</summary><div class="an"><span class="x">X</span> 전속적 "합의"일 뿐 임의관할 → 변론관할 생김.</div></details>
+    <details><summary>채권자와 주채무자 사이의 관할합의는 연대보증인에게도 미친다.</summary><div class="an"><span class="x">X</span> 별개 채무.</div></details>
+    <details><summary>피고가 답변서에 본안에 관한 주장을 적어 제출하고 변론기일에 불출석해 진술간주되었다면 변론관할이 생긴다.</summary><div class="an"><span class="x">X</span> 현실적으로 출석해 말로 변론해야.</div></details>
   </div>
+  <div class="pfoot"><span>민사소송법(상) | 1. 법원 — 재판권과 관할</span><span>Theme 4</span></div>
 </section>
 
 <!-- T05 -->
-<section id="t05">
-  <div class="theme-h"><span class="tno">THEME 05</span><h2>토지관할 — 재판적</h2><span class="pg">160–167면</span></div>
-  <div class="concept">
-    <p class="def">어느 <b>지역</b>의 법원이 맡는가. 관할구역 안에 있는 <b>사건과의 관련 지점</b>을 <b>재판적</b>이라 하고, 재판적이 있는 곳의 법원이 토지관할을 가진다.</p>
-    <p class="note">"적(籍)"은 호적·학적의 적. 독일어 Gerichtsstand의 일본식 번역. 고대생이면 고려대에 학적이 있듯, 안암동에 살면 북부지법에 재판적이 있다.</p>
+<section class="page" id="t05">
+  <div class="th"><div class="lab">Theme 5</div><div class="barline"></div><h2>관할 흠결은 각하가 아니라 이송이다</h2><div class="src">교과서 181–194면 · 소송의 이송 ★★★</div></div>
+  <div class="frame">
+    <h3 class="sec">1. 관할의 조사</h3>
+    <p class="circ">① 소송요건 → <b>직권조사</b>, 모든 종류의 관할에 대해.</p>
+    <p class="circ">② 관할원인 사실이 <b>본안 사실과 겹치면</b>(불법행위지 등) → <b>원고 주장 사실을 토대로</b> 판단하면 충분. "해운대에서 맞았다는 게 진실이라면 우리 관할인가?"만 본다. 재판적 발생원인 <b>자체</b>를 다투면 실제로 조사.</p>
+    <p class="circ">③ 관할을 다투는데 법원이 있다고 보면 → <b>중간판결 또는 종국판결 이유</b>에서. "피고의 울분을 풀어줘야 한다."</p>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 1</span>헷갈리는 두 문장 — 관할의 표준시 = 소 제기 시 <span class="art">33</span></div>
+      <div class="rb grid2">
+        <div class="box"><h4>관할 <b>있는</b> 곳에 제기</h4><p>→ <b>관할의 항정</b>. 이후 피고가 이사 가도 유지.</p></div>
+        <div class="box"><h4>관할 <b>없는</b> 곳에 제기</h4><p>→ <b>사실심 변론종결 시까지</b> 관할이 생기면(이사·변론관할) 하자 치유.</p></div>
+      </div></div>
+    <p class="key">관할 흠결의 처리 = <b>소각하가 아니라 이송</b>. 소송요건 중 유일한 예외. 국민이 몰라서 잘못 낼 수 있으니까.</p>
+
+    <h3 class="sec">2. 관할 위반을 간과한 판결</h3>
+    <div class="tbl"><table>
+      <thead><tr><th></th><th>임의관할 위반</th><th>전속관할 위반</th></tr></thead>
+      <tbody>
+        <tr><td class="k">항소심</td><td><b>주장 불가</b>(<span class="art">411</span>) — 판결 선고로 치유</td><td>항소이유 → 1심판결 <b>취소 + 이송</b></td></tr>
+        <tr><td class="k">상고심</td><td>—</td><td>절대적 상고이유(<span class="art">424①3</span>) → <b>파기 + 이송</b></td></tr>
+        <tr><td class="k">확정 후</td><td>치유</td><td><b>재심사유 아님</b> → 치유</td></tr>
+        <tr><td class="k">효력</td><td colspan="2">어느 쪽이든 <b>무효 아님</b></td></tr>
+      </tbody></table></div>
+    <p class="pen">전속관할 위반을 재심사유로 아는 사람이 많다. 아니다. 451조 11개에 없다.</p>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 2</span>상소심의 처리 용어</div>
+      <div class="rb tbl"><table>
+        <thead><tr><th></th><th>항소심 (원판결 = 1심)</th><th>상고심 (원판결 = 2심)</th></tr></thead>
+        <tbody>
+          <tr><td class="k">이유 없음</td><td>항소기각</td><td>상고기각</td></tr>
+          <tr><td class="k">이유 있음</td><td><b>취소</b> → 자판 / 환송 / 이송</td><td><b>파기</b> → 자판 / 환송(원칙) / 이송</td></tr>
+          <tr><td class="k">특칙</td><td>1심 <b>소각하</b>가 잘못 → <b>필수적 환송</b>(<span class="art">418</span>)</td><td>환송받을 법원이 재판 불능 → 동급 다른 법원으로 이송</td></tr>
+        </tbody></table>
+        <p class="small muted" style="margin-top:6px">원리: 항소심이 1심판결을 취소하면 항소심이 "1심 입장"이 된다 → 1심이 했어야 할 일(이송)을 한다. 1심 이송은 <b>결정</b>, 상소심 이송은 <b>판결</b>.</p></div></div>
+
+    <h3 class="sec">3. 소송의 이송</h3>
+    <p class="def">계속된 <b>소송(절차 그 자체)</b>을 그 법원의 재판으로 다른 법원에 옮기는 것. "소의 이송"이 아니라 "소송의 이송" — 시효중단, 증거조사 등이 <b>통째로 떼어 옮겨진다</b>.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>원인</th><th>조문</th><th>누가</th><th>포인트</th></tr></thead>
+      <tbody>
+        <tr><td class="k">① 관할위반</td><td><span class="art">34①</span></td><td class="x">직권</td><td>법문에 <b>신청권 규정 없음</b> → 신청권 인정 여부가 최대 쟁점</td></tr>
+        <tr><td class="k" rowspan="3">② 심판 편의</td><td><span class="art">35</span></td><td>직권·신청</td><td>관할 있어도 <b>현저한 손해</b>(사익, 주로 피고 부담 — 원고 손해도 고려) 또는 <b>지연</b>(공익, 심리 시간) 회피. 전속관할 제외. <b>판례는 거의 안 받아줌</b></td></tr>
+        <tr><td><span class="art">36</span></td><td>직권·신청</td><td>지식재산권 사건</td></tr>
+        <tr><td><span class="art">34②</span></td><td>직권·신청</td><td>지법 단독판사의 합의부 <b>재량이송</b></td></tr>
+        <tr><td class="k">③ 반소</td><td><span class="art">269②</span></td><td>직권·신청</td><td>단독사건에 합의부 사건 반소 → 합의부로. 변론관할 생기면 불요</td></tr>
+      </tbody></table></div>
+
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 3</span>관할위반 이송신청권 — 기출 3회(2016·2020·2025)</div>
+      <div class="rb">
+        <p><span class="tag t-pan">판례</span>당사자에게 관할위반을 이유로 한 <b>이송신청권은 없다</b>. 신청은 <b>직권발동 촉구</b>에 불과 → 법원은 재판할 필요 없고, 기각결정을 해도 <b>즉시항고(39조) 불허</b>, 특별항고도 각하.</p>
+        <p><span class="tag t-pan">판례</span>법원이 신청을 계기로 <b>직권으로 이송결정</b>을 하면 상대방의 즉시항고는 허용. 그러나 항고심이 이송결정을 취소해도 <b>이송신청인의 재항고는 불허</b>(신청권이 없으므로).</p>
+        <p><b>다수설</b>: 관할 있는 법원에서 재판받을 피고의 이익 + 다른 이송과의 균형 → 신청권 인정, 재판해야 하고 항고까지 허용. 34조 1항은 피고의 관할이익을 보호할 법원의 책무일 뿐 신청권을 부정한 것이 아니다.</p>
+      </div></div>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 4</span>전속적 합의관할과 35조 이송</div>
+      <div class="rb"><p>전속적 합의관할은 임의관할이므로 <b>현저한 지연(공익)</b>을 이유로는 이송 가능(판례). 공익은 합의로 배제 못 하지만, <b>현저한 손해(사익)</b>는 전속적 합의로 유효하게 배제된 것으로 본다.</p></div></div>
+
+    <div class="grid2">
+      <div class="box"><h4>심급관할 위반</h4><p>항소장을 고법에, 상고장을 대법원에 직접 낸 경우. 서류는 <b>기록이 있는 원심</b>에 내는 게 원칙. 대법원은 상고장이 바로 오면 이송 않고 <b>기록 송부</b> → 원심 접수 시 기준으로 기간 판단 → 기간 도과 위험(교과서 비판).</p></div>
+      <div class="box"><h4>종류가 다른 법원·절차</h4><p>가사·행정 사건을 민사로, <b>비송을 소송으로</b> 잘못 낸 경우. 과거 각하 → <b>2023년 판례 변경</b>: 석명해서 비송으로 처리받길 원하면 <b>재배당·이송</b>. (기업구조조정촉진법상 조정결정 변경청구, 주식매수가액 결정청구)</p></div>
+    </div>
+
+    <h3 class="sec2">이송의 효과</h3>
+    <p class="circ">① <b>기속력</b>(<span class="art">38</span>): 이송받은 법원은 따라야 하고 다시 이송(전송·반송) 못 함. 통설·판례는 전속관할 위반 이송도 기속 — <b>심급관할을 위반해 상급심으로 이송된 경우만 제외</b>.</p>
+    <p class="circ">② <b>소송계속의 이전</b>(<span class="art">40①</span>): 처음부터 이송받은 법원에 계속된 것으로 → 시효중단·기간준수 효과 유지, 이송 전 소송행위(증거조사 등)도 효력 유지.</p>
+    <p class="pen">원고·피고 호칭은 끝까지 1심 기준이다. 항소한 피고는 "항소인"이지 원고가 아니다. 그래야 판결을 읽을 수 있다.</p>
   </div>
-  <div class="key"><b>보통재판적 = 피고의 주소</b>(모든 소에 공통) / <b>특별재판적 = 특정 종류의 소에만</b>, 거의 다 <b>원고 편의</b>를 위해 인정.</div>
-  <div class="block prof"><p><span class="tag t-prof">교수님</span>원칙이 <b>피고</b> 주소지인 이유: "누가 돈 달라고 하려면 그 사람 문 앞에 가서 해라. 엉뚱하게 돈 달라고 할 수 있으니까." 그런데 원고에게 너무 불리하니 특별재판적을 잔뜩 열어 줬고, 그중 <b>의무이행지</b>가 금전채권에서 원고 주소지를 열어버려 원칙이 거의 허물어졌다.</p></div>
 
-  <h3>보통재판적 (피고 기준)</h3>
-  <div class="tbl"><table>
-    <thead><tr><th>피고</th><th>보통재판적</th></tr></thead>
-    <tbody>
-      <tr><td class="k">자연인</td><td><b>주소</b> → 없으면 거소 → 없으면 마지막 주소 <span class="note">(주소 = 민법상 생활의 근거, 주민등록과 무관)</span></td></tr>
-      <tr><td class="k">대사·공사 등 외국 재판권 면제 국민</td><td>위로 안 정해지면 <b>대법원 소재지</b></td></tr>
-      <tr><td class="k">법인·단체</td><td><b>주된</b> 사무소·영업소 (없으면 주된 업무담당자 주소)</td></tr>
-      <tr><td class="k">국가</td><td>국가를 대표하는 관청(<b>법무부장관</b> → 과천 → <b>수원지법 안양지원</b>) 또는 <b>대법원</b> 소재지(서울중앙지법)</td></tr>
-    </tbody>
-  </table></div>
-
-  <h3>특별재판적 (주요한 것)</h3>
-  <div class="tbl"><table>
-    <thead><tr><th>재판적</th><th>포인트</th></tr></thead>
-    <tbody>
-      <tr><td class="k">근무지 <span class="art">7</span></td><td><b>피고</b>의 근무지 (원고 근무지 아님!)</td></tr>
-      <tr><td class="k">거소지 <span class="art">8</span></td><td>재산권에 관한 소 → <b>피고</b>의 거소지</td></tr>
-      <tr><td class="k">의무이행지 <span class="art">8</span></td><td><b>가장 중요.</b> 특정물인도 = 물건 소재지, 그 외 = <b>채권자 주소(지참채무, 민467)</b> → 금전채권은 사실상 <b>원고 주소지</b></td></tr>
-      <tr><td class="k">어음·수표 지급지 <span class="art">9</span></td><td>지급지에서도 가능</td></tr>
-      <tr><td class="k">재산 소재지 <span class="art">11</span></td><td>국내에 주소 없거나 알 수 없는 사람 상대 재산권 소</td></tr>
-      <tr><td class="k">사무소·영업소 <span class="art">12</span></td><td>여기선 "<b>주된</b>"이 빠짐 → <b>지점</b>. 그 업무에 관한 소에 한함</td></tr>
-      <tr><td class="k">불법행위지 <span class="art">18</span></td><td><b>행위지 + 결과발생지</b> 모두</td></tr>
-      <tr><td class="k">부동산 소재지 <span class="art">20</span></td><td><b>부동산 자체에 관한 권리</b>의 소(소유권확인, 인도, 등기말소 등)만. <span class="bad">차임·매매대금 청구는 X</span> → 원칙으로</td></tr>
-      <tr><td class="k">등기·등록지 <span class="art">21</span></td><td>등기할 공공기관 소재지</td></tr>
-      <tr><td class="k">지식재산권 <span class="art">24</span></td><td>아래 표</td></tr>
-    </tbody>
-  </table></div>
-
-  <details class="ex"><summary><span class="q-h">필수예제 05-1</span><span class="q">서울에 사는 갑이 해운대에 놀러 갔다가 제주에서 온 을의 차에 치였고, 울산의 병원으로 옮겨지다 사망했다. 갑의 유족이 을에게 손배청구를 할 수 있는 법원은?</span><span class="open">해설 보기 ▾</span></summary>
-    <div class="sol">
-      <p><span class="h">① 보통재판적</span> 피고 을의 주소 → <b>제주</b>.</p>
-      <p><span class="h">② 의무이행지</span> 손배채무 = 금전채무 = 지참채무 → 채권자(원고) 주소 → <b>서울</b>.</p>
-      <p><span class="h">③ 불법행위지</span> 행위지 <b>부산</b> + 결과발생지 <b>울산</b>.</p>
-      <p><span class="h">결론</span> 제주·서울·부산·울산 모두 관할 O → 원고가 골라서 제기(<b>선택관할</b>). 당연히 서울. <span class="note">※ "선택적 병합"(청구 병합 형태)과는 아무 관계 없는 말.</span></p>
+  <div class="prob">
+    <div class="pbar"><span class="pno">06</span><div class="pm"><span class="ps">2020년 중간 2문 · 2025년 중간 1문 · 50점</span><span class="pt">관할위반에 따른 이송신청권과 재항고</span></div></div>
+    <div class="qt"><p>甲은 乙을 상대로 임대한 특수기계의 반환과 사용료를 청구하는 소를 수원지방법원에 제기하였다. 乙이 수원지방법원에 관할권이 없음을 이유로 이송신청을 하자 법원은 창원지방법원으로 이송하는 결정을 하였다. 甲의 즉시항고로 항고심법원이 이송결정을 취소한 경우, 乙은 재항고할 수 있는가?</p></div>
+    <details><summary>해설 보기</summary><div class="sol">
+      <p class="st">① 문제점</p><p>34조 1항은 다른 이송(34②·35·269②)과 달리 신청권을 규정하지 않음 → 관할위반 이송에 신청권이 있는가.</p>
+      <p class="st">② 판례</p><p>신청권 없음 → 신청은 직권발동 촉구 → 기각결정에 즉시항고·특별항고 불허. 직권 이송결정에 대한 상대방 즉시항고는 허용되나, 항고심이 취소해도 신청인의 재항고는 불허.</p>
+      <p class="st">③ 학설</p><p>다수설은 신청권 인정(피고의 관할이익, 다른 이송과의 균형).</p>
+      <p class="st">결론</p><p>판례에 따르면 <b>乙의 재항고는 부적법</b>. 다수설에 따르면 재항고 가능.</p>
     </div></details>
-
-  <h3>지식재산권 — 둘은 "거꾸로"</h3>
-  <div class="tbl"><table>
-    <thead><tr><th></th><th>원칙</th><th>추가 / 이송</th></tr></thead>
-    <tbody>
-      <tr><td class="k">특허권 등 <b>제외</b> 지식재산권<br><span class="note">(저작권 등) · 국제거래</span></td><td>일반 토지관할(예: 군산)</td><td>그 지역 <b>고등법원 소재지 지방법원에도</b> 제기 가능(군산 → 광주지법, 서울은 서울중앙). 원래 법원으로 이송 가능</td></tr>
-      <tr><td class="k"><b>특허권 등</b><br><span class="note">특허·실용신안·디자인·상표·품종보호</span></td><td><b>고등법원 소재지 지방법원 전속</b>(서울은 서울중앙)</td><td>어디 살든 <b>서울중앙</b>에도 제기 가능 / 현저한 손해·지연 → 지역 지방법원으로 이송 가능(<span class="art">36</span>)</td></tr>
-    </tbody>
-  </table></div>
-  <div class="block prof"><p><span class="tag t-prof">교수님</span>이름(직무발명 보상금, 위약금 청구)에 현혹되지 말고 <b>실질이 특허권 등에 관한 것이면 특허권 등의 관할 규정</b>에 따라야 한다는 게 판례. 심결취소소송(특허심판원 → 특허법원 → 대법원, 2심제)은 지재법 과목 내용이라 넘어가셨습니다.</p></div>
-  <div class="check"><div class="ch">CHECK</div>
-    <details><summary>원고는 자신의 근무지 법원에 소를 제기할 수 있다.</summary><div class="a"><b class="x">X</b> — 근무지 특별재판적은 <b>피고</b>의 근무지.</div></details>
-    <details><summary>건물 임대인이 밀린 차임을 청구하는 소는 건물 소재지 법원에 제기할 수 있다(부동산 소재지 재판적).</summary><div class="a"><b class="x">X</b> — 부동산 자체에 관한 권리의 소가 아님. 다만 금전채무라 원고 주소지(의무이행지)는 가능.</div></details>
-    <details><summary>법인의 보통재판적은 지점 소재지에도 인정된다.</summary><div class="a"><b class="x">X</b> — 보통재판적은 <b>주된</b> 사무소·영업소. 지점은 12조 특별재판적(그 업무 관련 소).</div></details>
+    <div class="comment"><span class="cl">Comment</span><p>관할 판단 사실이 거의 없는 발문 = <b>판례 문구를 최대한 자세히</b> 쓰라는 신호. "직권발동 촉구", "즉시항고·특별항고 불허", "재항고 불허" 세 구절을 살린다. 판례 → 학설 → 검토 순서로 써도 되고, 결론은 판례·다수설 둘 다 현출.</p></div>
   </div>
+
+  <div class="prob">
+    <div class="pbar"><span class="pno">07</span><div class="pm"><span class="ps">2016년 중간 1-2문 · 30점</span><span class="pt">전속적 합의 위반과 이송신청</span></div></div>
+    <div class="qt"><p>(문제 04의 사안) 甲은 수원지방법원에 乙회사를 상대로 채무불이행 손해배상청구의 소를 제기하였다. 乙회사는 관할위반의 항변을 하고 대전지방법원으로 이송신청을 하였다. 법원은 어떻게 판단하여야 하는가?</p></div>
+    <details><summary>해설 보기</summary><div class="sol">
+      <p class="st">① 합의의 요건·해석</p><p>요건 충족. 대전은 원래 법정관할(본점 소재지) → <b>전속적 합의</b> → 수원지법 관할 배제.</p>
+      <p class="st">② 약관규제법</p><p>부당한 불이익이라 보기 어려움 → 유효.</p>
+      <p class="st">③ 변론관할</p><p>乙이 관할위반 항변 → 생기지 않음.</p>
+      <p class="st">④ 이송신청권</p><p>판례: 신청권 없음 → 신청에 대해 재판할 필요 없고 직권으로 이송 가능. 다수설: 신청권 인정 → 대전지법으로 이송 재판.</p>
+      <p class="st">결론</p><p>관할위반 → 대전지법으로 이송. (약관 합의 = 부가적이라는 견해면 관할위반 없음 → 항변 배척)</p>
+    </div></details>
+    <div class="comment"><span class="cl">Comment</span><p>판례에 따르면 관할위반 여부와 상관없이 신청권이 없어서 앞 목차의 의미가 줄지만, 다수설은 관할위반이 있는 경우에 신청권을 인정하므로 <b>관할위반이 있는지를 먼저 논증</b>해야 한다(튜터).</p></div>
+  </div>
+
+  <div class="prob">
+    <div class="pbar"><span class="pno">08</span><div class="pm"><span class="ps">2018년 중간 1문 · 50점</span><span class="pt">전속적 합의관할과 손해·지연을 피하기 위한 이송</span></div></div>
+    <div class="qt"><p>대전에 사는 甲과 부산에 사는 乙이 甲이 부산에서 물건을 생산해 乙이 구매하는 계약을 체결하면서, 분쟁은 대전에서 해결하기로 관할합의를 하였다. 乙이 하자를 이유로 대금을 지급하지 않자 甲은 대전지방법원에 손해배상청구의 소를 제기하였다. 乙은 물건과 증인이 모두 부산에 있으니 부산지방법원으로 이송해 달라고 신청하였다. 법원의 판단은?</p></div>
+    <details><summary>해설 보기</summary><div class="sol">
+      <p class="st">① 법정관할</p><p>보통재판적 → 부산지법 / 의무이행지(금전, 지참채무) → 대전지법.</p>
+      <p class="st">② 합의</p><p>법정관할인 대전을 특정 → <b>전속적 합의</b>.</p>
+      <p class="st">③ 35조</p><p>전속적 합의관할도 임의관할 → 이송 대상 가능. 단, <b>현저한 손해(사익)</b>는 합의로 배제 → 불가. <b>현저한 지연(공익)</b>을 피하기 위한 이송은 가능(판례).</p>
+      <p class="st">결론</p><p>손해 회피 이송은 불가, 지연 회피 이송의 여지는 있으나 35조 재판례가 일반적으로 이를 부정하는 점에 비추어 <b>인정되기 어렵다</b>.</p>
+    </div></details>
+  </div>
+
+  <div class="check"><div class="ch">CHECK</div>
+    <details><summary>전속관할을 위반한 판결이 확정되면 재심의 소로 취소할 수 있다.</summary><div class="an"><span class="x">X</span> 재심사유 아님.</div></details>
+    <details><summary>토지관할 위반을 간과한 1심 판결에 대해 항소심에서 관할위반을 주장할 수 있다.</summary><div class="an"><span class="x">X</span> 411조.</div></details>
+    <details><summary>35조의 이송은 전속관할 사건에도 할 수 있다.</summary><div class="an"><span class="x">X</span> 35조 단서. (전속적 "합의"관할은 가능)</div></details>
+    <details><summary>관할위반으로 이송되면 이송 전 법원에서 한 증거조사는 효력을 잃는다.</summary><div class="an"><span class="x">X</span> 소송계속 일체성.</div></details>
+  </div>
+  <div class="pfoot"><span>민사소송법(상) | 1. 법원 — 재판권과 관할</span><span>Theme 5</span></div>
+</section>
+
+<!-- ================= CHAPTER 2 ================= -->
+<section class="page chopen" id="ch2">
+  <div class="chsq">2<small>Chapter</small></div>
+  <div class="t"><div class="k">CHAPTER 2</div><h2>당사자 — 누가 당사자인가</h2>
+    <p>당사자에 관한 요건은 순서대로 묻는다. <b>누가</b> 당사자인가(확정) → <b>될 수 있는</b> 자인가(능력) → <b>혼자</b> 할 수 있나(소송능력) → <b>이 사건</b>을 할 자격이 있나(적격). 확정은 "중간고사 빈출 — 학설에 따른 결론 암기"(튜터).</p></div>
 </section>
 
 <!-- T06 -->
-<section id="t06">
-  <div class="theme-h"><span class="tno">THEME 06</span><h2>관련재판적 (25조) — 하나만 있으면 끌고 온다</h2><span class="pg">168–170면</span></div>
-  <div class="concept"><p class="def">여러 청구 중 <b>하나에 관해 관할</b>이 있으면, 관할 없는 나머지 청구도 그 법원에 함께 제기할 수 있다.</p></div>
-  <div class="grid2">
-    <div class="card"><h3>① 객관적 병합 <span class="art">25①</span></h3>
-      <p>같은 당사자 사이 여러 청구. 대전이 지급지인 어음금 청구 + 서울 사건인 대여금 청구 → 대전에서 같이.</p>
-      <p>당사자가 같으니 불만 생길 일 없음 → <b>제한 없이 인정</b>(원시적·후발적 병합 모두).</p></div>
-    <div class="card"><h3>② 주관적 병합(공동소송) <span class="art">25②</span></h3>
-      <p>피고가 여럿이면, 관할 없는 피고는 "왜 내 사건을 거기서?" → 불만.</p>
-      <p>그래서 <b>65조 전문</b>(실질적 견련)인 경우에만 인정, <b>65조 후문</b>(형식적 견련)은 불인정.</p></div>
+<section class="page" id="t06">
+  <div class="th"><div class="lab">Theme 6</div><div class="barline"></div><h2>당사자는 판결에 이름이 적히는 사람이다</h2><div class="src">교과서 195–203면</div></div>
+  <div class="frame">
+    <h3 class="sec">1. 형식적 당사자 개념</h3>
+    <p class="def">당사자 = <b>자기 이름으로</b> 판결을 구하거나 받는 사람 = <b>판결의 명의인</b>.</p>
+    <p>과거엔 실체법상 권리·의무의 주체가 당사자(실질적 개념)였지만, 채권자대위소송·파산관재인처럼 <b>남의 권리로 자기 이름으로</b> 소송하는 경우(제3자 소송담당)가 많아져 형식적 개념으로 바뀌었다.</p>
+
+    <h3 class="sec">2. 당사자 개관표</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>소송요건</th><th>묻는 것</th><th>민법</th><th>흠이 있으면</th></tr></thead>
+      <tbody>
+        <tr><td class="k">당사자 확정</td><td>도대체 누가 원고·피고인가</td><td>(존재)</td><td>사망자면 표시정정 / 소각하</td></tr>
+        <tr><td class="k">당사자능력</td><td>당사자가 <b>될 수 있는 일반적</b> 능력</td><td>권리능력</td><td>보정 → 소각하</td></tr>
+        <tr><td class="k">소송능력</td><td><b>혼자서</b> 유효하게 소송행위를 할 능력</td><td>행위능력</td><td>보정(59) → 소각하 / 행위는 유동적 무효</td></tr>
+        <tr><td class="k">당사자적격</td><td><b>이 사건</b>에서 본안판결 받을 자격</td><td>관리처분권</td><td>소각하 (청구기각 아님)</td></tr>
+        <tr><td class="k">(변론능력)</td><td>법정에서 조리 있게 진술할 능력</td><td>—</td><td class="x">소송요건 아님</td></tr>
+      </tbody></table></div>
+    <p class="ind muted">도롱뇽은 능력에서, 미성년자는 소송능력에서, 남의 채권을 아무 관계없이 청구한 친구는 적격에서 걸린다.</p>
+
+    <h3 class="sec">3. 이당사자 대립구조</h3>
+    <p>원고와 피고가 대립해야 소송이다. 대립구조가 깨지면 <b>소송종료</b>.</p>
+    <p class="circ">① <b>당사자의 혼동</b>: 외아들이 아버지와 소송 중 아버지 사망 → 자기 대 자기 → 종료.</p>
+    <p class="circ">② <b>일신전속적 법률관계</b>: 이혼소송 중 일방 사망 → 종료. <span class="tag t-pan">판례</span> <b>이사</b>가 주총결의취소의 소 제기 후 사망 → 이사 지위는 일신전속 → 중단 없이 <b>종료</b>. <span class="tag t-gi">출제</span></p>
+    <p class="circ">③ <b>일반적 사망</b>은 대립구조를 깨지 않는다 → 상속인이 즉시 <b>당연승계</b>.</p>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 1</span>승계 · 중단 · 수계</div>
+      <div class="rb"><p><b>승계</b>는 실체 — 사망과 동시에 이미 끝남. <b>중단</b>은 상속인이 절차보장을 받도록 절차를 멈추는 것. <b>수계</b>는 상속인이 "제가 들어가겠습니다" 하는 신청. "승계는 이미 됐고, 절차를 위해 중단·수계한다."</p></div></div>
+    <p class="out"><span class="o">2학기</span>소송승계(81·82조) — "제일 어렵다." 일본 당사자권 3파 이론은 사담.</p>
   </div>
-  <div class="tbl"><table>
-    <thead><tr><th>65조 공동소송 요건</th><th>견련성</th><th>예</th><th>관련재판적(25②)</th></tr></thead>
-    <tbody>
-      <tr><td class="k">전문 ① 권리·의무 <b>공통</b></td><td rowspan="2">실질적 견련</td><td>공유·합유·총유, 연대채무, 불가분채무</td><td class="good" rowspan="2">O</td></tr>
-      <tr><td class="k">전문 ② 발생 <b>원인 공통</b></td><td>같은 사고의 여러 피해자·가해자(버스 사고), 주채무자와 보증인</td></tr>
-      <tr><td class="k">후문 ③ 권리·의무와 원인이 <b>동종</b></td><td>형식적 견련</td><td>한 임대인과 여러 임차인, 같은 가게에서 산 화장품 피해자들 — 서로 만난 적도 없음</td><td class="bad">X</td></tr>
-    </tbody>
-  </table></div>
-  <div class="block ans"><p><span class="tag t-ans">답안</span><b>학설·입법 경과</b>: 과거 판례는 소극설(관할 없는 피고를 끌고 오는 건 피해가 크다) → 학설 절충설(65조 전문만 허용) → <b>절충설이 25조 2항으로 입법</b>됨.</p>
-  <p><b>관련재판적 작출의 금지(판례)</b>: 관할 없는 피고를 끌어오려고 <b>관계없는 자를 공동피고로 끼워 넣는 것</b>은 관할선택권의 남용으로 <b>신의칙 위반</b> → 관련재판적 불인정. (전주에 있는 사찰을 서울로 끌고 오려고 서울의 유지재단을 공동피고로 넣은 사건)</p></div>
-  <div class="block prof"><p><span class="tag t-prof">교수님 · 채점 경고</span>"권리·의무 공통"이라는 말만 보고 <b>연대채무를 필수적 공동소송</b>으로 쓰는 답안이 1/5쯤 된다. 연대채무는 <b>통상공동소송</b>(각자 별개 채무, 분리해도 됨 → 한 명만 항소하면 그 사람만 올라감). 필수적 공동소송은 공유물분할처럼 한 명이라도 빠지면 부적법한 경우. "첫 줄에 필수적 공동소송이라 쓰면 그 뒤는 다 거짓말이 된다." <span class="tag t-out">공동소송 자체는 2학기</span></p></div>
-  <div class="check"><div class="ch">CHECK</div>
-    <details><summary>임대인이 각자 다른 지역에 사는 여러 임차인을 공동피고로 차임을 청구할 때, 한 임차인에 대해 관할이 있는 법원에 나머지 임차인도 끌어올 수 있다.</summary><div class="a"><b class="x">X</b> — 각자 체결한 임대차 = 원인이 "동종"(65조 후문, 형식적 견련) → 25조 2항 관련재판적 불인정.</div></details>
-    <details><summary>주채무자와 보증인을 공동피고로 하는 경우 25조 2항의 관련재판적이 인정된다.</summary><div class="a"><b class="o">O</b> — 원인 공통(65조 전문)으로 실질적 견련 있음.</div></details>
-  </div>
+  <div class="pfoot"><span>민사소송법(상) | 2. 당사자 — 누가 당사자인가</span><span>Theme 6</span></div>
 </section>
 
 <!-- T07 -->
-<section id="t07">
-  <div class="theme-h"><span class="tno">THEME 07</span><h2>합의관할 (29조)</h2><span class="pg">171–176면</span></div>
-  <div class="concept"><p class="def">당사자의 <b>합의</b>로 생기는 관할. 서울(을)과 제주(갑) 사이에 "분쟁은 대전에서"라고 합의하면 대전에 관할이 생긴다.</p></div>
-  <div class="tbl"><table>
-    <thead><tr><th>요건</th><th>포인트</th></tr></thead>
-    <tbody>
-      <tr><td class="k">① 제1심 · 임의관할</td><td>전속관할은 합의로 못 바꿈</td></tr>
-      <tr><td class="k">② 일정한 법률관계</td><td>"당신과 나 사이의 <b>모든 분쟁</b>" X / "<b>특정 매매계약</b>에 관한 일체의 분쟁" O</td></tr>
-      <tr><td class="k">③ 법원 특정</td><td>"전국 모든 법원" X(피고의 관할이익 박탈) / "모든 법원 배제" → 부제소합의로 보면 가능</td></tr>
-      <tr><td class="k">④ 서면</td><td>제소 전이 보통. 제소 후 합의는 이송 전제</td></tr>
-    </tbody>
-  </table></div>
-  <div class="block ans"><p><span class="tag t-ans">답안 · 중요</span><b>전속적 합의 vs 부가적 합의</b>(통설·판례): <b>법정관할 중 어느 하나를 특정하거나 배제</b>하는 합의 → <b>전속적</b> 합의. 법정관할 없는 법원을 <b>하나 더 추가</b>하는 합의 → <b>부가적</b> 합의.</p>
-  <p>⚠ <b>전속적 합의 ≠ 전속관할.</b> 전속적 합의관할도 여전히 <b>임의관할</b> → 다른 합의로 바꿀 수 있고, 다른 법원에 제기해도 <b>변론관할</b>이 생기며, 현저한 손해·지연 시 <b>이송(35조)</b>도 가능(통설).</p></div>
-  <div class="block ans"><p><span class="tag t-ans">답안</span><b>약관에 의한 관할합의</b>: 고객에게 부당하게 불리한 관할합의 조항(사업자 본점 소재지 법원 전속 등)은 약관규제법상 <b>무효</b>. 할부거래법·방문판매법 등은 아예 <b>소비자 주소지 전속</b>. <span class="note">(교수님: 병원 수술동의서 뒷면, 포털 약관 맨 끝 조항)</span></p></div>
-  <div class="tbl"><table>
-    <thead><tr><th>합의의 효력이 미치는 사람</th><th>결론</th><th>이유</th></tr></thead>
-    <tbody>
-      <tr><td class="k">당사자 · 포괄승계인(상속인)</td><td class="good">미침</td><td>계약 당사자 지위 승계</td></tr>
-      <tr><td class="k">보증인</td><td class="bad">안 미침</td><td>주채무와 보증채무는 <b>별개의 채무</b>(교수님이 계속 강조). 다만 보증인을 같이 묶고 싶으면 25조 2항(원인 공통)</td></tr>
-      <tr><td class="k">특정승계인 — <b>지명채권</b> 등</td><td class="good">미침</td><td>내용을 당사자가 자유롭게 정할 수 있는 권리 → 관할합의가 붙은 채로 변경된 권리관계가 승계</td></tr>
-      <tr><td class="k">특정승계인 — <b>물권</b> 등</td><td class="bad">안 미침</td><td>내용이 법률상 정형화 → 당사자가 바꿀 수 없음. "서울에서만 다퉈야 하는 소유권"은 없다</td></tr>
-    </tbody>
-  </table></div>
-  <div class="block exam"><p><span class="tag t-exam">가끔 출제</span><b>전속적 국제재판관할 합의</b>(외국법원에만 제기하기로)의 유효요건(판례): ① 사건이 <b>대한민국 법원의 전속관할에 속하지 않을 것</b> ② 지정된 외국법원이 그 외국법상 관할을 가질 것 ③ 그 외국법원과 사건 사이에 <b>합리적 관련성</b> ④ 현저히 불합리·불공정하여 공서양속에 반하지 않을 것.</p></div>
-  <div class="check"><div class="ch">CHECK</div>
-    <details><summary>법정관할 법원 중 서울중앙지법을 관할법원으로 합의했다면 이는 전속관할이므로 다른 법원에 제기된 소에서는 변론관할이 생기지 않는다.</summary><div class="a"><b class="x">X</b> — 전속적 <b>합의</b>일 뿐 전속관할이 아님. 임의관할이므로 변론관할 생김.</div></details>
-    <details><summary>채권자와 주채무자 사이의 관할합의는 연대보증인에게도 효력이 있다.</summary><div class="a"><b class="x">X</b> — 보증채무는 별개 채무, 합의는 계약 당사자 사이에만.</div></details>
+<section class="page" id="t07">
+  <div class="th"><div class="lab">Theme 7</div><div class="barline"></div><h2>확정은 표시설, 사망자만 예외다</h2><div class="src">교과서 203–216면 · 확정 기준 ★★★ 표시정정 ★★★ 망인 상대 소송 ★★★</div></div>
+  <div class="frame">
+    <h3 class="sec">1. 당사자 확정의 의의</h3>
+    <p class="def">소장에 적힌 당사자가 <b>실제로 누구인지</b> 정하는 것. 원고가 <b>특정</b>하고(안 하면 보정명령), 법원이 <b>직권으로 확정</b>한다.</p>
+    <p>확정이 돼야 그 사람을 기준으로 능력·적격·재판적·송달·판결효를 따진다. 실재하지 않는 자(사망자, 상속인도 없음)로 확정되면 소각하.</p>
+
+    <h3 class="sec">2. 확정의 기준</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>학설</th><th>기준</th><th>비판</th></tr></thead>
+      <tbody>
+        <tr><td class="k">의사설</td><td>원고(또는 법원)가 <b>누구를 당사자로 삼으려 했는가</b></td><td>내심의 의사를 명확히 알 수 없다</td></tr>
+        <tr><td class="k">행동설</td><td>절차에서 <b>당사자로 행동하거나 취급된 자</b></td><td>어떤 행동이 당사자다운지 기준이 불명확</td></tr>
+        <tr><td class="k">표시설</td><td><b>소장에 표시된 자</b></td><td>— 가장 명확</td></tr>
+        <tr><td class="k">실질적 표시설 <span class="tag t-pan">통설·판례</span></td><td>당사자란뿐 아니라 <b>청구취지·청구원인 등 소장 전체</b>를 합리적으로 해석</td><td></td></tr>
+      </tbody></table></div>
+    <p class="key">판례 공식 — <b>원칙 = 실질적 표시설</b>. 예외 = <b>제소 전 사망자를 상대로 한 소가 계속 중 발견된 경우 → 의사설</b>("사망을 알았다면 상속인을 피고로 했을 것") → <b>상속인으로 표시정정</b>.</p>
+    <p class="pen">표시설이 유일하게 기준이 명확하니까, 사망자 사안만 고치기 쉽게 예외를 둔 것. 그래서 같은 사망자라도 간과하고 판결까지 가면 다시 표시설 → 죽은 사람이 당사자 → 판결 무효.</p>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 1</span>교과서의 검토 — 표시설로 일관하자</div>
+      <div class="rb"><p>1990년 <b>피고경정(260조)</b>이 도입되었으므로 사망자 사안에서도 표시설로 일관해 <b>망인을 피고로 보고</b>, 상속인으로는 피고경정으로 바꾸면 된다. 판례는 사망자 표시정정을 1심까지로 한정하는 등 일관되지 못하다.</p>
+      <p class="muted small">튜터: 교수님께 여쭤 보니 "판례는 제소 전 사망에 한해 의사설"이라는 쪽(교과서·이시윤). 실질적 표시설로 포섭하는 견해(김홍엽)도 있으나, 답안은 <b>판례 그대로 현출 → 교과서 검토</b>가 안전.</p></div></div>
+
+    <h3 class="sec">3. 표시정정 vs 당사자 변경</h3>
+    <div class="tbl"><table>
+      <thead><tr><th></th><th>당사자 표시정정</th><th>당사자 변경 (피고경정 260 등)</th></tr></thead>
+      <tbody>
+        <tr><td class="k">무엇을</td><td><b>이름(표시)만</b>. 당사자는 원래부터 그 사람</td><td><b>사람 자체</b>를 바꿈</td></tr>
+        <tr><td class="k">기준</td><td>정정 전후 <b>동일성 유지</b></td><td>동일성 없음</td></tr>
+        <tr><td class="k">소 제기 시점</td><td class="o">최초 제소 시 그대로 → 시효중단 유지</td><td class="x">경정신청 시 새 소 제기 → 시효중단도 그때</td></tr>
+        <tr><td class="k">요건</td><td>동일성 범위 내</td><td>"피고를 잘못 지정한 것이 <b>분명</b>", 1심 변론종결 전, 피고 본안 변론 후엔 동의 — 판례는 좁게 해석</td></tr>
+      </tbody></table></div>
+    <p class="pen">을로 적혀 있지만 당사자는 원래 병이다. 표시가 을로 되어 있을 뿐. — 당사자 변경은 소가 이제 다른 사람으로 시작되는 것.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>표시정정이 되는가</th><th>결론</th><th>이유</th></tr></thead>
+      <tbody>
+        <tr><td>오기, 상호 변경</td><td class="o">O</td><td>같은 사람</td></tr>
+        <tr><td><b>제소 전 사망자 → 상속인</b></td><td class="o">O</td><td>의사설: 원래 당사자는 상속인</td></tr>
+        <tr><td><b>당사자능력 없는 자 → 있는 자</b></td><td class="o">O 판례</td><td>사망자(권리능력 X) → 상속인도 이 유형</td></tr>
+        <tr><td><b>당사자적격 없는 자 → 있는 자</b> (원칙)</td><td class="x">X</td><td><b>파산자 → 파산관재인</b>: 파산자는 관리처분권만 잃었을 뿐 재산의 귀속주체 = <b>별개 인격</b> → 수계·당사자변경으로</td></tr>
+        <tr><td>예외: 회생 <b>관리인 불선임</b>(채무자회생법 74④) → 채무자 → "관리인 채무자"</td><td class="o">O 판례</td><td>개인·중소기업은 채무자(대표자)를 관리인으로 봄(DIP). 같은 사람이 계속 관리처분</td></tr>
+      </tbody></table></div>
+
+    <h3 class="sec">4. 사망 시점별 정리</h3>
+    <div class="steps four">
+      <div class="red"><b class="h">① 제소 전 사망</b><span class="muted">소장부본 <b>송달 전</b> 사망 포함 — 소송계속은 송달 시 발생(판례)</span><span>계속 중 발견 → 의사설 → <b>표시정정</b></span><span>간과판결 → 표시설 → <b>당연무효</b></span></div>
+      <div><b class="h">② 계속 후 ~ 변론종결 전</b><span>사망과 동시에 <b>당연승계</b> → <b>중단</b> → <b>수계</b>(상속인·상대방 신청, 없으면 직권 속행명령)</span><span>간과판결 → <b>유효(위법)</b>, 대리권 흠결에 준해 상소·재심(<span class="art">451①3</span> 유추)</span></div>
+      <div><b class="h">③ 변론종결 후 ~ 확정 전</b><span>절차보장은 이미 받음. 중단되나 <b>선고 가능</b>, 송달은 수계 후</span><span>망인 명의 판결 = <b>상속인에 대한 판결로 유효</b></span></div>
+      <div><b class="h">④ 확정 후</b><span>상속인이 기판력 승계(상속포기 없으면)</span><span>집행은 <b>승계집행문</b></span></div>
+    </div>
+    <p class="out"><span class="o">보충</span>강의에서 다루진 않았지만: 사망한 당사자에게 <b>소송대리인이 있으면 절차는 중단되지 않는다</b>(238조). ②단계 사례에서 대리인 유무를 먼저 확인.</p>
+
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 2</span>제소 전 사망 + 상속인이 실제로 소송을 수행</div>
+      <div class="rb"><p>지면 "아버지 거", 이기면 "제가 상속인". 행동설·의사설이면 상속인에게 효력이 미쳐 정당하지만, 표시설로는 빠져나간다 → 통설: <b>신의칙</b>상 상속인에게 판결 효력을 인수시켜야(일본 판례). <b>우리 판례 없음</b>, 교수님: 실무는 통설대로 갈 것.</p></div></div>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 3</span>무효판결에 대한 상속인의 항소</div>
+      <div class="rb"><p><span class="tag t-pan">판례</span>제소 전 사망자 상대 판결은 <b>당연무효</b>, 상속인의 <b>항소·수계신청은 부적법</b>. 학설: 판결 외관 제거를 위해 상소 허용해야 → 절충: 등기 등 <b>실질적 외관</b>이 형성된 경우에만 항소 허용(튜터 모답).</p></div></div>
+
+    <h3 class="sec">5. 법인격 부인</h3>
+    <p>채무는 회사가 지고 이익은 배후 대표자가 빼돌리면 → 법인격을 부인하고 배후 개인에게 추급. 판례: 채무 면탈 목적으로 <b>새로 세운 회사</b>의 법인격도 부인 가능 — 인적 구성·영업이 실질적으로 같고 오로지 채무 면탈을 위해 법인격을 남용한 경우. "흑자 파산"을 막는 이론.</p>
   </div>
+
+  <div class="prob">
+    <div class="pbar"><span class="pno">09</span><div class="pm"><span class="ps">2014년 중간 2문 · 35점</span><span class="pt">제소 전 사망의 당사자 확정과 표시정정</span></div></div>
+    <div class="qt"><p>甲이 乙을 상대로 소를 제기하였는데, 소송계속 중 乙이 甲의 제소 전에 이미 사망하였고 유일한 상속인 丙이 소송을 하고 있다는 것이 밝혀졌다.</p>
+      <p class="sub-q">[1] 누가 이 소송의 당사자인가? (25점)</p><p class="sub-q">[2] 丙을 소송절차에 끌어들이는 방법은? (10점)</p></div>
+    <details><summary>해설 보기</summary><div class="sol">
+      <p class="st">[1] 학설별 결론</p>
+      <p>의사설 → 사망을 알았다면 상속인을 피고로 했을 것 → <b>丙</b>. 행동설 → 실제 소송 수행 → <b>丙</b>. 표시설 → 소장에 표시된 <b>乙(망인)</b> → 표시정정·피고경정 없는 한 대립구조 흠결로 각하.</p>
+      <p class="st">판례 · 검토</p>
+      <p>판례는 실질적 표시설이나 제소 전 사망에 한해 상속인이 처음부터 실질적 피고라 보아 표시정정 허용 → 이 경우 의사설. 검토: 실질적 표시설이 타당하되, 피고경정이 도입되었으므로 표시설로 일관함이 마땅.</p>
+      <p class="st">결론</p><p>실질적 표시설에 따르면 乙, 다만 판례는 이 사안에서 예외적으로 의사설 → <b>丙</b>.</p>
+      <p class="st">[2] 방법</p>
+      <p>판례: 망인 → 상속인 <b>표시정정</b>. 다수설: 망인을 피고로 보고 <b>피고경정(260조)</b>. (참고: 丙이 실제 소송 수행 → 신의칙상 효력 인수론)</p>
+    </div></details>
+    <div class="comment"><span class="cl">Comment</span><p>확정 문제의 공식 목차 = <b>학설 3개 각각의 결론 → 판례(실질적 표시설 + 사망자 예외) → 검토</b>. 학설마다 "그러면 누가 당사자"인지를 한 줄씩 써 주는 게 배점의 대부분.</p></div>
+  </div>
+
+  <div class="prob">
+    <div class="pbar"><span class="pno">10</span><div class="pm"><span class="ps">2025년 중간 2문 · 50점</span><span class="pt">소 제기 후 소장부본 송달 전 사망</span></div></div>
+    <div class="qt"><p>甲은 乙과의 매매계약을 이유로 2025. 5. 10. 소유권이전등기청구의 소를 제기하였다. 乙은 소장 부본이 송달되기 전인 5. 24. 전에 사망하였고, 甲과 법원은 이를 모르고 소송을 진행하였다. 甲 승소판결이 8. 20. 乙의 주소에 살던 상속인 丙에게 송달되었고, 丙은 8. 25. 항소하였다. 丙의 항소를 검토하시오.</p></div>
+    <details><summary>해설 보기</summary><div class="sol">
+      <p class="st">① 송달 전 사망의 규율</p><p>제소 전 사망에 준한다는 견해(255①) vs 소송 중 사망에 준한다는 견해(248). 판례: 제소 전 사망 법리가 <b>소장부본 송달 전 사망에도 적용</b>. 소송계속은 송달 시 발생(통설·판례).</p>
+      <p class="st">② 당사자 확정</p><p>학설별 결론 → 판례(실질적 표시설, 사망자 예외) → 간과판결 단계에서는 망인 乙이 당사자.</p>
+      <p class="st">③ 판결 효력과 항소</p><p>판례: 사망자 상대 판결은 <b>당연무효</b>, 상속인의 항소·수계신청은 <b>부적법</b>. 학설: 외관 제거 위한 상소 허용. 검토: 등기 등 실질적 외관이 형성된 경우에만 허용.</p>
+      <p class="st">결론</p><p>판결은 무효, 丙의 항소는 부적법(각하). 등기가 마쳐진 사정도 없으므로 외관 제거를 위한 항소를 인정할 실익도 없다.</p>
+    </div></details>
+    <div class="comment"><span class="cl">Comment</span><p>날짜가 박혀 있으면 <b>사망 시점이 ①~④ 중 어디인지</b>부터 고정. "소 제기(5.10) &lt; 사망 &lt; 송달(5.24)"이면 ①로 간다.</p></div>
+  </div>
+
+  <div class="check"><div class="ch">CHECK</div>
+    <details><summary>판례는 당사자 확정에 관해 언제나 의사설을 따른다.</summary><div class="an"><span class="x">X</span> 원칙 실질적 표시설, 예외 제소 전 사망.</div></details>
+    <details><summary>파산자를 피고로 한 소에서 피고를 파산관재인으로 바꾸는 것은 표시정정으로 할 수 있다.</summary><div class="an"><span class="x">X</span> 적격 없는 자 → 있는 자, 별개 인격.</div></details>
+    <details><summary>소송 계속 중 당사자가 사망했는데 법원이 모르고 판결했다면 그 판결은 당연무효이다.</summary><div class="an"><span class="x">X</span> 유효(위법) → 상소·재심.</div></details>
+    <details><summary>변론종결 후 사망한 당사자 명의로 선고된 판결은 상속인에 대한 판결로서 효력이 있다.</summary><div class="an"><span class="o">O</span></div></details>
+  </div>
+  <div class="pfoot"><span>민사소송법(상) | 2. 당사자 — 누가 당사자인가</span><span>Theme 7</span></div>
 </section>
 
 <!-- T08 -->
-<section id="t08">
-  <div class="theme-h"><span class="tno">THEME 08</span><h2>변론관할(30조) · 지정관할(28조)</h2><span class="pg">176–181면</span></div>
-  <div class="concept"><p class="def"><b>변론관할</b>(옛 응소관할): 관할 없는 법원에 소가 제기됐는데 피고가 <b>관할위반을 주장하지 않고 본안에 관해 변론</b>하면 그 법원에 관할이 생긴다.</p></div>
-  <div class="tbl"><table>
-    <thead><tr><th>요건</th><th>포인트</th></tr></thead>
-    <tbody>
-      <tr><td class="k">① 제1심 · 임의관할 위반</td><td>전속관할 위반엔 안 생김</td></tr>
-      <tr><td class="k">② 관할위반 항변 없이</td><td>답변서에 "관할 없다"고 쓰면 → 바로 이송해야</td></tr>
-      <tr><td class="k">③ <b>본안</b>에 관한 변론</td><td>청구의 <b>당부</b>에 관한 진술. 소각하만 구하는 진술은 부족</td></tr>
-      <tr><td class="k">④ <b>현실적으로</b> 변론</td><td>법정에 나와 <b>말로</b> 해야 함 (답변서 진술간주로는 X)</td></tr>
-    </tbody>
-  </table></div>
-  <div class="block prof"><p><span class="tag t-prof">교수님</span>관할 없는 사건이 배당되면 판사가 고른다: <b>바로 직권 이송</b>하거나, 소장 송달하고 <b>변론관할이 생기는지 기다리거나</b>. 둘 다 평등한 규정이라 "그냥 판사 마음". 그래서 임의관할 위반 사건도 정상적으로 절차가 진행될 수 있다.</p></div>
-  <div class="concept"><p class="def"><b>지정관할</b>: 관할법원이 법률상·사실상 재판권을 행사할 수 없거나(법원 판사 전원이 사건에 연루 등), 관할구역이 분명하지 않을 때(비행 중 기내 폭행, 경계 불명) → <b>관계 법원의 바로 위 공통 상급법원</b>이 결정으로 지정. 공통 상급법원이 고등법원 단계에 없으면(수원고법 관내 vs 대전고법 관내) <b>대법원</b>.</p></div>
-  <p class="note">교수님: "거의 안 쓰여서 이걸로 지나가겠다." — 지정하면 그 법원에 관할이 창설된다는 것까지만.</p>
+<section class="page" id="t08">
+  <div class="th"><div class="lab">Theme 8</div><div class="barline"></div><h2>성명모용 — 표시된 자가 당사자다</h2><div class="src">교과서 208면 이하 · 성명도용소송의 당사자 ★</div></div>
+  <div class="frame">
+    <h3 class="sec">1. 의의</h3>
+    <p class="def">남의 이름을 무단히 써서 소를 제기하거나 응소하는 것. 이름을 도용당한 자 = <b>피모용자</b>, 도용한 자 = <b>모용자</b>. 원고 쪽에서도 피고 쪽에서도 생긴다. (성명도용소송·차명소송)</p>
+
+    <h3 class="sec">2. 출발점은 실질적 표시설</h3>
+    <p class="key">소장에 표시된 <b>피모용자가 당사자</b>. 의사설 예외는 사망자 사안뿐이므로 여기선 안 쓴다. 판례: "피고의 지위는 피고의 의사와 관계없이 <b>원고의 소에 의하여 특정</b>되므로, 제3자가 피고를 참칭해도 피고가 모용자가 되는 것은 아니다."</p>
+    <div class="tbl"><table>
+      <thead><tr><th>학설</th><th>당사자</th><th>판결 효력</th></tr></thead>
+      <tbody>
+        <tr><td class="k">의사설</td><td>원고가 상대로 삼으려 한 자 (보통 피모용자)</td><td>피모용자</td></tr>
+        <tr><td class="k">행동설</td><td>실제로 행동한 <b>모용자</b></td><td>모용자 — 결론은 깔끔하지만 판례 X</td></tr>
+        <tr><td class="k">표시설 <span class="tag t-pan">판례</span></td><td>소장에 표시된 <b>피모용자</b></td><td>피모용자</td></tr>
+      </tbody></table></div>
+
+    <h3 class="sec">3. 법원의 조치와 구제</h3>
+    <div class="tbl"><table>
+      <thead><tr><th></th><th>원고측 모용</th><th>피고측 모용</th></tr></thead>
+      <tbody>
+        <tr><td class="k">계속 중 발견</td><td>피모용자에게 <b>추인</b> 여부 확인 → 추인 없으면 <b>소각하</b>(소송비용은 모용자 부담)</td><td>모용자를 <b>절차에서 배척</b> → 피모용자에게 기일통지하고 <b>속행</b></td></tr>
+        <tr><td class="k">간과판결</td><td colspan="2">위법하지만 <b>유효</b> → 효력은 <b>피모용자</b>에게. 적법하게 대리되지 않은 타인에 의해 진행되어 관여 기회를 얻지 못한 것 = 무권대리와 차이 없음(판례) → 확정 전 <b>상소</b>(<span class="art">424①4</span>), 확정 후 <b>재심</b>(<span class="art">451①3</span>)</td></tr>
+      </tbody></table></div>
+
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 1</span>민사소송법의 무권대리는 민법보다 넓다</div>
+      <div class="rb"><p>대리인이 권한을 넘은 경우뿐 아니라 <b>당사자가 누구에 의해서도 적법하게 대리되지 못해 스스로 절차에 관여하지 못한 모든 경우</b>를 포함한다 — 성명모용, 계속 중 사망 간과, 소송무능력자의 단독 수행. 그래서 구제가 전부 <span class="art">424①4</span> · <span class="art">451①3</span>으로 모인다.</p></div></div>
+    <p class="pen">"표시설에 따라 당사자가 된다"는 건 그 사람이 원고·피고라는 것. 그러니 판결 효력도 다 받는다. 불이익이 있으니까 상소·재심으로라도 떼어낼 수 있게 해 주는 것. 한 번도 안 나갔어도 당사자다.</p>
+  </div>
+
+  <div class="prob">
+    <div class="pbar"><span class="pno">11</span><div class="pm"><span class="ps">2018년 중간 2문 · 50점</span><span class="pt">성명모용소송 — 계속 중 발견과 간과판결</span></div></div>
+    <div class="qt"><p>교통사고로 다친 甲에게 운전자는 자신이 丙이라며 인적사항을 알려주었다. 甲은 丙을 상대로 손해배상청구의 소를 제기하였는데, 소송계속 중 비로소 운전자가 丙이 아니라 乙임을 알게 되었다.</p>
+      <p class="sub-q">[1] 이때 법원의 조치는?</p><p class="sub-q">[2] 법원이 이를 간과하고 본안판결을 하였다면 어떻게 되는가?</p></div>
+    <details><summary>해설 보기</summary><div class="sol">
+      <p class="st">[1] 당사자 확정</p><p>의사설 → 甲이 제소하려 한 丙 / 행동설 → 소송을 수행 중인 乙 / 표시설 → 소장의 丙. 판례 실질적 표시설 → <b>피모용자 丙</b>.</p>
+      <p class="st">법원의 조치</p><p>모용자 乙을 배척, 丙에게 기일통지하여 속행. (실체법상 丙은 운전자가 아니므로 甲은 패소할 것)</p>
+      <p class="st">[2] 간과판결</p><p>판결은 위법하나 유효, 효력은 丙에게. 판례상 무권대리소송과 같음 → 항소기간 내면 <b>항소</b>(424①4), 확정되면 <b>재심</b>(451①3).</p>
+    </div></details>
+    <div class="comment"><span class="cl">Comment</span><p>의사설의 결론은 사안에 따라 갈린다(甲이 사고 낸 乙을 상대로 할 의사였다고 볼 수도). 이렇게 <b>의사를 알 수 없다는 점 자체가 의사설 배척 논거</b>(튜터). 답안은 교과서·강평대로 丙.</p></div>
+  </div>
+
+  <div class="check"><div class="ch">CHECK</div>
+    <details><summary>성명모용을 간과한 판결은 당사자가 아닌 자에 대한 판결이므로 당연무효이다.</summary><div class="an"><span class="x">X</span> 무효판결 3개에 없음. 유효 → 상소·재심.</div></details>
+    <details><summary>원고측 모용이 계속 중 발견되고 피모용자가 추인하지 않으면 소를 각하한다.</summary><div class="an"><span class="o">O</span></div></details>
+  </div>
+  <div class="pfoot"><span>민사소송법(상) | 2. 당사자 — 누가 당사자인가</span><span>Theme 8</span></div>
+</section>
+
+<!-- ================= CHAPTER 3 ================= -->
+<section class="page chopen" id="ch3">
+  <div class="chsq">3<small>Chapter</small></div>
+  <div class="t"><div class="k">CHAPTER 3</div><h2>당사자의 능력</h2>
+    <p>당사자능력은 민법보다 <b>넓고</b>(비법인사단), 소송능력은 민법보다 <b>좁다</b>(처분허락 재산·일용품). 이 비대칭만 잡으면 된다. 기출은 미성년자의 소송능력(2012·2020).</p></div>
 </section>
 
 <!-- T09 -->
-<section id="t09">
-  <div class="theme-h"><span class="tno">THEME 09</span><h2>관할의 조사와 간과판결</h2><span class="pg">181–184면</span></div>
-  <div class="block ans">
-    <p><span class="tag t-ans">답안</span><b>조사</b>: 소송요건 → <b>직권조사</b>, 모든 종류의 관할에 대해.</p>
-    <ul>
-      <li>관할원인 사실이 <b>본안 사실과 겹치면</b>(불법행위지 등) → <b>원고 주장 사실을 토대로</b> 판단하면 충분. 불법행위가 진짜 있었는지는 본안에서. ("해운대에서 맞았다는 게 진실이라면 우리 관할인가?"만 본다)</li>
-      <li>재판적 발생원인 <b>자체</b>를 다투면(어디서 일어났는지) → 실제로 조사.</li>
-      <li>관할 존부를 다투는데 법원이 있다고 보면 → <b>중간판결 또는 종국판결 이유</b>에 판단 (피고의 "울분을 풀어줘야").</li>
+<section class="page" id="t09">
+  <div class="th"><div class="lab">Theme 9</div><div class="barline"></div><h2>당사자능력은 권리능력보다 넓다</h2><div class="src">교과서 216–228면</div></div>
+  <div class="frame">
+    <h3 class="sec">1. 의의</h3>
+    <p class="def">민사소송의 당사자가 될 수 있는 <b>일반적</b> 능력(<span class="art">51</span>: 특별규정 없으면 민법). "일반적" = 소송물이 무엇이든. 원칙적으로 권리능력자 = 당사자능력자이나, <span class="art">52</span>로 비법인사단·재단에도 인정 → <b>더 넓다</b>.</p>
+
+    <h3 class="sec">2. 누가 가지는가</h3>
+    <ul class="tree">
+      <li><span class="n"><b>있음</b></span>
+        <ul>
+          <li><span class="n"><span class="pill">자연인</span>태아는 <b>태아인 채로는 없음</b> <span class="s">(판례 정지조건설)</span></span></li>
+          <li><span class="n"><span class="pill">법인</span>영조물법인·공공조합 포함 <span class="s">/ 지점은 없음</span></span></li>
+          <li><span class="n"><span class="pill">비법인사단</span>요건 4: 다수인의 결합체 · 지속적 존속 · 의사결정·업무집행 기관 · 대표자</span>
+            <ul><li><span class="n s">종중·문중·사찰·(개신)교회·입주자대표회의. 종중은 자연발생적이라 조직행위 불요. 천주교회는 법인</span></li></ul></li>
+          <li><span class="n"><span class="pill">비법인재단</span><span class="s">장학회·유치원·보육원 등</span></span></li>
+        </ul></li>
+      <li style="margin-top:8px"><span class="n"><b>없음</b></span>
+        <ul>
+          <li><span class="n"><span class="pill">민법상 조합</span>판례 <b>부정</b> <span class="s">(동백흥농계: 구성원의 개성이 뚜렷, 단체로서의 단일성 없음)</span></span>
+            <ul><li><span class="n">대안 3: ① 조합원 <b>전원</b> 공동소송 ② <b>업무집행조합원</b>(임의적 소송담당) ③ <b>선정당사자</b>(53)</span></li></ul></li>
+          <li><span class="n"><span class="pill">동물</span>도롱뇽, 애견</span></li>
+        </ul></li>
     </ul>
+
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 1</span>총유재산 소송은 대표자 개인 명의로 못 한다</div>
+      <div class="rb"><p><span class="tag t-pan">전합</span>총유재산에 관한 소송은 ① <b>비법인사단 명의</b>로 사원총회 결의를 거쳐 하거나 ② <b>구성원 전원</b>이 고유필수적 공동소송으로 할 뿐, 구성원은 대표자이거나 총회결의를 거쳤더라도 당사자가 될 수 없다. <b>보존행위</b>도 같다(공유·합유와 달리 보존행위 단독 규정 없음). <span class="tag t-gi">변시 출제</span></p></div></div>
+
+    <h3 class="sec">3. 흠의 효과</h3>
+    <p class="circ">① 직권조사, 흠 있으면 소각하. 다투면 중간판결·종국판결 이유에서 판단. 능력 없는 자의 소송행위는 무효.</p>
+    <p class="circ">② 소송 중 상실(사망·합병) → 승계인 있으면 승계, 그때까지 중단. 승계할 수 없는 성질(이혼소송 중 사망) → 종료.</p>
+    <p class="circ">③ 간과판결: 조합을 비법인사단으로 오인한 경우 등 → 당연무효 아님, 상소·재심(교과서, 판례 없음). 단 애견처럼 당사자 자체가 부존재 → 무효.</p>
+
+    <div class="ex"><div class="eh">[예1]<span class="s">천성산 도롱뇽 사건</span></div>
+      <p class="q">터널 착공금지 가처분을 도롱뇽 / 도롱뇽의 친구들(단체) / 인근 사찰들이 신청했다. 각각 어디서 걸리는가?</p>
+      <div class="a"><p>도롱뇽: 권리능력 없음 → <b>당사자능력 없음</b> → 각하. (속기의 "적격 부정"은 말실수)</p>
+      <p>도롱뇽의 친구들: 사람으로 구성된 비법인사단 → 능력 O, 헌법상 환경권에서 나오는 자연방위권을 <b>주장</b>했으니 적격 O → 그 권리가 사법상 피보전권리가 될 수 없음 → <b>본안에서 짐</b>.</p>
+      <p>사찰들: 토지 소유권에 기한 환경이익 주장 → 사법상 보호가능성 소명 부족 → 본안.</p>
+      <p class="therefore">∴ 한 사건에 능력 · 적격 · 본안이 다 들어 있다.</p></div></div>
   </div>
-  <div class="block ans">
-    <p><span class="tag t-ans">답안 · 헷갈리는 두 문장</span><b>관할의 표준시 = 소 제기 시(33조)</b>.</p>
-    <div class="grid2">
-      <div class="card"><h3>관할 <b>있는</b> 곳에 제기</h3><p>→ <b>관할의 항정(恒定)</b>. 이후 피고가 이사 가도 관할 유지.</p></div>
-      <div class="card"><h3>관할 <b>없는</b> 곳에 제기</h3><p>→ 소송요건 일반론대로 <b>사실심 변론종결 시까지</b> 관할이 생기면(이사·변론관할) 하자 치유.</p></div>
-    </div>
-    <p class="note">교수님: "앞은 이사 가면 된다, 뒤는 이사 가도 안 바뀐다 — 정반대 같지만 하나는 관할 없던 법원, 하나는 관할 있던 법원 얘기."</p>
+
+  <div class="prob">
+    <div class="pbar"><span class="pno">12</span><div class="pm"><span class="ps">튜터링 예상문제</span><span class="pt">비법인사단의 소송수행</span></div></div>
+    <div class="qt"><p>X종중은 乙이 종중총회 결의를 제대로 거치지 않고 종중 재산에 관해 소유권이전등기를 받았다며 등기말소를 구하려 한다. X종중 명의나 대표자 甲 명의로 소를 제기할 수 있는가?</p></div>
+    <details><summary>해설 보기</summary><div class="sol">
+      <p class="st">① 종중 명의</p><p>52조: 대표자가 있는 비법인사단은 그 이름으로 당사자. 규약·총회·대표자 등 사단의 실체를 갖추면 가능. 단, 총회결의 없이 한 총유재산 소송은 특별수권 흠결로 부적법.</p>
+      <p class="st">② 대표자 명의</p><p>총유물의 관리·처분은 총회결의(민276) → 관리처분권은 구성원 전원에게 공동 귀속 → 고유필수적 공동소송. 전합: 보존행위라도 구성원 개인은 당사자가 될 수 없음.</p>
+      <p class="st">결론</p><p>종중 명의 또는 구성원 전원 명의로만. 대표자 甲 명의 불가.</p>
+    </div></details>
   </div>
-  <div class="key">관할 흠결의 처리 = <b>소각하가 아니라 이송</b>. 소송요건 중 유일한 예외. 국민이 몰라서 잘못 낼 수 있으니까.</div>
-  <h3>관할 위반을 간과한 본안판결</h3>
-  <div class="tbl"><table>
-    <thead><tr><th></th><th>임의관할 위반</th><th>전속관할 위반</th></tr></thead>
-    <tbody>
-      <tr><td class="k">항소심에서</td><td><b>다툴 수 없음</b>(<span class="art">411</span>) — 판결 선고로 하자 치유</td><td>항소이유 → 1심판결 <b>취소 + 관할법원 이송</b></td></tr>
-      <tr><td class="k">상고심에서</td><td>—</td><td><b>절대적 상고이유</b>(<span class="art">424①3</span>) → <b>파기 + 이송</b></td></tr>
-      <tr><td class="k">확정 후</td><td>치유</td><td><b>재심사유 아님</b>(451조 11개에 없음) → <b>확정되면 치유</b></td></tr>
-      <tr><td class="k">판결 효력</td><td colspan="2">어느 쪽이든 <b>무효 아님</b> (무효판결 3개에 없음)</td></tr>
-    </tbody>
-  </table></div>
-  <div class="block prof"><p><span class="tag t-prof">교수님</span>"<b>전속관할 위반을 재심사유로 아는 사람이 많다</b>." 아닙니다. 상소로 깨질 뿐.</p></div>
-  <h3>상소심의 처리 용어 — 같이 외우기</h3>
-  <div class="tbl"><table>
-    <thead><tr><th></th><th>항소심(원판결 = 1심)</th><th>상고심(원판결 = 2심)</th></tr></thead>
-    <tbody>
-      <tr><td class="k">불복 이유 없음</td><td>항소기각</td><td>상고기각</td></tr>
-      <tr><td class="k">이유 있음</td><td><b>취소</b> → 자판 / 환송 / 이송</td><td><b>파기</b> → 자판 / 환송(원칙) / 이송</td></tr>
-      <tr><td class="k">특칙</td><td>1심이 <b>소각하</b>했는데 잘못이면 → <b>필수적 환송</b>(<span class="art">418</span>): 본안을 1심에서 한 번도 안 다퉜으니</td><td>환송받을 법원이 재판 불능이면 동급 다른 법원으로 이송</td></tr>
-    </tbody>
-  </table></div>
-  <p class="note">원리: 항소심이 1심판결을 취소하면 항소심이 "1심 입장"이 된다 → 1심이 전속관할 위반이었으면 1심이 했어야 할 일(이송)을 항소심이 한다. 상소심의 이송은 <b>판결</b>, 1심의 이송은 <b>결정</b>.</p>
+
   <div class="check"><div class="ch">CHECK</div>
-    <details><summary>전속관할을 위반한 판결이 확정되면 재심의 소로 취소할 수 있다.</summary><div class="a"><b class="x">X</b> — 재심사유 아님. 확정되면 하자 치유.</div></details>
-    <details><summary>토지관할 위반을 간과한 1심 판결에 대해 항소심에서 관할위반을 주장할 수 있다.</summary><div class="a"><b class="x">X</b> — 임의관할 위반은 항소심에서 주장 불가(411조).</div></details>
-    <details><summary>불법행위지 재판적에 따른 관할 판단 시 법원은 불법행위가 실제로 있었는지 증거조사로 확인해야 한다.</summary><div class="a"><b class="x">X</b> — 원고 주장 사실을 토대로 판단하면 충분.</div></details>
+    <details><summary>민법상 조합은 대표자가 있으면 52조에 따라 당사자능력이 있다.</summary><div class="an"><span class="x">X</span> 판례 부정.</div></details>
+    <details><summary>태아는 손해배상청구의 소에서 태아인 상태로 원고가 될 수 있다.</summary><div class="an"><span class="x">X</span> 정지조건설.</div></details>
   </div>
+  <div class="pfoot"><span>민사소송법(상) | 3. 당사자의 능력</span><span>Theme 9</span></div>
 </section>
 
 <!-- T10 -->
-<section id="t10">
-  <div class="theme-h"><span class="tno">THEME 10</span><h2>소송의 이송</h2><span class="pg">184–194면</span></div>
-  <div class="concept">
-    <p class="def">법원에 계속된 <b>소송(절차 그 자체)</b>을 그 법원의 재판으로 다른 법원에 옮기는 것.</p>
-    <p class="note">"소의 이송"이 아니라 "<b>소송</b>의 이송": 시효중단, 이미 한 증거조사 등 절차가 <b>통째로 떼어 옮겨진다</b>는 뜻. 1심은 <b>결정</b>, 상소심은 <b>판결</b>로.</p>
+<section class="page" id="t10">
+  <div class="th"><div class="lab">Theme 10</div><div class="barline"></div><h2>소송능력은 행위능력보다 좁다</h2><div class="src">교과서 229–237면 · 소송능력자와 무능력자 ★★ 흠의 효과 ★★</div></div>
+  <div class="frame">
+    <h3 class="sec">1. 의의</h3>
+    <p class="def">당사자로서 <b>스스로</b> 유효하게 소송행위를 하거나 받기 위한 능력. 행위능력자는 원칙적으로 소송능력자(<span class="art">51</span>). 소송에서 자기 이익을 충분히 옹호할 능력이 없는 자를 보호하기 위한 제도.</p>
+    <p class="ind muted">"본인"으로서의 능력이라 미성년자도 남의 소송대리인은 될 수 있다(단독사건, 법원 허가).</p>
+
+    <h3 class="sec">2. 누가 무능력자인가</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>누구</th><th>원칙</th><th>예외</th></tr></thead>
+      <tbody>
+        <tr><td class="k">미성년자</td><td>없음 → 법정대리인만(<span class="art">55①</span>)</td><td>독립해 법률행위 할 수 있는 경우: <b>영업 허락</b> 범위(민8), <b>혼인</b>(성년의제), <b>근로기준법상 임금청구</b>(판례). <span class="x">처분 허락 재산(민6)은 X</span> — 탐색이 절차안정을 해함. 허락 얻어 직접 소송도 X</td></tr>
+        <tr><td class="k">피한정후견인</td><td><b>있음</b></td><td><b>동의유보</b>된 범위에서만 없음</td></tr>
+        <tr><td class="k">피성년후견인</td><td>없음</td><td>가정법원이 <b>취소할 수 없는 행위</b>로 정한 범위는 있음. <span class="x">일용품 구입 등(민10④)은 민법상 유효해도 X</span> — 기준이 모호</td></tr>
+      </tbody></table></div>
+    <p class="pen">2016년 개정 때 "민법이 연 만큼 소송능력도 연다" — 유일하게 안 연 게 일용품. 나는 지금도 행위능력과 소송능력은 구별해야 한다고 본다. 민법은 "제한능력자", 민소법은 여전히 "소송무능력자".</p>
+
+    <h3 class="sec">3. 흠의 효과</h3>
+    <p class="circ">① 소송요건이자 <b>소송행위의 유효요건</b>. 무능력자의 행위·무능력자에 대한 행위는 <b>유동적 무효</b> → 법정대리인이나 능력을 취득한 본인이 <b>추인</b>하면 소급 유효(<span class="art">60</span>). 민법(취소할 수 있는 행위 = 일단 유효)과 반대.</p>
+    <p class="circ">② 법원은 기간을 정해 <b>보정명령</b>(<span class="art">59</span> 전단) → 안 되면 소각하. 지연으로 손해 염려 시 일시적 소송행위 허용(59 후단). 법정대리인을 모르면 <b>특별대리인</b> 선임 신청(<span class="art">62</span>).</p>
+    <p class="circ">③ 무능력자 <b>본인에게 한 송달은 무효</b>.</p>
+    <p class="circ">④ 소송 중 능력 상실(성년후견개시) → 법정대리인 수계까지 <b>중단</b>. 능력 유무를 다투는 동안은 능력 있는 것으로 취급.</p>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 1</span>간과판결</div>
+      <div class="rb"><p>당연무효 아님. 무능력자 <b>패소</b> → 상소(424①4)·재심(451①3) — "법정대리권 흠결"에는 대리되어야 하는데 대리되지 않은 경우도 포함. 무능력자 <b>전부승소</b> → 본인은 상소 이익 없고, 상대방도 이를 이유로 불복 불가.</p>
+      <p><span class="tag t-pan">판례</span>미성년자에게 한 판결정본 송달은 (무능력을 이유로 각하한 판결 등 특별한 사정이 없는 한) <b>무효 → 항소기간 진행 안 함</b> → 항소 적법(송달무효설).</p></div></div>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 2</span>항소심의 처리</div>
+      <div class="rb"><p>1심이 무능력을 <b>간과하고 본안판결</b> → 추인 없으면 <b>원판결 취소 + 소각하</b>(자판). 1심이 무능력을 <b>이유로 각하</b> → 항소심도 같으면 <b>항소기각</b>.</p></div></div>
+
+    <h3 class="sec">4. 변론능력 — 소송요건이 아니다</h3>
+    <p>법정에서 조리 있게 진술하는 능력. 변론 단계의 문제. 진술금지 + <b>변호사선임명령</b>(<span class="art">144</span>) → 새 기일까지 선임 안 하면 <b>결정으로 소·상소 각하</b> 가능. 2016년 <b>진술보조인</b>(<span class="art">143의2</span>): "한국말을 한국말로 통역"하는 수준.</p>
   </div>
-  <h3>이송 원인 3가지</h3>
-  <div class="tbl"><table>
-    <thead><tr><th>원인</th><th>조문</th><th>누가</th><th>포인트</th></tr></thead>
-    <tbody>
-      <tr><td class="k">① 관할위반</td><td><span class="art">34①</span></td><td class="bad">직권만</td><td>당사자에게 <b>이송신청권 없음</b>. 임의관할 위반은 변론관할 여지 / 심급관할 위반은 전속관할이라 당연 이송</td></tr>
-      <tr><td class="k" rowspan="3">② 심판 편의</td><td><span class="art">35</span></td><td>직권·신청</td><td><b>현저한 손해(피고 사익) 또는 지연(공익)</b>을 피하기 위해. 관할 있어도 가능, 전속관할 제외. <b>판례는 거의 안 받아줌</b>(증인·증거가 다 300km 떨어진 곳에 있다는 주장도 불허)</td></tr>
-      <tr><td><span class="art">36</span></td><td>직권·신청</td><td>지식재산권 사건(THEME 05 표의 이송)</td></tr>
-      <tr><td><span class="art">34②</span></td><td>직권·신청</td><td>지방법원 <b>단독판사의 재량이송</b>(상당하다고 인정하면 합의부로)</td></tr>
-      <tr><td class="k">③ 반소</td><td><span class="art">269②</span></td><td>직권·신청</td><td>단독사건에 합의부 사건인 반소 → 합의부로 이송. 단, 변론관할 생기면 불요</td></tr>
-    </tbody>
-  </table></div>
-  <div class="grid2">
-    <div class="card"><h3>심급관할 위반</h3>
-      <p>항소장을 고등법원에, 상고장을 대법원에 직접 낸 경우 등. 서류는 <b>소송기록이 있는 법원(원심)</b>에 내는 게 원칙.</p>
-      <p>대법원은 상고장이 바로 오면 이송 않고 <b>기록 송부</b>로 처리 → 원심에 접수된 때를 기준으로 상고기간 판단 → 기간 도과 위험. <span class="tag t-prof">교과서 비판</span> 이송으로 처리해야.</p></div>
-    <div class="card"><h3>종류가 다른 법원·절차 사이</h3>
-      <p>가사·행정 사건을 민사로 잘못 제기, <b>비송을 소송으로</b> 잘못 제기한 경우.</p>
-      <p>과거엔 각하 → <b>2023년 판례 변경</b>: 법원이 석명해서 비송으로 처리받길 원한다는 의사가 확인되면 <b>재배당·이송</b>으로 처리 가능.</p>
-      <p class="note">교수님 예: 기업구조조정촉진법상 조정결정 변경청구(비송), 주식매수가액 결정청구(비송, 본점 소재지 지법 합의부).</p></div>
-  </div>
-  <div class="block ans">
-    <p><span class="tag t-ans">답안</span><b>불복</b>: 이송결정 · 이송신청 기각결정 → <b>즉시항고</b>(<span class="art">39</span>).</p>
-    <p>그런데 "이송신청 기각결정"이란 <b>이송신청권이 있는 경우</b>만 말함 → 관할위반 이송은 신청권이 없으니 기각결정에 즉시항고 불가.</p>
-  </div>
-  <details class="ex"><summary><span class="q-h">필수예제 10-1 <span class="tag t-exam">변시·모의 기출</span></span><span class="q">서울중앙지법에 소가 제기되자 피고가 관할위반을 이유로 이송을 신청했고, 법원은 직권으로 창원지법 마산지원으로 이송결정을 했다. 원고의 즉시항고로 항고심이 이송결정을 취소했다. 피고는 재항고할 수 있는가?</span><span class="open">해설 보기 ▾</span></summary>
-    <div class="sol">
-      <p><span class="h">핵심</span> 관할위반 이송은 <b>직권</b>사항, 당사자에게 이송신청권 없음. 피고의 "신청"은 직권발동 촉구에 불과.</p>
-      <p><span class="h">판례</span> 이송신청권이 없는 이상 항고심에서 이송결정이 취소되었더라도 <b>이송신청인(피고)의 재항고는 허용되지 않는다</b>.</p>
-      <p><span class="h">반대 견해</span> 재항고는 이송해 달라는 신청이 아니라 항고심 판단을 다투는 것이므로 허용해야 한다는 비판도 있음 — 답안에선 판례 → 비판 순.</p>
-      <p class="note">※ 여기서 "피고"는 끝까지 1심의 피고. 원고·피고 호칭은 상소심·재심에서도 안 바뀐다(항소인·상고인은 따로 부름).</p>
+
+  <div class="prob">
+    <div class="pbar"><span class="pno">13</span><div class="pm"><span class="ps">2012년 중간 1문</span><span class="pt">미성년자인 피고 — 계속 중 발견과 간과판결</span></div></div>
+    <div class="qt"><p>甲이 乙에게 3,000만 원을 빌려주었으나 乙이 갚지 않자 대여금반환청구의 소를 제기하였다.</p>
+      <p class="sub-q">[1] 변론개시 후 乙이 미성년자임을 법원이 알게 되었다. 법원의 조치는?</p>
+      <p class="sub-q">[2] 이를 모른 채 원고 청구 인용판결이 내려졌고, 그제서야 乙이 미성년자임을 밝히며 항소하였다. 항소법원의 처리는?</p></div>
+    <details><summary>해설 보기</summary><div class="sol">
+      <p class="st">[1]</p><p>영업 허락·혼인 사정 없음 → 소송무능력자. 직권조사 → 기간 정해 <b>보정명령</b>(59조) → 甲은 법정대리인으로 보정하거나 모르면 특별대리인 선임 신청(62조) → 안 되면 <b>소각하</b>.</p>
+      <p class="st">[2] ① 판결 효력</p><p>당연무효 아님 → 상소·재심 가능.</p>
+      <p class="st">② 항소기간</p><p>판례: 미성년자에 대한 판결정본 송달 무효 → 항소기간 진행 안 함 → 항소 적법.</p>
+      <p class="st">③ 무능력자의 항소</p><p>무능력을 이유로 항소를 각하하면 간과판결이 확정되어 부당 → 상소 허용(통설). 신의칙 문제도 무능력자 보호가 우선.</p>
+      <p class="st">④ 처리</p><p>추인(성년 후 본인 또는 법정대리인)이 없으면 항소 인용 → <b>"원심판결을 취소하고 이 사건 소를 각하한다."</b></p>
     </div></details>
-  <div class="block ans">
-    <p><span class="tag t-ans">답안</span><b>이송의 효과</b></p>
-    <ul>
-      <li><b>기속력</b>(<span class="art">38</span>): 확정된 이송결정은 이송받은 법원을 구속 → <b>다시 이송(반송·전송) 불가</b>. 전속관할을 위반한 이송결정이라도 다투지 않고 확정되면 기속력 있음. 다만 <b>심급관할 위반 이송</b>은 이송받은 <b>하급심만 기속, 상급심은 기속 X</b>(판례).</li>
-      <li><b>소송계속의 이전</b>(<span class="art">40①</span>): 처음부터 이송받은 법원에 계속된 것으로 봄(<b>소송계속의 일체성</b>) → 제소 시 시효중단·기간준수 효과 유지, 관할 없던 법원에서 한 소송행위(증거조사 등)도 효력 유지(통설).</li>
-    </ul>
   </div>
+
+  <div class="prob">
+    <div class="pbar"><span class="pno">14</span><div class="pm"><span class="ps">2020년 중간 1문 · 50점</span><span class="pt">부모 허락을 받은 미성년 원고</span></div></div>
+    <div class="qt"><p>만 18세 甲은 乙로부터 신제품 게임기를 100만 원에 샀으나 중고 부품이 쓰인 것을 확인하고, 부모의 허가를 받아 계약 해제와 100만 원 반환을 구하는 소를 제기하였다. 소송계속 중 甲이 미성년자임을 법원이 알게 되었다. 법원의 조치는?</p></div>
+    <details><summary>해설 보기</summary><div class="sol">
+      <p class="st">① 소송능력</p><p>영업 허락에 관한 행위도, 혼인도 아님 → 무능력자. 부모 <b>허가를 받았더라도</b> 소송행위는 법정대리인에 의해서만 → 소송능력 X.</p>
+      <p class="st">② 조치</p><p>보정명령 → 법정대리인이 보정하고 유동적 무효인 소송행위를 추인할 수 있음 → 보정 없으면 판결로 <b>소각하</b>.</p>
+    </div></details>
+    <div class="comment"><span class="cl">Comment</span><p>"부모의 허가"라는 사실은 함정. 민법이라면 처분허락·동의로 유효해질 수 있지만, 소송능력은 <b>허락을 얻어 직접 소송하는 것을 허용하지 않는다</b>. 민법보다 좁다는 Theme 제목이 바로 이 지점.</p></div>
+  </div>
+
   <div class="check"><div class="ch">CHECK</div>
-    <details><summary>피고는 관할위반을 이유로 이송을 신청할 권리가 있고, 그 신청을 기각한 결정에 즉시항고할 수 있다.</summary><div class="a"><b class="x">X</b> — 관할위반 이송은 직권. 신청권 없음 → 기각결정 즉시항고 불가.</div></details>
-    <details><summary>현저한 지연을 피하기 위한 이송(35조)은 전속관할 사건에도 할 수 있다.</summary><div class="a"><b class="x">X</b> — 35조 단서: 전속관할이 정해진 소는 제외. (전속적 <b>합의</b>관할은 가능)</div></details>
-    <details><summary>관할위반으로 이송되면 이송 전 법원에서 한 증거조사는 효력을 잃는다.</summary><div class="a"><b class="x">X</b> — 소송계속 일체성, 효력 유지.</div></details>
+    <details><summary>미성년자가 처분을 허락받은 재산에 관한 소송은 단독으로 할 수 있다.</summary><div class="an"><span class="x">X</span></div></details>
+    <details><summary>소송무능력자의 소송행위는 취소할 수 있는 행위이므로 취소 전까지 유효하다.</summary><div class="an"><span class="x">X</span> 유동적 무효.</div></details>
+    <details><summary>변론능력이 없는 당사자가 변호사선임명령에 응하지 않으면 판결로 소를 각하한다.</summary><div class="an"><span class="x">X</span> 결정으로.</div></details>
   </div>
+  <div class="pfoot"><span>민사소송법(상) | 3. 당사자의 능력</span><span>Theme 10</span></div>
 </section>
 
-<!-- ============ PART II ============ -->
-<div class="part" id="part2">
-  <div class="pno">PART Ⅱ</div>
-  <h2>당사자에 관한 소송요건</h2>
-  <p>순서대로 묻습니다. <b>누가</b> 당사자인가(확정) → 당사자가 <b>될 수 있는</b> 자인가(능력) → <b>혼자</b> 할 수 있나(소송능력) → <b>이 사건</b>을 할 자격이 있나(적격).</p>
-</div>
-<div class="tbl"><table>
-  <thead><tr><th>순서</th><th>소송요건</th><th>묻는 것</th><th>민법 대응</th><th>흠이 있으면</th></tr></thead>
-  <tbody>
-    <tr><td>①</td><td class="k">당사자 확정</td><td>도대체 누가 원고·피고인가</td><td>(존재)</td><td>확정 기준으로 먼저 정함. 사망자면 표시정정 / 소각하</td></tr>
-    <tr><td>②</td><td class="k">당사자능력</td><td>당사자가 <b>될 수 있는 일반적</b> 능력</td><td>권리능력</td><td>보정 → 안 되면 소각하</td></tr>
-    <tr><td>③</td><td class="k">소송능력</td><td><b>혼자서</b> 유효하게 소송행위를 할 능력</td><td>행위능력</td><td>보정(59) → 안 되면 소각하 / 행위는 유동적 무효</td></tr>
-    <tr><td>④</td><td class="k">당사자적격</td><td><b>이 사건(소송물)</b>에서 본안판결 받기에 적합한 자격</td><td>관리처분권</td><td>소각하 (청구기각 아님!)</td></tr>
-    <tr><td>(⑤)</td><td class="k">변론능력</td><td>법정에서 조리 있게 진술할 능력</td><td>—</td><td class="bad">소송요건 아님</td></tr>
-  </tbody>
-</table></div>
-<div class="plain"><b>쉽게 말하면.</b> 당사자능력은 "사람(또는 단체) 자격이 있냐", 소송능력은 "혼자 해도 되냐", 당사자적격은 "<em>이 싸움</em>에 낄 자격이 있냐"입니다. 도롱뇽은 ②에서, 미성년자는 ③에서, 남의 채권을 아무 관계없이 청구한 친구는 ④에서 걸립니다.</div>
+<!-- ================= CHAPTER 4 ================= -->
+<section class="page chopen" id="ch4">
+  <div class="chsq">4<small>Chapter</small></div>
+  <div class="t"><div class="k">CHAPTER 4</div><h2>당사자적격</h2>
+    <p>"이 사건"에 낄 자격. 일반적인 경우는 주장만으로 정해지고, 진짜 문제는 <b>남의 권리로 소송하는 경우</b>(제3자 소송담당)다. "적격이 제일 어려운 건 참가까지 연결되기 때문, 변시에 안 나온 적 없다." 중간 범위의 끝 = 교과서 249면.</p></div>
+</section>
 
 <!-- T11 -->
-<section id="t11">
-  <div class="theme-h"><span class="tno">THEME 11</span><h2>당사자의 개념 — 용어부터 정확히</h2><span class="pg">195–200면</span></div>
-  <div class="concept">
-    <p class="def">당사자 = <b>자기 이름으로</b> 판결을 구하거나 받는 사람 = <b>판결에 이름이 적히는 사람</b>(판결의 명의인). → <b>형식적 당사자 개념</b>.</p>
-    <p class="note">과거 실질적 당사자 개념(실체법상 권리·의무의 주체 = 당사자) → 채권자대위소송·파산관재인처럼 <b>남의 권리로 자기 이름으로</b> 소송하는 경우(제3자 소송담당)가 늘어서 형식적 개념으로.</p>
+<section class="page" id="t11">
+  <div class="th"><div class="lab">Theme 11</div><div class="barline"></div><h2>적격은 '이 사건'에 대한 자격이다</h2><div class="src">교과서 238–242면 · 일반적인 경우 ★</div></div>
+  <div class="frame">
+    <h3 class="sec">1. 의의</h3>
+    <p class="def">특정한 소송물에 관하여 소송을 수행하고 본안판결을 받을 수 있는 자격(standing, 소송수행권, 정당한 당사자). 당사자능력은 <b>일반적</b>, 적격은 <b>특정 소송물과의 관계</b>에서. 민법상 <b>관리처분권</b>과 연결.</p>
+    <p class="key">이행의 소에서는 <b>"내가 채권자다"라고 주장만 하면 원고적격</b>, 내가 지목한 사람이 피고적격. 진짜 채권자인지는 본안 → 가짜 채권자는 <b>청구기각</b>. 적격이 없는 건 주장 자체로 관리처분권이 없는 경우.</p>
+    <p class="pen">옆집 부부가 싸우는 걸 보고 "내가 소송해 주마" — 그런 권리를 주는 법은 어디에도 없다. 404조 같은 명문이 있어야 남의 권리를 행사한다. 없으면 소각하.</p>
+
+    <h3 class="sec">2. 일반적인 경우</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>소</th><th>원고적격</th><th>피고적격</th></tr></thead>
+      <tbody>
+        <tr><td class="k">이행의 소</td><td>이행청구권을 <b>주장</b>하는 자</td><td>의무자로 <b>주장된</b> 자</td></tr>
+        <tr><td class="k">확인의 소</td><td>확인의 이익을 가진 자</td><td>대립하는 이익을 가진 자</td></tr>
+        <tr><td class="k">형성의 소</td><td>명문. 주총결의 취소 → 주주·이사·감사(상376) / 무효·부존재 → 확인의 이익 있는 자</td><td>명문 없으면 가장 충실히 수행할 자 → <b>회사</b>. 이사해임의 소 → 회사와 이사</td></tr>
+      </tbody></table></div>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 1</span>이행의 소의 예외 — 등기말소청구의 피고적격 <span class="tag t-gi">변시·변모</span></div>
+      <div class="rb"><p>위조범 A를 상대로 "등기 말소하라" — A는 등기명의를 가진 적이 없어 말소해 줄 수 없다. 판례: <b>등기의무자(등기명의인)나 등기상 이해관계 있는 제3자가 아닌 자</b>를 상대로 한 말소청구는 <b>피고적격 없는 부적법한 소 → 각하</b>. (비판: 주장만으로 적격 → 기각이 맞다)</p></div></div>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 2</span>여러 사람이 함께해야 하는 경우</div>
+      <div class="rb"><p><b>고유필수적 공동소송</b>(합유·총유 등)은 전원이 함께해야 적격. <b>단체 내부분쟁</b>(주총결의 취소 등)의 피고는 단체 자체.</p></div></div>
   </div>
-  <div class="block ans">
-    <p><span class="tag t-ans">답안</span><b>이당사자 대립구조</b>: 원고·피고가 대립해야 소송. 대립구조가 깨지면 <b>소송종료</b>.</p>
-    <ul>
-      <li><b>당사자의 혼동</b>: 외아들이 아버지와 소송 중 아버지 사망 → 아들이 상속 → 자기 대 자기 → 종료.</li>
-      <li><b>일신전속적 법률관계</b>: 이혼소송 중 일방 사망 → 종료. 판례: <b>이사</b>가 주총결의취소의 소 제기 후 사망 → 이사 지위는 일신전속 → 중단 없이 <b>종료</b>(상속인은 이사가 아님).</li>
-      <li><b>일반적인 사망</b>은 대립구조를 깨지 않음 → 사망과 동시에 상속인이 <b>당연승계</b>.</li>
-    </ul>
+  <div class="check"><div class="ch">CHECK</div>
+    <details><summary>대여 사실이 전혀 없는데 대여금을 청구한 원고의 소는 원고적격 흠결로 각하된다.</summary><div class="an"><span class="x">X</span> 청구기각.</div></details>
+    <details><summary>등기명의인이 아닌 자를 상대로 한 등기말소청구는 청구기각한다(판례).</summary><div class="an"><span class="x">X</span> 소각하.</div></details>
   </div>
-  <div class="key">용어 3개 구별: <b>승계</b>(실체 — 사망과 동시에 이미 끝남) · <b>중단</b>(상속인이 절차보장 받도록 절차를 멈춤) · <b>수계</b>(상속인이 "제가 들어가겠습니다" 하는 절차상 신청). "승계는 이미 됐고, 절차를 위해 중단·수계한다."</div>
-  <div class="block aside"><p><span class="tag t-aside">사담</span>일본 당사자권론의 "1파·2파·3파 이론" — "일본 사람들이 분석하고 정의하는 걸 좋아해서." 답안 무관. 승계 자체(81·82조)는 <span class="tag t-out">2학기 맨 끝</span>, "제일 어렵다"고 하셨습니다.</p></div>
+  <div class="pfoot"><span>민사소송법(상) | 4. 당사자적격</span><span>Theme 11</span></div>
 </section>
 
 <!-- T12 -->
-<section id="t12">
-  <div class="theme-h"><span class="tno">THEME 12</span><h2>당사자 확정 — 표시정정이 핵심</h2><span class="pg">203–212면</span></div>
-  <div class="concept">
-    <p class="def">소장에 적힌 당사자가 <b>실제로 누구인지</b> 법원이 정하는 것. <b>원고가 특정</b>하고(안 하면 보정명령), <b>법원이 직권으로 확정</b>한다.</p>
-    <p class="note">확정이 먼저 돼야 그 사람을 기준으로 능력·적격·재판적·송달·판결효를 따질 수 있다. 확정 결과 실재하지 않는 자(사망자, 상속인도 없음)면 소각하.</p>
-  </div>
+<section class="page" id="t12">
+  <div class="th"><div class="lab">Theme 12</div><div class="barline"></div><h2>남의 권리로 소송한다, 제3자 소송담당</h2><div class="src">교과서 242–246면 · 특수한 경우 ★★</div></div>
+  <div class="frame">
+    <h3 class="sec">1. 의의와 분류</h3>
+    <p class="def">권리주체가 아닌 제3자가 <b>자기 이름으로</b> 남의 권리에 관해 소송하고 판결을 받는 것. <b>대리가 아니다</b>(대리인은 남의 이름으로).</p>
+    <p>분류 기준 두 단계: <b>누가 정했나</b>(법률 → 법정 / 권리자 의사 → 임의적), <b>원래 권리자는 어떻게 되나</b>(밀려남 → 갈음형 / 남음 → 병행형).</p>
+    <ul class="tree">
+      <li><span class="n"><b>제3자 소송담당</b></span>
+        <ul>
+          <li><span class="n"><span class="pill">법정</span>법률 규정으로</span>
+            <ul>
+              <li><span class="n"><b>담당자를 위한</b> <span class="s">(담당자 자신의 이익)</span></span>
+                <ul>
+                  <li><span class="n"><b>갈음형(배타적)</b> — 권리자는 적격 <b>상실</b></span>
+                    <ul><li><span class="n">파산관재인, 회생 관리인 <span class="strike">추심명령 받은 압류채권자</span> <span class="moved">← 교과서에서 지우기</span></span></li></ul></li>
+                  <li><span class="n"><b>병행형(함께형)</b> — 권리자·담당자 <b>둘 다 적격</b></span>
+                    <ul><li><span class="n"><span class="moved">추심채권자(2025 전합, 질권자 앞에 추가)</span>, 채권질권자(민353), 대위채권자(민404), 대표소송 주주(상403: 1/100, 상장사 1/10,000·6개월)</span></li></ul></li>
+                </ul></li>
+              <li><span class="n"><b>피담당자를 위한</b> = 직무상 당사자 <span class="s">(공익·직무)</span></span>
+                <ul><li><span class="n">사망자 상대 인지청구의 <b>검사</b>, 해난구조료의 <b>선장</b>, 성년후견인 등</span></li></ul></li>
+            </ul></li>
+          <li><span class="n"><span class="pill">임의적</span>권리자의 <b>의사</b>로 → Theme 13</span></li>
+        </ul></li>
+    </ul>
+    <p class="pen">"함께형"을 둘이 같이 공동소송한다는 뜻으로 오해하지 마라. 갑도 적격, 을도 적격인데 그중 갑이 남의 권리를 행사하니까 소송담당이다.</p>
+    <p class="pen">소송 중에 파산하면 관리처분권을 잃으니 적격 상실, 파산관재인이 수계한다. 파산·회생은 작년 변시 선택형에 네 번 나왔다.</p>
 
-  <h3>STEP 1 · 확정 기준 — 학설 셋 + 판례의 공식</h3>
-  <div class="tbl"><table>
-    <thead><tr><th>학설</th><th>기준</th><th>약점</th></tr></thead>
-    <tbody>
-      <tr><td class="k">의사설</td><td>원고(또는 법원)가 <b>누구를 당사자로 삼으려 했는가</b></td><td>내심의 의사는 누구 의사인지, 어떻게 아는지 불명확</td></tr>
-      <tr><td class="k">행동설</td><td>소송에서 <b>당사자로 행동하거나 취급된 자</b></td><td>어떤 행동이 "당사자다운 행동"인지 기준 불명확</td></tr>
-      <tr><td class="k">표시설</td><td><b>소장에 표시된 자</b></td><td>— 가장 명확</td></tr>
-      <tr><td class="k">실질적 표시설<br><span class="tag t-ans">통설·판례</span></td><td>당사자란의 표시만이 아니라 <b>청구취지·청구원인 등 소장 전체</b>를 합리적으로 해석</td><td></td></tr>
-    </tbody>
-  </table></div>
-  <div class="key">판례 공식: <b>원칙 = 실질적 표시설</b>. 유일한 예외 = <b>제소 전 사망자 상대 소가 소송계속 중 발견된 경우 → 의사설</b>("사망을 알았다면 상속인을 피고로 했을 것") → <b>상속인으로 표시정정</b>.</div>
-  <div class="block prof"><p><span class="tag t-prof">교수님·교과서</span>"표시설이 유일하게 기준이 명확하니까, 사망자 사안만 고치기 쉽게 예외를 둔 것." 그래서 같은 사망자 사안이라도 <b>간과하고 판결까지 가면 다시 표시설</b> → 사망자가 당사자 → 판결 무효. 교과서 검토는 피고경정(<span class="art">260</span>)이 생겼으니 예외 없이 표시설로 일관하자는 쪽. 표시설로 일관하면 → 사망자에서 상속인으로는 <b>피고경정(당사자 변경)</b>으로 바꿔야 함(교과서 210면).</p></div>
+    <div class="svgbox">
+      <svg viewBox="0 0 640 200" width="640" role="img" aria-label="채권자 갑, 채무자 을, 제3채무자 병 관계도">
+        <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink)"/></marker></defs>
+        <g style="fill:var(--paper);stroke:var(--mint);stroke-width:2"><rect x="20" y="36" width="150" height="62"/><rect x="245" y="36" width="150" height="62"/><rect x="470" y="36" width="150" height="62"/></g>
+        <g style="fill:var(--ink)" font-size="17" font-weight="700" text-anchor="middle"><text x="95" y="65">갑</text><text x="320" y="65">을</text><text x="545" y="65">병</text></g>
+        <g style="fill:var(--sub)" font-size="13" text-anchor="middle"><text x="95" y="87">채권자</text><text x="320" y="87">채무자</text><text x="545" y="87">제3채무자</text></g>
+        <g style="stroke:var(--ink);stroke-width:1.6;fill:none"><line x1="172" y1="67" x2="240" y2="67" marker-end="url(#ar)"/><line x1="397" y1="67" x2="465" y2="67" marker-end="url(#ar)"/></g>
+        <g style="fill:var(--ink)" font-size="13" text-anchor="middle"><text x="206" y="57">A채권</text><text x="431" y="57">B채권</text></g>
+        <path d="M95,102 C95,165 545,165 545,102" style="stroke:var(--pen);stroke-width:2;fill:none;stroke-dasharray:6 4" marker-end="url(#ar)"/>
+        <g font-size="13" text-anchor="middle"><text x="320" y="156" style="fill:var(--pen)" font-weight="700">갑이 자기 이름으로 B채권 행사 (대위·추심)</text><text x="320" y="182" style="fill:var(--sub)">을 = B채권의 원래 권리자 · 병행형이면 적격 유지 / 파산이면 상실</text></g>
+      </svg>
+    </div>
 
-  <h3>STEP 2 · 표시정정 vs 당사자 변경 — 이 표가 제일 중요</h3>
-  <div class="tbl"><table>
-    <thead><tr><th></th><th>당사자 표시정정</th><th>당사자 변경 (임의적 당사자변경·피고경정 260)</th></tr></thead>
-    <tbody>
-      <tr><td class="k">무엇을 바꾸나</td><td><b>이름(표시)만</b>. 당사자는 원래부터 그 사람</td><td><b>사람 자체</b>를 바꿈</td></tr>
-      <tr><td class="k">기준</td><td>정정 전후 <b>동일성 유지</b></td><td>동일성 없음 (별개 인격)</td></tr>
-      <tr><td class="k">소 제기 시점</td><td class="good">원래 소 제기 시로 그대로 → 시효중단 효과 유지</td><td class="bad">변경(경정신청) 시에 새 당사자에 대한 소 제기 → 시효중단도 그때부터</td></tr>
-      <tr><td class="k">교수님 그림</td><td>"을로 적혀 있지만 당사자는 원래 병. 표시가 을로 되어 있을 뿐"</td><td>"소가 이제 다른 사람으로 시작되는 것"</td></tr>
-    </tbody>
-  </table></div>
-  <div class="block ans">
-    <p><span class="tag t-ans">답안</span><b>표시정정이 허용되는 경우 / 안 되는 경우</b></p>
+    <h3 class="sec">2. 채권자대위소송</h3>
+    <p class="circ">① <b>법적 성질</b>: 제3자 소송담당설 <span class="tag t-pan">판례</span> vs 독립한 대위권설. 판례: "채무자를 대위하여 <b>자신의 명의로</b> 채무자의 제3채무자에 대한 권리를 행사". 논거 — 여러 채권자의 대위 시 제3채무자 보호, 궁극적으로 다투는 건 채무자의 권리, 효과는 채무자에게 귀속(공동담보).</p>
+    <p class="key">요건 4개 중 <b>① 피대위권리 = 소송물(본안) → 없으면 청구기각</b>, <b>② 피보전채권 ③ 보전의 필요성 ④ 채무자의 권리 불행사 = 당사자적격 → 없으면 소각하</b>. (독립대위권설이면 전부 본안 → 기각)</p>
+    <p class="circ">② <b>기판력</b>: 채무자가 대위소송 제기 사실을 <b>알았을 때</b> 채무자에게도 미침(전합). "알 수 있었을 때"가 아니라 "알았을 때" — 알아야 참가할 기회, 즉 절차보장이 생기니까.</p>
+    <p class="pen">병행형에서 효력을 당연히 미치게 못 하는 이유: 갑이 을을 미워해 소송을 방만하게 하다 지면 멀쩡한 B채권이 날아간다. 갈음형·직무상 당사자·선정당사자는 법률이나 본인 의사로 맡긴 거라 당연히 미친다(218③).</p>
+
+    <h3 class="sec">3. 추심명령과 채무자의 적격 — 2025 전원합의체</h3>
     <div class="tbl"><table>
-      <thead><tr><th>사안</th><th>결론</th><th>이유</th></tr></thead>
+      <thead><tr><th>층</th><th>내용</th><th>답안에서</th></tr></thead>
       <tbody>
-        <tr><td>오기 정정, 상호 변경(구상호 → 신상호)</td><td class="good">정정 O</td><td>같은 사람</td></tr>
-        <tr><td><b>제소 전 사망자 → 상속인</b></td><td class="good">정정 O</td><td>의사설: 원래 당사자는 상속인</td></tr>
-        <tr><td><b>당사자능력 없는 자 → 있는 자</b></td><td class="good">정정 O (판례)</td><td>사망자(권리능력 X) → 상속인도 이 유형. 실재하지 않는 표시를 실재하는 주체로 바로잡는 것</td></tr>
-        <tr><td><b>당사자적격 없는 자 → 있는 자</b> (원칙)</td><td class="bad">정정 X</td><td>예: <b>파산자 → 파산관재인</b>. 파산자는 관리처분권만 잃었을 뿐 여전히 재산의 귀속주체 = 관재인과 <b>별개 인격</b> → 수계·당사자변경 절차로</td></tr>
-        <tr><td>예외: 회생절차에서 <b>관리인 불선임</b>(채무자회생법 74④) → 채무자 → "관리인 채무자"</td><td class="good">정정 O (판례)</td><td>개인·중소기업 등은 채무자(대표자)를 관리인으로 봄(DIP). 실질적으로 같은 사람이 계속 관리처분</td></tr>
-      </tbody>
-    </table></div>
+        <tr><td class="k">종전 판례</td><td>압류·추심명령 → 채무자는 이행소송 적격 <b>상실</b>(추심권능 상실 시 회복). 갈음형</td><td>"이전 판례"로</td></tr>
+        <tr><td class="k">전합 다수의견</td><td>추심명령이 있어도 채무자는 <b>적격을 상실하지 않는다</b> — 판례는 여기까지</td><td><span class="tag t-pan">판례</span></td></tr>
+        <tr><td class="k">보충의견</td><td>먼저 계속된 소가 있으면 뒤의 소는 <b>중복제소</b>, 확정판결은 <b>기판력</b></td><td>"보충의견이지 판례 아님"</td></tr>
+        <tr><td class="k">후속 판례</td><td>추심채권자가 받은 확정판결의 기판력은 채무자에게 미침</td><td>판례로 써도 됨</td></tr>
+        <tr><td class="k">중복제소</td><td><b>판례 없음</b>. 보충의견·다수설은 중복제소</td><td>판례 없음 → 보충의견·학설</td></tr>
+      </tbody></table></div>
+    <div class="rm"><div class="rh"><span class="rlab">REMARK 1</span>전합 다수의견의 논거 4묶음</div>
+      <div class="rb">
+        <p class="circ">① <b>상실 근거 없음</b>: 추심은 전부와 달리 채권 이전 X, 민사집행법 249①은 채무자 제소를 막는 취지 아님, 시효중단·제소기간 준수 필요, 채무자가 사정을 잘 앎.</p>
+        <p class="circ">② <b>추심채권자에게 부당하지 않음</b>: 공동소송참가(변론종결 후엔 공동소송적 보조참가), 채무자의 현실 수령은 대항 불가, 참가할 수 있었으니 패소 기판력도 부당하지 않음.</p>
+        <p class="circ">③ <b>제3채무자에게 부당하지 않음</b>: 공탁 등 가능, 이중응소 부담 경감.</p>
+        <p class="circ">④ <b>분쟁의 1회적 해결·소송경제</b>: 상고심에서 추심명령이 나와도 각하하지 않음, 승소판결에 승계집행문.</p>
+      </div></div>
+    <p class="pen">교과서 243면 갈음형 예시에서 "채권추심명령을 받은 압류채권자"를 지우고, 함께형 예시의 채권질권자 앞으로 옮겨라. 추록 각주 1번.</p>
+    <p class="pen">종전 판례의 약점: 채무자가 소로 시효를 중단시켜 놨는데 추심명령이 떨어지면 각하 → 시효중단도 날아간다. 추심명령은 수령권만 넘기는 것이지 채권자 지위를 잃는 게 아니다.</p>
+    <p class="out"><span class="o">사담</span>교수님 논문 사견(추심권 없는 채무자의 "나에게 지급하라" 판결은 집행 불가 → 소의 이익 없음, 독일처럼 "병은 갑에게 지급하라"로 / 판결문의 "승계" 표현 무시) — "여러분이 아실 필요는 없다." 답안엔 쓰지 않는다.</p>
+
+    <h3 class="sec">4. 참가 3종 — 적격과 기판력 두 질문으로</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>참가</th><th>적격</th><th>기판력</th><th>예</th></tr></thead>
+      <tbody>
+        <tr><td class="k">보조참가</td><td class="x">X</td><td class="x">X</td><td>보증채무 소송에 주채무자가 보증인 편으로</td></tr>
+        <tr><td class="k">공동소송적 보조참가</td><td class="x">X</td><td class="o">O</td><td>파산관재인 소송에 파산자</td></tr>
+        <tr><td class="k">공동소송참가</td><td class="o">O</td><td class="o">O</td><td>주주1의 결의취소소송에 주주2</td></tr>
+      </tbody></table></div>
+    <div class="grid2">
+      <div class="box"><h4>대위소송에 채무자가 들어가려면</h4><p>적격 O + (알면) 기판력 O → 논리상 공동소송참가. 다수설: 또 당사자로 들어오면 <b>중복제소</b> → 공동소송적 보조참가. <b>판례 없음</b>, 교과서 244면도 "또는".</p></div>
+      <div class="box"><h4>주주대표소송에 회사가 들어가면</h4><p><b>판례 있음</b>: 회사의 공동소송참가 허용, 중복제소 아님(제일은행 사건). 한 절차 안에서 다투니 판결의 모순·저촉이 생길 수 없다.</p></div>
+    </div>
+    <p class="out"><span class="o">2학기</span>참가 제도 자체. 지금은 "다수설: 중복제소 → 공동소송적 보조참가 / 유사사안 판례: 주주대표소송 공동소송참가 허용"을 둘 다 현출하는 수준.</p>
   </div>
 
-  <h3>STEP 3 · 사망 시점별 정리 (교과서 209–212면)</h3>
-  <div class="timeline">
-    <div class="phase p1"><div class="when">① 제소 전 사망</div><div class="note">소 제기 후 <b>소장부본 송달 전</b> 사망도 여기 (소송계속은 송달 시 발생 → 절차보장 필요 없기는 마찬가지)</div>
-      <div>계속 중 발견 → <b>의사설</b> → 상속인으로 <b>표시정정</b></div>
-      <div>간과판결 → 다시 표시설 → 사망자가 당사자 → <span class="verdict">당연무효</span></div></div>
-    <div class="phase"><div class="when">② 계속 후 ~ 변론종결 전</div>
-      <div>사망과 동시에 상속인 <b>당연승계</b> → 절차 <b>중단</b> → <b>수계</b>(상속인 또는 상대방 신청, 안 하면 직권 속행명령)</div>
-      <div>간과판결 → <span class="verdict">유효(위법)</span>. 절차보장 못 받음 = 무권대리에 준해 상소·재심(<span class="art">451①3</span> 유추) — 판례 동지</div></div>
-    <div class="phase"><div class="when">③ 변론종결 후 ~ 확정 전</div>
-      <div>절차보장은 이미 받음. 중단되지만 <b>선고는 가능</b>, 송달은 수계 후</div>
-      <div>망인 명의 판결 = <span class="verdict">상속인에 대한 판결로 유효</span></div></div>
-    <div class="phase"><div class="when">④ 확정 후</div>
-      <div>상속인이 기판력 포괄승계(상속포기 없으면)</div>
-      <div>집행은 <b>승계집행문</b> 받아서</div></div>
+  <div class="prob">
+    <div class="pbar"><span class="pno">15</span><div class="pm"><span class="ps">2016년 중간 2문 · 40점</span><span class="pt">대위소송의 피보전채권 부존재 · 추심명령 후 채무자의 제소</span></div></div>
+    <div class="qt"><p>甲은 乙에게 5,000만 원의 대여금채권이 있고, 무자력인 乙은 丙에게 3,000만 원의 채권이 있다(각 설문은 독립적).</p>
+      <p class="sub-q">[1] 甲이 乙을 대위하여 丙에게 대위소송을 제기했는데, 법원은 甲의 乙에 대한 채권이 존재하지 않는다고 판단하였다. 법원의 조치는? (20점)</p>
+      <p class="sub-q">[2] 甲이 乙에 대한 승소 확정판결로 乙의 丙에 대한 채권에 압류·추심명령을 받은 후, 乙이 丙에게 이행의 소를 제기하였다. 적법한가? (20점)</p></div>
+    <details><summary>해설 보기</summary><div class="sol">
+      <p class="st">[1]</p><p>법적 성질: 판례 제3자 소송담당설. 피보전채권은 <b>적격 요건</b> → 흠결 시 <b>소각하</b>. (독립대위권설이면 기각)</p>
+      <p class="st">[2]</p><p>이전 판례: 채무자 적격 상실 → 부적법. <b>2025 전합</b>: 적격 상실 근거 없음 · 추심채권자 · 제3채무자에게 부당하지 않음 · 분쟁의 1회적 해결 → 채무자는 적격 유지 → <b>다른 사정 없으면 적법</b>.</p>
+    </div></details>
+    <div class="comment"><span class="cl">Comment</span><p>[2]는 당시 20점이었지만 전합 이후 출제되면 배점이 더 클 것(튜터). 교수님은 작년엔 "논의가 덜 무르익어" 내지 않으셨다. 중복제소까지 묻는 문제는 2학기 범위라 중간 직접 출제는 어렵다.</p></div>
   </div>
-  <div class="block out"><p><span class="tag t-out">보충 · 교과서</span>강의에서 다루진 않았지만 같이 알아 둘 것: 사망한 당사자에게 <b>소송대리인이 있으면 절차는 중단되지 않고</b>(<span class="art">238</span>), 그 대리인이 상속인의 대리인으로 계속 수행하며 판결은 상속인에게 효력이 미친다. ②단계 사례에서 "대리인 유무"를 먼저 확인하는 습관.</p></div>
-  <div class="block ans"><p><span class="tag t-ans">답안</span><b>제소 전 사망 + 상속인이 실제로 소송을 수행</b>(지면 "아버지 거", 이기면 "제가 상속인"): 행동설·의사설이면 상속인에게 효력이 미쳐 정당하지만, 판례의 표시설로는 상속인이 빠져나감 → 통설은 <b>신의칙</b>상 상속인에게 판결의 효력을 인수시켜야 한다고 봄(일본 판례 입장). <b>우리 판례 없음</b>. 교수님: 통설대로 갈 가능성이 높다.</p></div>
-  <div class="block ans"><p><span class="tag t-ans">답안</span><b>제소 전 사망자 상대 판결이 무효인 경우의 구제</b>: 판례 — 무효판결이므로 상속인의 <b>항소·수계신청은 부적법</b>. 다수 학설 — 집행 가능한 판결 외관이 있으니 상소·재심으로 제거할 수 있게 해야 한다. 교수님: "무효인데 또 상소한다는 건 논리적으로 안 맞는다"(판례 쪽).</p></div>
-  <div class="card"><h3>법인격 부인</h3>
-    <p>채무는 회사가 지고 이익은 배후의 대표자가 빼돌리는 경우 → 회사의 법인격을 부인하고 배후 개인에게 책임 추급. 판례는 채무 면탈 목적으로 <b>새로 세운 회사</b>의 법인격도 부인 가능 — 요건: 인적 구성·영업이 실질적으로 같고 오로지 채무 면탈을 위해 법인격을 남용. "흑자 파산"을 막기 위한 이론.</p></div>
 
-  <details class="ex"><summary><span class="q-h">필수예제 12-1 <span class="tag t-exam">2014 중간 2문 유형</span></span><span class="q">갑이 을을 상대로 대여금 청구의 소를 제기했는데, 을은 소 제기 1주일 전에 이미 사망했고 상속인은 병이다. 소송 계속 중 이 사실이 밝혀졌다. 누가 피고이며, 갑은 병을 어떻게 끌어들이는가?</span><span class="open">해설 보기 ▾</span></summary>
-    <div class="sol">
-      <p><span class="h">① 확정 기준</span> 원칙 실질적 표시설이나, 제소 전 사망자 사안이 계속 중 발견되면 판례는 의사설 — 갑이 사망을 알았다면 상속인 병을 피고로 했을 것 → <b>피고는 처음부터 병</b>.</p>
-      <p><span class="h">② 방법</span> 을 → 병으로 <b>당사자 표시정정</b>. 당사자변경이 아니므로 <b>소 제기 시점은 최초 제소 시</b> 그대로(시효중단 유지).</p>
-      <p><span class="h">③ 검토</span> 표시설로 일관하면(교과서) 피고는 사망자 을 → 피고경정(260)으로 병으로 변경, 이 경우 경정 시에 병에 대한 소 제기.</p>
-      <p><span class="h">④ 변형</span> 병이 실제로 소송을 수행하고 있었다면 → 신의칙상 효력 인수(통설), 판례 없음.</p>
+  <div class="prob">
+    <div class="pbar"><span class="pno">16</span><div class="pm"><span class="ps">2022년 기말 1-1문 · 20점</span><span class="pt">대위소송 — 기각이냐 각하냐</span></div></div>
+    <div class="qt"><p>甲과 乙이 함께 운영하는 가게를 X가 차로 들이받았다. 무자력인 X는 배상할 생각이 없고, X는 Y와 보험계약이 있다. 甲은 X를 대위하여 Y에게 보험금청구의 소를 제기하였다. 심리 결과 가게 피해가 X의 사고로 생긴 것이 아니라고 밝혀지자 법원은 청구를 기각하였다. 타당한가?</p></div>
+    <details><summary>해설 보기</summary><div class="sol">
+      <p class="st">핵심</p><p>X의 사고가 아니다 = 甲의 X에 대한 손배청구권, 즉 <b>피보전채권</b>이 없다는 뜻(피대위권리인 X의 Y에 대한 보험금채권이 아님).</p>
+      <p class="st">결론</p><p>피보전채권 흠결 = 적격 흠결 → <b>소각하</b>가 맞다. 기각판결은 부당.</p>
     </div></details>
-  <details class="ex"><summary><span class="q-h">필수예제 12-2 <span class="tag t-exam">2025 중간 2문 유형</span></span><span class="q">갑이 을을 상대로 소를 제기했으나 을은 소장부본이 송달되기 전에 사망했다. 법원은 이를 모르고 갑 승소판결을 선고했다. 을의 상속인 병이 항소했다. 항소는 적법한가?</span><span class="open">해설 보기 ▾</span></summary>
-    <div class="sol">
-      <p><span class="h">① 시점</span> 소송계속은 소장부본 송달 시 발생 → 송달 전 사망 = 제소 전 사망과 같게 취급.</p>
-      <p><span class="h">② 판결 효력</span> 간과하고 판결까지 간 경우엔 다시 표시설 → 당사자는 사망자 을 → 사망자를 상대로 한 판결 = <b>당연무효</b>(무효판결 ②).</p>
-      <p><span class="h">③ 결론</span> 판례: 무효판결에 대한 상속인의 항소·수계신청은 <b>부적법</b> → 항소 각하. (학설: 외관 제거를 위해 상소 허용해야)</p>
-    </div></details>
+    <div class="comment"><span class="cl">Comment</span><p>사실관계에서 "없는 게 어느 채권인지"를 먼저 갑→을(피보전) / 을→병(피대위)로 그림에 대입하라. 위 갑·을·병 그림이 그대로 답이다.</p></div>
+  </div>
+
   <div class="check"><div class="ch">CHECK</div>
-    <details><summary>판례는 당사자 확정에 관해 언제나 의사설을 따른다.</summary><div class="a"><b class="x">X</b> — 원칙 실질적 표시설. 의사설은 제소 전 사망자 사안의 계속 중 발견 때만.</div></details>
-    <details><summary>파산선고 후 파산자를 상대로 제기된 소에서 피고를 파산관재인으로 바꾸는 것은 당사자 표시정정으로 할 수 있다.</summary><div class="a"><b class="x">X</b> — 적격 없는 자 → 있는 자, 별개 인격. 표시정정 불가.</div></details>
-    <details><summary>소송 계속 중 당사자가 사망했는데 법원이 모르고 판결했다면 그 판결은 당연무효이다.</summary><div class="a"><b class="x">X</b> — 계속 중 사망 간과판결은 유효(위법). 대리권 흠결에 준해 상소·재심.</div></details>
-    <details><summary>변론종결 후 사망한 당사자 명의로 선고된 판결은 상속인에 대한 판결로서 효력이 있다.</summary><div class="a"><b class="o">O</b></div></details>
+    <details><summary>대위소송에서 피대위권리가 인정되지 않으면 소를 각하한다.</summary><div class="an"><span class="x">X</span> 피대위권리는 소송물 → 기각.</div></details>
+    <details><summary>대위소송 판결의 기판력은 채무자가 대위소송 제기 사실을 알 수 있었을 때 채무자에게 미친다.</summary><div class="an"><span class="x">X</span> 알았을 때.</div></details>
+    <details><summary>2025 전합에 따르면 추심명령 후 채무자가 제기한 이행의 소는 중복제소로 각하된다는 것이 판례다.</summary><div class="an"><span class="x">X</span> 그건 보충의견. 판례는 적격 유지까지.</div></details>
   </div>
+  <div class="pfoot"><span>민사소송법(상) | 4. 당사자적격</span><span>Theme 12</span></div>
 </section>
 
 <!-- T13 -->
-<section id="t13">
-  <div class="theme-h"><span class="tno">THEME 13</span><h2>성명모용소송 — 흐름도 하나로</h2><span class="pg">208면 이하</span></div>
-  <div class="concept">
-    <p class="def">갑이 을 모르게 <b>을의 이름을 도용(모용)</b>하여 을인 것처럼 소송을 하는 경우. 을 = <b>피모용자</b>, 갑 = <b>모용자</b>. 원고 쪽에서도(원고측 모용), 피고 쪽에서도(피고측 모용) 생긴다.</p>
-    <p class="note">교과서에 따라 "성명도용소송", "차명소송". 같은 말.</p>
+<section class="page" id="t13">
+  <div class="th"><div class="lab">Theme 13</div><div class="barline"></div><h2>맡기는 소송담당은 원칙적으로 금지된다</h2><div class="src">교과서 246–249면 · 시험 범위 끝</div></div>
+  <div class="frame">
+    <h3 class="sec">1. 임의적 소송담당</h3>
+    <p class="def">권리주체의 <b>의사</b>로 제3자에게 소송수행권을 주는 것. 명문(선정당사자 <span class="art">53</span>, 연체대출금 회수를 위임받은 한국자산관리공사) 외에는 <b>원칙적 불허</b>.</p>
+    <p class="circ">① 불허 이유: 변호사대리원칙(<span class="art">87</span>) 잠탈, 소송신탁금지(신탁법 6조), 피담당자의 절차보장.</p>
+    <p class="circ">② <b>예외 허용</b>(판례): 탈법 염려가 없고 + <b>합리적 필요</b>. 합리적 필요 = 담당자에게 <b>고유의 이익</b>이 있거나, 소송수행권을 포함한 <b>포괄적 관리처분권</b>을 가지고 권리주체 못지않은 지식으로 관여하는 경우. (교과서: + 피담당자 절차권의 실질적 보장)</p>
+    <p class="circ">③ 판례가 인정한 예: <b>업무집행조합원</b>(오랫동안 유일) / 관리단에게서 위임받은 <b>위탁관리업자의 관리비 청구</b> / <b>입주자대표회의</b>의 공용부분 변경비용 청구.</p>
+
+    <h3 class="sec">2. 적격의 소송법상 의의</h3>
+    <p class="circ">① 소송요건 → 직권조사, 흠 있으면 <b>소각하</b>. 교수님 체계에서는 소의 이익과 함께 묶이는 개념.</p>
+    <p class="circ">② 소송 중 적격 상실(파산, 소송물 양도) → 승계 문제, 판례 <b>적격승계설</b>. <span class="tag t-out">2학기</span></p>
+    <p class="circ">③ 간과판결 → 확정 전 상소 / 확정 후 재심사유 없음 → 진정한 권리주체에겐 효력 없음 = <b>무효판결 ③</b>.</p>
+    <p class="circ">④ 담당자가 받은 판결의 기판력은 피담당자에게(<span class="art">218③</span>). 병행형 대위소송은 채무자가 <b>알았을 때</b>만.</p>
   </div>
-  <div class="key">출발점: 확정 기준은 <b>실질적 표시설</b> → 소장에 표시된 <b>피모용자 을이 당사자</b>. (의사설 예외는 사망자 사안뿐이므로 여기선 안 씀. 행동설이면 모용자 갑이 당사자 — 결론은 정당하지만 판례 X)</div>
-  <div class="tbl"><table>
-    <thead><tr><th></th><th>원고측 모용 <span class="note">(갑이 을 이름으로 병에게 제소)</span></th><th>피고측 모용 <span class="note">(병이 을을 피고로 했는데 갑이 을 행세)</span></th></tr></thead>
-    <tbody>
-      <tr><td class="k">계속 중 발견</td><td>원래 제기되지 말았어야 할 소 → 피모용자 을에게 <b>추인</b> 여부 확인 → 추인 없으면 <b>소각하</b>(소송비용은 모용자 갑 부담)</td><td>모용자 갑을 <b>절차에서 배제</b> → 진정한 피고 을에게 기일통지 등 하고 <b>속행</b></td></tr>
-      <tr><td class="k">간과하고 판결</td><td colspan="2">판결 효력은 <b>피모용자 을</b>에게 미침(을이 당사자니까 판결효도 당연히 받음). 그러나 을은 절차에 관여하지 못함 = <b>누구에 의해서도 적법하게 대리되지 못함</b> → <b>무권대리에 준해</b> 확정 전 <b>상소</b>(<span class="art">424①4</span>), 확정 후 <b>재심</b>(<span class="art">451①3</span>)</td></tr>
-      <tr><td class="k">판결이 무효?</td><td colspan="2"><b>아니다.</b> 무효판결 3개(재판권 X · 사망자 · 적격 X)에 해당하지 않음 → "하자 있는 유효 판결 → 깰 수 있게 해 주면 된다"</td></tr>
-    </tbody>
-  </table></div>
-  <div class="block ans"><p><span class="tag t-ans">답안 · 연결 개념</span><b>민사소송법상 무권대리는 민법보다 넓다.</b> 대리인이 권한을 넘은 경우뿐 아니라 <b>당사자가 누구에 의해서도 적법하게 대리되지 못해 스스로 절차에 관여하지 못한 모든 경우</b>(성명모용, 소송계속 중 사망 간과, 소송무능력자의 단독 수행)를 포함한다. 그래서 이 경우들의 구제가 전부 <span class="art">424①4</span>(절대적 상고이유)·<span class="art">451①3</span>(재심사유)으로 모인다. 항소이유로 따로 규정할 필요는 없음 — 항소는 원래 언제든 할 수 있으니까.</p></div>
-  <div class="block prof"><p><span class="tag t-prof">교수님 (수업 후 질문 답변)</span>"표시설에 따라 당사자가 된다"는 건 다른 의미가 아니라 <b>그 사람이 원고·피고</b>라는 것. 그러니 판결 효력도, 절차의 효력도 다 받는다. <b>불이익이 있으니까 상소·재심으로라도 떼어낼 수 있게 해 주는 것</b>. 한 번도 법정에 안 나갔어도 당사자다 — 이걸 받아들여야 이 파트가 풀린다.</p></div>
-  <details class="ex"><summary><span class="q-h">필수예제 13-1 <span class="tag t-exam">2018 중간 유형</span></span><span class="q">갑은 을 몰래 을 명의로 병을 상대로 소유권이전등기 청구의 소를 제기하여 위조 서류로 승소 확정판결을 받았다. 이 판결의 효력은 누구에게 미치며, 을은 어떻게 구제받는가?</span><span class="open">해설 보기 ▾</span></summary>
-    <div class="sol">
-      <p><span class="h">① 당사자</span> 실질적 표시설 → 소장에 원고로 표시된 <b>을</b>(피모용자)이 당사자. 판결은 을·병 사이의 판결로 을에게 효력.</p>
-      <p><span class="h">② 효력</span> 무효판결 사유가 아니므로 <b>유효</b>. 을은 절차에 관여하지 못했으므로 대리권 흠결에 준하는 하자.</p>
-      <p><span class="h">③ 구제</span> 확정 후 → <b>재심</b>(451①3 유추/준용). 확정 전이었다면 상소(424①4).</p>
-      <p><span class="h">④ 비교</span> 행동설에 의하면 실제로 행동한 갑이 당사자 → 을에겐 효력 없음(결론은 깔끔하나 판례 X).</p>
+
+  <div class="prob">
+    <div class="pbar"><span class="pno">17</span><div class="pm"><span class="ps">2014년 중간 3문 · 30점</span><span class="pt">임의적 소송담당의 허용 여부</span></div></div>
+    <div class="qt"><p>甲은 乙회사에서 산 물품에 하자가 있다며 손해배상청구소송을 하려 한다. 甲은 乙의 제품을 도매하는 丙도 불만이 많을 것이라 생각해 丙이 대신 소송해 주기를 바란다. 甲은 丙에게 대신 소송하게 할 수 있는가?</p></div>
+    <details><summary>해설 보기</summary><div class="sol">
+      <p class="st">① 문제의 소재</p><p>권리주체는 甲. 丙은 직접 권리관계가 없고 선정당사자 요건(공동의 이해관계 있는 다수자)도 아님 → 임의적 소송담당으로 유효한가.</p>
+      <p class="st">② 원칙 불허 + 예외 요건</p><p>탈법 염려 없고 합리적 필요(고유 이익 또는 포괄적 관리처분권).</p>
+      <p class="st">결론</p><p>丙은 甲의 손배청구에 고유한 이익도, 포괄적 관리처분권도 없음 → <b>불가</b>. (소매인이 도매인에게 피고 자리를 넘기는 것도 우리나라는 인정 안 함)</p>
     </div></details>
+  </div>
+  <div class="pfoot"><span>민사소송법(상) | 4. 당사자적격</span><span>Theme 13</span></div>
 </section>
 
-<!-- T14 -->
-<section id="t14">
-  <div class="theme-h"><span class="tno">THEME 14</span><h2>당사자능력 (↔ 권리능력)</h2><span class="pg">216–228면</span></div>
-  <div class="concept"><p class="def">민사소송의 당사자가 될 수 있는 <b>일반적</b> 능력(<span class="art">51</span>: 특별규정 없으면 민법에 따름). 원칙적으로 권리능력자 = 당사자능력자. 다만 <span class="art">52</span>로 비법인사단·재단에도 인정 → 소송법상 당사자능력이 <b>더 넓다</b>.</p>
-    <p class="note">"일반적" = 소송물이 무엇이든 상관없이. (특정 소송물과의 관계에서 정해지는 적격과 대비)</p></div>
-  <div class="treebox"><ul class="tree">
-    <li><span class="node"><b>당사자능력 있는 자</b></span>
-      <ul>
-        <li><span class="node"><span class="pill">자연인</span>태아는 <b>태아인 채로는 없음</b> <span class="sub">(판례 정지조건설: 살아서 태어나면 소급)</span></span></li>
-        <li><span class="node"><span class="pill">법인</span>영조물법인·공공조합 포함 <span class="sub">/ 법인의 지점은 없음</span></span></li>
-        <li><span class="node"><span class="pill">비법인사단</span><b>요건 4개 암기</b>: 다수인의 결합체 · 지속적 존속 · 의사결정·업무집행 기관 · 대표자</span>
-          <ul><li><span class="node sub">예: 종중·문중·사찰·(개신)교회·아파트 입주자대표회의. 종중은 자연발생적이라 조직행위 불요. 천주교회는 법인이라 목록에 없음</span></li></ul></li>
-        <li><span class="node"><span class="pill">비법인재단</span><span class="sub">장학회·유치원·보육원 등</span></span></li>
-      </ul></li>
-    <li style="margin-top:10px"><span class="node"><b>당사자능력 없는 자</b></span>
-      <ul>
-        <li><span class="node"><span class="pill">민법상 조합</span>판례 <b>부정</b> <span class="sub">(동백흥농계: 구성원의 개성이 뚜렷하고 단체로서의 단일성 없음)</span></span>
-          <ul><li><span class="node">대신 쓰는 방법 3가지: ① 조합원 <b>전원</b>을 공동소송인으로 ② <b>업무집행조합원</b>(임의적 소송담당) ③ <b>선정당사자</b>(<span class="art">53</span>)</span></li></ul></li>
-        <li><span class="node"><span class="pill">동물</span>도롱뇽, 애견</span></li>
-      </ul></li>
-  </ul></div>
-  <div class="block ans"><p><span class="tag t-ans">답안</span><b>흠의 효과</b>: 소송요건 → 직권조사, 흠 있으면 소각하. 능력 유무에 다툼이 있는데 법원이 있다고 보면 <b>중간판결 또는 종국판결 이유</b>에서 판단. 능력 없는 자의 소송행위는 무효. 소송 중 상실(사망·합병) → 승계인이 있으면 승계, 승계까지 절차 중단. 승계할 수 없는 성질(이혼소송 중 일방 사망) → 소송 종료.</p>
-  <p><b>간과판결</b>: 조합을 비법인사단으로 오인한 경우 등 → 당연무효 아님, 확정 전 상소·확정 후 재심(교과서, 판례 없음). 단 애견처럼 당사자 자체가 부존재 → 무효.</p></div>
-  <div class="card">
-    <h3>도롱뇽 사건으로 능력·적격·본안 한 번에 구분하기</h3>
-    <p>천성산 터널 착공금지 가처분. 신청인 넷: 도롱뇽 / 도롱뇽의 친구들(단체) / 인근 사찰들.</p>
-    <ul>
-      <li><b>도롱뇽</b>: 권리능력이 없으니 <b>당사자능력 없음</b> → 바로 각하. <span class="note">(속기에 "당사자적격을 부정"이라고 나온 건 당사자능력의 말실수입니다.)</span></li>
-      <li><b>도롱뇽의 친구들</b>: 사람으로 구성된 비법인사단 → 능력 있음. "헌법상 환경권에서 나오는 자연방위권이 있다"고 <b>주장</b>했으니 적격도 있음. 그런데 그 권리가 사법상 피보전권리가 될 수 없다 → <b>본안에서 짐</b>.</li>
-      <li><b>사찰들</b>: 인근 토지 소유권에 기한 환경이익 주장 → 사법상 보호가능성 소명 부족.</li>
+<!-- ================= FINAL ================= -->
+<section class="page chopen" id="chf">
+  <div class="chsq">★<small>Final</small></div>
+  <div class="t"><div class="k">FINAL</div><h2>한 장 정리</h2><p>시험 직전에 이 세 페이지만 다시 본다.</p></div>
+</section>
+
+<section class="page" id="fin1">
+  <div class="th"><div class="lab">Final 1</div><div class="barline"></div><h2>간과판결은 세 갈래로 끝난다</h2></div>
+  <div class="frame">
+    <p class="key">당사자·재판권이 <b>아예 없거나</b> 엉뚱한 사람 사이에 난 판결 → <b>무효</b> / 당사자는 있는데 <b>절차보장</b>을 못 받음 → <b>유효(위법) → 상소·재심</b> / 법원 <b>배분</b>의 잘못 → <b>확정 시 치유</b>.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>흠</th><th>효력</th><th>구제</th></tr></thead>
+      <tbody>
+        <tr><td class="k">재판권 없음</td><td class="x">무효</td><td>확정 전 상소. 재심사유 아님</td></tr>
+        <tr><td class="k">임의관할 위반</td><td class="o">유효</td><td>항소심에서도 주장 불가(411)</td></tr>
+        <tr><td class="k">전속관할 위반</td><td class="o">유효(위법)</td><td>항소·상고(424①3) → 취소·파기 + 이송. 재심사유 아님</td></tr>
+        <tr><td class="k">제소 전 사망 (송달 전 포함)</td><td class="x">당연무효</td><td>판례: 상속인 항소·수계 부적법 / 학설: 외관 제거 상소</td></tr>
+        <tr><td class="k">계속 중 사망</td><td class="o">유효(위법)</td><td>대리권 흠결 준용: 상소, 재심(451①3 유추)</td></tr>
+        <tr><td class="k">성명모용</td><td class="o">유효 · 피모용자에게</td><td>상소(424①4) · 재심(451①3)</td></tr>
+        <tr><td class="k">당사자능력 흠</td><td class="o">당연무효 아님</td><td>상소·재심(교과서). 당사자 자체 부존재(애견) → 무효</td></tr>
+        <tr><td class="k">소송능력 흠</td><td class="o">당연무효 아님</td><td>무능력자 패소 → 상소·재심 / 승소 → 상대방 불복 불가 / 송달 무효라 기간 진행 X</td></tr>
+        <tr><td class="k">당사자적격 흠</td><td class="x">권리주체에게 효력 없음</td><td>확정 전 상소, 재심사유 없음</td></tr>
+      </tbody></table></div>
+    <h3 class="sec2">흠을 발견하면 법원은</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>흠</th><th>처리</th></tr></thead>
+      <tbody>
+        <tr><td class="k">소장 형식</td><td>보정명령 → 소장각하 <b>명령</b></td></tr>
+        <tr><td class="k">관할</td><td><b>이송 결정</b>(또는 변론관할 기다림)</td></tr>
+        <tr><td class="k">제소 전 사망자</td><td>상속인으로 <b>표시정정</b> / 상속인 없으면 소각하</td></tr>
+        <tr><td class="k">성명모용</td><td>원고측: 추인 없으면 소각하 / 피고측: 모용자 배척, 속행</td></tr>
+        <tr><td class="k">능력</td><td><b>보정</b> → 소각하 <b>판결</b></td></tr>
+        <tr><td class="k">적격</td><td>소각하 <b>판결</b></td></tr>
+      </tbody></table></div>
+  </div>
+</section>
+
+<section class="page" id="fin2">
+  <div class="th"><div class="lab">Final 2</div><div class="barline"></div><h2>교내 기출은 다섯 군데에 몰린다</h2></div>
+  <div class="frame">
+    <div class="tbl"><table>
+      <thead><tr><th>쟁점</th><th>기출</th><th>이 페이지</th></tr></thead>
+      <tbody>
+        <tr><td class="k">재판적 · 관련재판적</td><td>2014 중1-1, 2022 중1-1</td><td><a href="#t03">문제 01·02</a></td></tr>
+        <tr><td class="k">관할합의(전속/부가, 약관, 유추)</td><td>2014 중1-2, 2016 중1-1, 2018 중1</td><td><a href="#t04">문제 03·04</a>, <a href="#t05">08</a></td></tr>
+        <tr><td class="k">이송(신청권, 35조, 구속력)</td><td>2016 중1-2, 2018 중1, 2020 중2, 2022 중1-1, <b>2025 중1</b></td><td><a href="#t05">문제 06·07·08</a></td></tr>
+        <tr><td class="k">당사자 확정(사망자·모용)</td><td>2014 중2, 2018 중2, <b>2025 중2</b></td><td><a href="#t07">문제 09·10</a>, <a href="#t08">11</a></td></tr>
+        <tr><td class="k">소송능력(미성년자)</td><td>2012 중1, 2020 중1</td><td><a href="#t10">문제 13·14</a></td></tr>
+        <tr><td class="k">적격(대위·추심·임의적 담당)</td><td>2014 중3, 2016 중2, 2022 기말1-1</td><td><a href="#t12">문제 15·16</a>, <a href="#t13">17</a></td></tr>
+      </tbody></table></div>
+    <p class="pen tutor">기출은 수소법원 중 관할과 이송에서만 나온다. 확정은 학설에 따른 결론 암기. 추심 전합은 1년이 지난 지금도 출제 가능 — 수업에서 교수님 관점 확인.</p>
+    <h3 class="sec2">2학기로 미룰 것 — 속기에 나와도 지금은 용어만</h3>
+    <ul class="sans small">
+      <li>소송물 이론(구실체법설) · 청구의 병합 형태(단순·선택적·예비적)</li>
+      <li>공동소송(통상 vs 필수적 — 단, "연대채무 = 통상공동소송"은 지금 외우기) · 선정당사자 세부</li>
+      <li>소송승계(81·82조) · 참가 제도 세부 · 중복제소금지 · 기판력 · 소의 이익</li>
+      <li>적법한 대리(법정대리·소송대리) — 튜터링 5회차 범위</li>
     </ul>
   </div>
-  <div class="check"><div class="ch">CHECK</div>
-    <details><summary>민법상 조합은 대표자가 있으면 52조에 의해 당사자능력이 인정된다.</summary><div class="a"><b class="x">X</b> — 판례는 조합의 당사자능력 부정.</div></details>
-    <details><summary>태아는 손해배상청구의 소에서 태아인 상태로 원고가 될 수 있다.</summary><div class="a"><b class="x">X</b> — 정지조건설: 태아인 채로는 당사자능력 없음.</div></details>
-  </div>
 </section>
 
-<!-- T15 -->
-<section id="t15">
-  <div class="theme-h"><span class="tno">THEME 15</span><h2>소송능력 (↔ 행위능력) · 변론능력</h2><span class="pg">229–237면</span></div>
-  <div class="concept"><p class="def">당사자로서 <b>스스로</b> 유효하게 소송행위를 하거나 받기 위한 능력. 민법상 행위능력자는 원칙적으로 소송능력자(<span class="art">51</span>).</p>
-  <p class="note">"<b>본인</b>"으로서의 능력이라서, 미성년자도 남의 소송대리인은 될 수 있음(단독사건에서 법원 허가 시).</p></div>
-  <div class="tbl"><table>
-    <thead><tr><th>누구</th><th>원칙</th><th>예외(소송능력 인정)</th></tr></thead>
-    <tbody>
-      <tr><td class="k">미성년자</td><td>없음 → 친권자·미성년후견인이 법정대리</td><td>독립해 법률행위 할 수 있는 경우: 영업 허락 범위(민8), 혼인(성년의제), <b>근로기준법상 임금청구</b>(판례). <span class="bad">처분 허락 재산(민6)은 X</span>, 허락 얻어 직접 소송도 X</td></tr>
-      <tr><td class="k">피한정후견인<br><span class="note">(옛 한정치산자)</span></td><td><b>있음</b>(행위능력자)</td><td>반대로, <b>동의유보</b>된 범위에서만 없음</td></tr>
-      <tr><td class="k">피성년후견인<br><span class="note">(옛 금치산자)</span></td><td>없음</td><td>가정법원이 <b>취소할 수 없는 법률행위</b>로 정한 범위는 있음. <span class="bad">일용품 구입 등 대가가 과도하지 않은 행위(민10④)는 민법상 유효해도 소송능력 X</span> — 기준이 모호해서</td></tr>
-    </tbody>
-  </table></div>
-  <div class="block ans">
-    <p><span class="tag t-ans">답안</span><b>흠의 효과</b></p>
-    <ul>
-      <li>소송요건이자 <b>소송행위의 유효요건</b>. 무능력자의 행위는 <b>유동적 무효</b> → 법정대리인 또는 능력 취득한 본인이 <b>추인</b>하면 소급 유효(<span class="art">60</span>). 민법(취소할 수 있는 행위 = 일단 유효)과 반대 구조.</li>
-      <li>법원은 기간 정해 <b>보정명령</b>(<span class="art">59</span>) → 안 되면 소각하. 법정대리인을 모르면 특별대리인 선임 신청(<span class="art">62</span>).</li>
-      <li>무능력자 <b>본인에게 한 송달은 무효</b> → 법정대리인에게 해야 함. (부모가 본인인 소송에서 자녀가 집에서 받는 건 보충송달의 수령보조일 뿐이라 별개 문제)</li>
-      <li>소송 중 능력 취득 → 추인하면 유효. 소송 중 상실(성년후견개시) → 법정대리인이 수계할 때까지 <b>중단</b>.</li>
-      <li>능력 유무를 다투는 동안은 일단 능력 있는 것으로 취급(변론·상소 가능).</li>
-      <li><b>간과판결</b>: 당연무효 아님. 무능력자 <b>승소</b> → 상대방은 이를 이유로 불복 불가 / 무능력자 <b>패소</b> → 상소·재심(무권대리). 송달이 무효라 상소기간도 진행 안 함.</li>
+<section class="page" id="fin3">
+  <div class="th"><div class="lab">Final 3</div><div class="barline"></div><h2>사담은 읽고 넘긴다</h2></div>
+  <div class="frame">
+    <p class="muted">속기에서 시간을 많이 잡아먹지만 답안과 무관한 부분. 본문에 이해용으로 쓴 것(도롱뇽, 종전 판례의 약점, 안암동 2억)은 뺐습니다.</p>
+    <ul class="sans small">
+      <li><b>[관할]</b> 김해공항 추락 당시 상황, 징용 판결 이후 수출규제·지소미아, 네팔 항공사고 하급심 배경, 두바이 아르바이트비·미국 무선전화기 폭발 얘기</li>
+      <li><b>[관할]</b> 국제사법 개정위원회와 민소법 교수들의 반발, "재판적" 어원(학적·호적), 초임 판검사 발령지와 성적, 기아 "프라이드" 상호 분쟁, 간통죄 폐지와 위자료, 강의실 마이크</li>
+      <li><b>[이송]</b> 기업구조조정촉진법·워크아웃 절차 상세, 주식매수가액 결정 절차 상세</li>
+      <li><b>[당사자]</b> 일본 당사자권 3파 이론, "일본 사람들은 긍정설·부정설·절충설을 또 쪼갠다", 정지조건을 "효력발생조건"으로 바꾸자는 얘기</li>
+      <li><b>[능력]</b> 한강조망권 가처분·재벌 건물, UN과 금치산 제도, 민소법 개정위원회 비화, 남산 타임캡슐 판례, 집을 반으로 잘라 달라던 당사자, 형사 진술조력인 비교</li>
+      <li><b>[적격]</b> 전세대출 질권 통지와 이중지급, IMF 제일은행 주식 소각, 성업공사 직원 교육, 다른 교과서의 판례 반영 얘기, 판결문 "승계" 표현 비판</li>
     </ul>
+    <p class="small muted">공지: 범위는 당사자적격(249면)까지, 노트북 지참. 수업은 10시 20분 시작으로 앞당겨짐.</p>
   </div>
-  <div class="grid2">
-    <div class="card"><h3>항소심 처리 (교과서 233면)</h3>
-      <p>1심이 무능력을 <b>간과하고 본안판결</b> → 항소심은 추인 없으면 <b>원판결 취소 + 소각하</b>(자판).</p>
-      <p>1심이 무능력을 <b>이유로 각하</b> → 항소심도 무능력이라 보면 결론 같음 → <b>항소기각</b>.</p></div>
-    <div class="card"><h3>기출 <span class="tag t-exam">2012·2020 중간</span></h3>
-      <p>변론 중 미성년자임을 알게 된 경우 법원의 조치 → <b>보정명령 → 각하</b>.</p>
-      <p>모르고 원고승소 → 미성년 피고가 항소 → 송달 무효라 기간 문제 없음 → 추인 없으면 취소·각하.</p></div>
-  </div>
-  <div class="block prof"><p><span class="tag t-prof">교수님</span>2016년 민소법 개정 때 "민법이 연 만큼 소송능력도 연다"로 정리됐고, 유일하게 안 연 것이 일용품 부분. 교수님 본인은 지금도 소송능력과 행위능력은 구별해야 한다고 보십니다. 용어도 민법은 "제한능력자"로 바꿨지만 민소법은 여전히 "소송무능력자".</p></div>
-  <div class="block ans"><p><span class="tag t-ans">답안</span><b>변론능력</b>(짧게): 법정에서 조리 있게 진술하는 능력. <b>소송요건이 아님</b>(소 제기가 아니라 변론 단계의 문제). 법원은 진술금지 + <b>변호사선임명령</b>(<span class="art">144</span>) → 새 기일까지 선임 안 하면 <b>결정으로 소·상소 각하</b> 가능. 2016년 <b>진술보조인</b>(<span class="art">143의2</span>): 배우자·친족 등이 당사자 말을 "한국말을 한국말로 통역"하는 수준만.</p></div>
-  <div class="check"><div class="ch">CHECK</div>
-    <details><summary>미성년자가 법정대리인으로부터 처분을 허락받은 재산에 관한 소송은 미성년자가 단독으로 할 수 있다.</summary><div class="a"><b class="x">X</b> — 민6 처분허락 재산은 소송능력 인정 X.</div></details>
-    <details><summary>소송무능력자의 소송행위는 취소할 수 있는 행위이므로 취소 전까지는 유효하다.</summary><div class="a"><b class="x">X</b> — 유동적 무효, 추인으로 소급 유효(60조).</div></details>
-  </div>
-</section>
-
-<!-- T16 -->
-<section id="t16">
-  <div class="theme-h"><span class="tno">THEME 16</span><h2>당사자적격 (↔ 관리처분권) — 개념부터</h2><span class="pg">238–242면</span></div>
-  <div class="concept"><p class="def">특정한 소송물에 관하여 소송을 수행하고 본안판결을 구할 수 있는 자격(standing, 소송수행권, 정당한 당사자). 당사자능력은 <b>일반적</b> 능력, 당사자적격은 <b>특정 소송물과의 관계</b>에서 정해짐.</p></div>
-  <div class="plain"><b>핵심 한 줄.</b> 이행의 소에서는 <b>"내가 채권자다"라고 주장만 하면 원고적격, 내가 지목한 사람이 피고적격</b>입니다. 실제로 채권자인지는 본안 문제라서, 가짜 채권자는 <b>각하가 아니라 청구기각</b>을 받습니다. 적격이 없는 건 "남의 채권을 아무 관계없이 청구하는 경우"처럼 주장 자체로 관리처분권이 없는 경우입니다. 교수님 예: 옆집 부부가 싸우는 걸 보고 "내가 소송해 주마" — 그런 권리를 주는 법은 어디에도 없다 → 각하.</div>
-  <h3>일반적인 경우</h3>
-  <div class="tbl"><table>
-    <thead><tr><th>소의 종류</th><th>원고적격</th><th>피고적격</th></tr></thead>
-    <tbody>
-      <tr><td class="k">이행의 소</td><td>이행청구권을 <b>주장</b>하는 자 (허위채권 주장자도 적격 O → 기각)</td><td>의무자로 <b>주장된</b> 자</td></tr>
-      <tr><td class="k">확인의 소</td><td>확인의 이익을 가진 자</td><td>대립하는 이익을 가진 자</td></tr>
-      <tr><td class="k">형성의 소</td><td>명문 규정. 예: 주총결의 취소 → 주주·이사·감사(상<span class="art">376</span>) / 무효·부존재 → 확인의 이익 있는 자 누구나</td><td>명문 없으면 가장 충실히 수행할 자 → <b>회사</b>. 이사해임의 소 → 회사와 이사</td></tr>
-    </tbody>
-  </table></div>
-  <div class="block ans"><p><span class="tag t-ans">답안</span><b>이행의 소의 예외 — 등기말소청구</b>: 위조범 A를 상대로 "등기 말소하라"고 하면, A는 등기명의를 가진 적이 없어 말소해 줄 수 없음. 판례는 <b>등기의무자(등기명의인)나 등기상 이해관계 있는 제3자가 아닌 자</b>를 상대로 한 말소청구를 <b>피고적격 없는 부적법한 소 → 각하</b>. (비판설: 주장만 하면 적격이 있으니 청구기각이 맞다) — 변시·변모 출제 쟁점.</p></div>
-  <div class="block ans"><p><span class="tag t-ans">답안</span><b>고유필수적 공동소송</b>(합유·총유 등)은 전원이 함께해야 적격. <b>단체 내부분쟁</b>(주총결의 취소 등)의 피고는 단체 자체.</p></div>
-  <div class="check"><div class="ch">CHECK</div>
-    <details><summary>대여 사실이 전혀 없는데도 대여금을 청구한 원고의 소는 원고적격 흠결로 각하된다.</summary><div class="a"><b class="x">X</b> — 이행의 소는 주장만으로 적격 O → 청구기각.</div></details>
-    <details><summary>등기명의인이 아닌 자를 상대로 한 등기말소청구는 청구기각 판결을 한다(판례).</summary><div class="a"><b class="x">X</b> — 판례는 피고적격 없음 → 소각하.</div></details>
-  </div>
-</section>
-
-<!-- T17 -->
-<section id="t17">
-  <div class="theme-h"><span class="tno">THEME 17</span><h2>제3자 소송담당 구조도</h2><span class="pg">242–246면</span></div>
-  <p><b>소송담당 ≠ 대리.</b> 담당자가 <b>자기 이름으로</b> 원고·피고가 되어 남의 권리에 관해 판결을 받습니다. 구분 기준은 두 단계입니다: <b>누가 정했나</b>(법률 = 법정 / 권리자 의사 = 임의적), 그리고 <b>원래 권리자는 어떻게 되나</b>(밀려나나 = 갈음형 / 남아 있나 = 병행형).</p>
-  <div class="block prof"><p><span class="tag t-prof">교수님</span>"이건 너무너무 중요하고 시험에 무조건 나옵니다. 변시에 안 나온 적 없어요." 대표 장면: 소송 중 갑이 <b>파산</b>하면 → 관리처분권 상실 = 적격 상실 → <b>파산관재인</b>이 수계(회생절차 개시결정이면 관리인). "파산·회생은 변시 선택형에 한 해 네 번 나왔다 — 개념은 알고 있어야."</p></div>
-  <div class="treebox"><ul class="tree">
-    <li><span class="node"><b>제3자 소송담당</b></span>
-      <ul>
-        <li><span class="node"><span class="pill">법정 소송담당</span>당사자 의사에 의하지 않고 <b>법률 규정</b>으로</span>
-          <ul>
-            <li><span class="node"><b>담당자를 위한</b> <span class="sub">(담당자 자신의 이익 때문)</span></span>
-              <ul>
-                <li><span class="node"><b>갈음형(배타적)</b> — 권리자는 적격 <b>상실</b>, 담당자만 적격</span>
-                  <ul><li><span class="node">파산관재인, 회생절차 관리인 <span class="strike">추심명령 받은 압류채권자</span> <span class="moved">← 교과서에서 지우기</span></span></li></ul></li>
-                <li><span class="node"><b>병행형(함께형)</b> — 권리자도 담당자도 <b>둘 다 적격</b>, 행사는 담당자가</span>
-                  <ul><li><span class="node"><span class="moved">추심명령 받은 압류채권자(2025 전합 이후, 질권자 앞에 추가)</span>, 채권질권자(민353), 채권자대위소송의 채권자(민404), 주주대표소송의 주주(상403: 1/100, 상장사 1/10,000·6개월 보유 542의6)</span></li></ul></li>
-              </ul></li>
-            <li><span class="node"><b>피담당자를 위한</b> = 직무상 당사자 <span class="sub">(공익·직무 때문)</span></span>
-              <ul><li><span class="node">사망자 상대 인지청구의 <b>검사</b>, 해난구조료 채무자를 위해 당사자가 되는 <b>선장</b>, 성년후견인 등</span></li></ul></li>
-          </ul></li>
-        <li><span class="node"><span class="pill">임의적 소송담당</span>권리자의 <b>의사</b>로 수여 → THEME 20</span>
-          <ul><li><span class="node">명문: 선정당사자(<span class="art">53</span>), 연체대출금 회수 위임받은 한국자산관리공사 / 명문 없음: 원칙 불허, 예외 허용</span></li></ul></li>
-      </ul></li>
-  </ul></div>
-  <div class="block prof"><p><span class="tag t-prof">교수님</span>"함께형"을 <b>둘이 함께 공동소송을 한다</b>는 뜻으로 오해하지 말 것. 갑도 적격, 을도 적격인 상태에서 <b>그중 한 명(갑)이 남의 권리를 행사</b>하니까 제3자 소송담당이 되는 것입니다.</p></div>
-
-  <h3>갑·을·병 그림 하나로</h3>
-  <div class="svgbox">
-    <svg viewBox="0 0 640 210" width="640" role="img" aria-label="채권자 갑, 채무자 을, 제3채무자 병 관계도">
-      <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink)"/></marker></defs>
-      <g style="fill:var(--card);stroke:var(--accent);stroke-width:2">
-        <rect x="20" y="40" width="150" height="64" rx="8"/><rect x="245" y="40" width="150" height="64" rx="8"/><rect x="470" y="40" width="150" height="64" rx="8"/>
-      </g>
-      <g style="fill:var(--ink)" font-size="17" font-weight="700" text-anchor="middle">
-        <text x="95" y="70">갑</text><text x="320" y="70">을</text><text x="545" y="70">병</text>
-      </g>
-      <g style="fill:var(--muted)" font-size="13" text-anchor="middle">
-        <text x="95" y="92">채권자</text><text x="320" y="92">채무자</text><text x="545" y="92">제3채무자</text>
-      </g>
-      <g style="stroke:var(--ink);stroke-width:1.6;fill:none"><line x1="172" y1="72" x2="240" y2="72" marker-end="url(#ar)"/><line x1="397" y1="72" x2="465" y2="72" marker-end="url(#ar)"/></g>
-      <g style="fill:var(--ink)" font-size="13" text-anchor="middle"><text x="206" y="62">A채권</text><text x="431" y="62">B채권</text></g>
-      <path d="M95,108 C95,175 545,175 545,108" style="stroke:var(--prof);stroke-width:2;fill:none;stroke-dasharray:6 4" marker-end="url(#ar)"/>
-      <g font-size="13" text-anchor="middle"><text x="320" y="166" style="fill:var(--prof)" font-weight="700">갑이 자기 이름으로 B채권 행사 (대위소송·추심소송)</text>
-      <text x="320" y="190" style="fill:var(--muted)">을은 B채권의 원래 권리자 = 여전히 적격(병행형) / 파산이면 을은 적격 상실(갈음형)</text></g>
-    </svg>
-  </div>
-
-  <div class="block ans">
-    <p><span class="tag t-ans">답안</span><b>채권자대위소송의 법적 성질과 요건 흠결</b> <span class="tag t-exam">2016 중간 · 2022 기말</span></p>
-    <p>판례는 <b>법정소송담당설</b>. 요건 ① 피대위권리 ② 피보전채권 ③ 보전의 필요성 ④ 채무자의 권리 불행사 중, <b>①은 소송물 = 본안 → 없으면 청구기각</b>, <b>②③④는 당사자적격 → 없으면 소각하</b>. 그래서 "갑의 을에 대한 채권(피보전채권)이 없다"는 설문은 기각이 아니라 <b>각하</b>가 정답.</p>
-  </div>
-  <div class="block ans">
-    <p><span class="tag t-ans">답안</span><b>대위소송 판결의 기판력</b>: 채무자 을이 대위소송이 제기된 사실을 <b>알았을 때</b> 을에게도 미침(70년대 전합 이래 판례). 민법처럼 "알 수 있었을 때"가 아니라 <b>알았을 때</b>인 이유 = 알아야 참가할 기회, 즉 절차보장이 생기기 때문.</p>
-  </div>
-  <div class="block prof"><p><span class="tag t-prof">교수님</span>병행형에서 판결 효력을 원래 권리자에게 당연히 미치게 할 수 없는 이유: 갑이 을을 미워해 소송을 방만하게 하다 지면, 멀쩡한 B채권이 날아가고 을만 타격을 입음. 그래서 "알았을 때"라는 절차보장이 붙은 것. 갈음형(파산관재인)이나 직무상 당사자(검사), 선정당사자는 법률이나 본인 의사로 맡긴 것이라 효력이 미치는 게 당연(<span class="art">218③</span>).</p></div>
-  <details class="ex"><summary><span class="q-h">필수예제 17-1 <span class="tag t-exam">2016 중간 유형</span></span><span class="q">갑이 을에 대한 대여금채권을 보전하기 위해 을의 병에 대한 매매대금채권을 대위행사하는 소를 제기했다. 심리 결과 ⓐ 갑의 을에 대한 대여금채권이 없거나 ⓑ 을의 병에 대한 매매대금채권이 없는 것으로 밝혀졌다. 각각 법원의 판결은?</span><span class="open">해설 보기 ▾</span></summary>
-    <div class="sol">
-      <p><span class="h">ⓐ 피보전채권 부존재</span> 당사자적격(소송요건)의 흠 → <b>소각하</b>.</p>
-      <p><span class="h">ⓑ 피대위권리 부존재</span> 소송물 = 본안 → <b>청구기각</b>.</p>
-      <p class="note">공식: 대위소송 요건 4개 중 피대위권리만 본안, 나머지 3개는 적격.</p>
-    </div></details>
-</section>
-
-<!-- T18 -->
-<section id="t18">
-  <div class="theme-h"><span class="tno">THEME 18</span><h2>추심명령과 채무자의 적격 — 2025 전원합의체</h2></div>
-  <p>교수님 설명이 가장 길고, 판례·보충의견·교수님 논문이 한꺼번에 섞인 곳입니다. 층을 나누면 이렇습니다.</p>
-  <div class="tbl"><table>
-    <thead><tr><th>층</th><th>내용</th><th>답안에서</th></tr></thead>
-    <tbody>
-      <tr><td class="k">종전 판례</td><td>압류·추심명령이 있으면 채무자 을은 피압류채권 이행소송의 <b>적격 상실</b>(체납처분 압류도 같음). 추심채권자만 적격 → 갈음형</td><td>"이전 판례" 항목으로</td></tr>
-      <tr><td class="k">2025 전합 <b>다수의견</b></td><td>추심명령이 있어도 채무자는 이행의 소를 제기할 <b>당사자적격을 상실하지 않는다</b>. <b>판례는 여기까지</b></td><td><span class="tag t-ans">답안</span>판례로 현출</td></tr>
-      <tr><td class="k">다수의견 <b>보충의견</b></td><td>그러면 먼저 계속된 소가 있는 한 뒤의 소는 <b>중복제소</b>, 확정판결은 <b>기판력</b>으로 미친다</td><td><span class="tag t-prof">교수님</span>"보충의견이지 판례가 아니다"라고 구분해서 쓸 것</td></tr>
-      <tr><td class="k">후속 판례</td><td>추심채권자가 추심소송에서 받은 확정판결의 기판력은 채무자에게 미친다</td><td>기판력 부분은 판례로 써도 됨</td></tr>
-      <tr><td class="k">중복제소 여부</td><td><b>아직 판례 없음</b>. 보충의견·다수설은 중복제소로 봄</td><td>"판례 없음 → 보충의견·학설" 순서로</td></tr>
-    </tbody>
-  </table></div>
-  <div class="block ans">
-    <p><span class="tag t-ans">답안</span><b>전합 다수의견의 논거</b>(튜터링 정리): ① 추심은 전부와 달리 채권이 이전되지 않음, 민사집행법 249①은 채무자 제소를 막는 취지가 아님, 시효중단·제소기간 준수 필요 ② 추심채권자는 공동소송참가(변론종결 후엔 공동소송적 보조참가)로 보호, 채무자는 현실 수령을 대항 못 함 ③ 제3채무자는 공탁 등 가능, 이중응소 부담 경감 ④ 상고심에서 추심명령이 나와도 각하하지 않으니 소송경제·분쟁의 1회적 해결.</p>
-  </div>
-  <div class="block prof"><p><span class="tag t-prof">교수님</span><b>교과서 수정 지시</b>: 243면 "배타적으로 소송수행권을 가지는 경우"(갈음형) 예시에서 <b>"채권추심명령을 받은 압류채권자"를 지우고</b>, 3번 함께형 예시의 <b>채권질권자 앞으로 옮길 것</b>. 추록 각주 1번이 이 내용입니다.</p></div>
-  <div class="block prof"><p><span class="tag t-prof">교수님</span><b>종전 판례의 약점</b>(이해용으로 좋음): 채무자가 소를 제기해 시효를 중단시켜 놨는데 추심명령이 떨어지면 소각하 → 시효중단 효과도 소멸. 추심채권자가 소를 안 내고 있으면 시효가 완성돼 버림. 게다가 추심명령은 수령권만 넘기는 것이지 채무자가 채권자 지위를 잃는 게 아님. 그래서 판례가 바뀐 것.</p></div>
-  <div class="block aside"><p><span class="tag t-aside">사담 · 교수님 논문</span>교수님 사견: 추심권 없는 채무자가 "나에게 지급하라"는 판결을 받아봐야 영원히 집행 못 하니 소의 이익 없음. 독일처럼 청구취지를 <b>"병은 갑에게 지급하라"</b>로 바꾸게 해야 한다. 또 전합 판결문에 나오는 "승계"라는 표현은 무시해도 된다. — 교수님 스스로 "여러분이 아실 필요는 없다"고 하셨으니 답안에는 쓰지 않는 쪽이 안전합니다.</p></div>
-  <div class="block exam"><p><span class="tag t-exam">기출</span>2016 중간 2-2문: 갑이 추심명령 받은 후 을이 병에게 소 제기 → 적법한가? 지금 기준 답: <b>전합에 따라 적격 유지 → 다른 사정 없으면 적법</b>. 튜터 말로는 교수님이 작년엔 "논의가 덜 무르익어" 출제 안 하셨고, 출제되면 배점이 더 클 것.</p></div>
-</section>
-
-<!-- T19 -->
-<section id="t19">
-  <div class="theme-h"><span class="tno">THEME 19</span><h2>참가 3종 — 적격과 기판력으로 고르기</h2></div>
-  <p>교수님이 적격을 설명하다 참가로 넘어가서 어려웠던 부분입니다. <b>두 질문만 던지면</b> 참가 방식이 결정됩니다: "이 사람이 당사자적격이 있나?", "판결의 기판력을 받나?" <span class="tag t-out">참가 제도 자체는 2학기</span></p>
-  <div class="tbl"><table>
-    <thead><tr><th>참가 방식</th><th>당사자적격</th><th>기판력</th><th>예</th></tr></thead>
-    <tbody>
-      <tr><td class="k">보조참가</td><td class="bad">없음</td><td class="bad">안 받음</td><td>보증채무 소송에 주채무자가 보증인 편으로 (소송물은 보증채무, 판결은 주채무자와 무관)</td></tr>
-      <tr><td class="k">공동소송적 보조참가</td><td class="bad">없음</td><td class="good">받음</td><td>파산관재인 소송에 파산자가 참가 (적격은 잃었지만 판결 효력은 받음)</td></tr>
-      <tr><td class="k">공동소송참가</td><td class="good">있음</td><td class="good">받음</td><td>주주1의 주총결의 취소소송에 주주2가 원고로 참가</td></tr>
-    </tbody>
-  </table></div>
-  <div class="grid2">
-    <div class="card"><h3>대위소송에 채무자 을이 들어가려면</h3>
-      <p>을은 적격 있음 + (알면) 기판력 받음 → 논리상 <b>공동소송참가</b>.</p>
-      <p>그런데 다수설: 을이 당사자로 또 들어오면 <b>중복제소</b> → 한 단계 낮춰 <b>공동소송적 보조참가</b>.</p>
-      <p><span class="tag t-exam">판례 없음</span>교과서 244면도 "공동소송참가 또는 공동소송적 보조참가"로 애매하게 씀.</p></div>
-    <div class="card"><h3>주주대표소송에 회사가 들어가면</h3>
-      <p>같은 구조인데 여기는 <b>판례 있음</b>: 회사의 <b>공동소송참가 허용</b>, 중복제소 아님 (제일은행 사건).</p>
-      <p>이유: 한 절차 안에서 같이 다투니 중복제소가 막으려는 <b>판결의 모순·저촉이 생길 수 없음</b>.</p></div>
-  </div>
-  <div class="block prof"><p><span class="tag t-prof">교수님</span>주주대표소송 판례 논리를 그대로 가져오면 대위소송에서도 중복제소가 아니라고 볼 가능성이 높다는 뉘앙스. 다만 판례가 없으니 답안에서는 "다수설: 중복제소 → 공동소송적 보조참가 / 유사사안 판례: 주주대표소송 공동소송참가 허용" 양쪽을 다 현출하는 게 안전합니다. 교수님은 "적격 문제가 제일 어렵다는 게 참가까지 연결되기 때문이고, 변시에 거의 빠지지 않는다"고 하셨습니다.</p></div>
-</section>
-
-<!-- T20 -->
-<section id="t20">
-  <div class="theme-h"><span class="tno">THEME 20</span><h2>임의적 소송담당 · 적격의 소송법상 의의</h2><span class="pg">246–249면</span></div>
-  <div class="block ans">
-    <p><span class="tag t-ans">답안</span>권리주체의 <b>의사</b>로 제3자에게 소송수행권을 수여. 명문(선정당사자 <span class="art">53</span>) 외에는 <b>원칙적 불허</b>: 변호사대리원칙(<span class="art">87</span>) 잠탈, 소송신탁금지(신탁법 6조) 위반 우려, 피담당자 절차보장.</p>
-    <p><b>예외 허용 요건(판례)</b>: 탈법 염려가 없고 + 이를 인정할 <b>합리적 필요</b>. 합리적 필요 = ① 담당자에게 <b>고유의 이익</b>이 있거나 ② 소송수행권을 포함한 <b>포괄적 관리처분권</b>을 가지고 권리주체 못지않은 지식으로 관여하는 경우. (교과서는 여기에 피담당자 절차권의 실질적 보장을 더함)</p>
-    <p><b>판례가 인정한 예</b>: 업무집행조합원(민709) — 오랫동안 유일한 예 / 집합건물 관리단으로부터 위임받은 <b>위탁관리업자의 관리비 청구</b> / <b>입주자대표회의</b>의 공용부분 변경비용 청구.</p>
-  </div>
-  <div class="block exam"><p><span class="tag t-exam">2014 중간 3문</span>구매자 갑이 도매업자 병에게 대신 소송하게 할 수 있나? → 병은 고유 이익도 포괄적 관리처분권도 없음 → <b>불가</b>. 강의에서 나온 "소매인이 도매인에게 피고 자리를 넘기기"도 우리나라는 인정 안 함.</p></div>
-  <h3>적격의 소송법상 의의 (교과서 248–249면) — 시험 범위 끝</h3>
-  <div class="block ans"><ul>
-    <li>소송요건 → 직권조사, 흠 있으면 <b>소각하</b>. 교수님 체계에서는 소의 이익(권리보호 자격·필요)과 함께 묶이는 개념.</li>
-    <li>소송 중 적격 상실(파산 등, 소송물 양도) → 승계 문제. 판례는 <b>적격승계설</b>. <span class="tag t-out">승계 2학기</span></li>
-    <li>간과판결 → 확정 전 상소 / 확정 후 재심사유 없음 → 진정한 권리주체에겐 효력 없음(<b>무효판결 ③</b>).</li>
-    <li>소송담당자가 받은 판결의 기판력은 피담당자에게 미침(<span class="art">218③</span>). 단 병행형 대위소송은 채무자가 <b>알았을 때</b>만.</li>
-  </ul></div>
-</section>
-
-<!-- ============ 정리 ============ -->
-<div class="part" id="part3">
-  <div class="pno">FINAL</div>
-  <h2>한 장 정리</h2>
-  <p>시험 직전에 이 표 두 개만 다시 보면 됩니다.</p>
-</div>
-
-<section id="kanggwa">
-  <div class="theme-h"><h2>간과판결 총정리 — 범위 전체</h2></div>
-  <p>교수님이 각 요건마다 "간과하고 본안판결 해 버리면?"을 반복하셔서 헷갈리는 겁니다. 기준은 하나: <strong>당사자·재판권이 아예 없거나 판결이 엉뚱한 사람 사이에 난 것이면 무효, 당사자는 있는데 절차보장을 못 받은 것이면 유효(위법) → 상소·재심, 단순한 법원 배분의 잘못이면 확정 시 치유.</strong></p>
-  <div class="tbl"><table>
-    <thead><tr><th>흠</th><th>간과판결의 효력</th><th>구제</th></tr></thead>
-    <tbody>
-      <tr><td class="k">재판권 없음</td><td class="bad">무효</td><td>확정 전 상소. 재심사유 아님</td></tr>
-      <tr><td class="k">임의관할 위반</td><td class="good">유효</td><td>항소심에서도 주장 불가(411) — 선고로 치유</td></tr>
-      <tr><td class="k">전속관할 위반</td><td class="good">유효(위법)</td><td>항소·상고(424①3) → 취소·파기 + 이송. <b>재심사유 아님</b> → 확정되면 치유</td></tr>
-      <tr><td class="k">제소 전 사망<br><span class="note">(소장부본 송달 전 포함)</span></td><td class="bad">당연무효</td><td>판례: 상속인의 항소·수계신청 부적법 / 학설: 외관 제거 위해 상소 허용해야</td></tr>
-      <tr><td class="k">소송계속 중 사망</td><td class="good">유효(위법)</td><td>대리권 흠결에 준해 확정 전 상소, 확정 후 재심(<span class="art">451①3</span> 유추) — 판례 동지</td></tr>
-      <tr><td class="k">성명모용</td><td class="good">유효 · 피모용자에게 효력</td><td>무권대리에 준해 상소(<span class="art">424①4</span>)·재심(<span class="art">451①3</span>)</td></tr>
-      <tr><td class="k">당사자능력 흠<br><span class="note">(예: 조합을 비법인사단으로 오인)</span></td><td class="good">당연무효 아님</td><td>확정 전 상소, 확정 후 재심(교과서 견해, 판례 없음). 단 애견처럼 당사자 자체가 부존재 → 무효</td></tr>
-      <tr><td class="k">소송능력 흠</td><td class="good">당연무효 아님</td><td>무능력자 <b>승소</b> → 상대방은 불복 불가 / 무능력자 <b>패소</b> → 상소·재심. 무능력자 본인에게 한 판결송달은 무효 → 상소기간 진행 안 함</td></tr>
-      <tr><td class="k">당사자적격 흠</td><td class="bad">진정한 권리주체에게 효력 없음</td><td>확정 전 상소. 확정 후에는 재심사유에 없음(451조) → 원래 당사자 사이에선 무효</td></tr>
-    </tbody>
-  </table></div>
-  <div class="tbl"><table>
-    <thead><tr><th>흠이 발견되면 법원은</th><th>처리</th></tr></thead>
-    <tbody>
-      <tr><td class="k">소장 형식</td><td>보정명령 → 소장각하 <b>명령</b></td></tr>
-      <tr><td class="k">관할</td><td><b>이송 결정</b> (또는 변론관할 기다림)</td></tr>
-      <tr><td class="k">사망자(제소 전)</td><td>상속인으로 <b>표시정정</b> / 상속인 없으면 소각하</td></tr>
-      <tr><td class="k">성명모용</td><td>원고측: 추인 없으면 소각하 / 피고측: 모용자 배제, 피모용자와 속행</td></tr>
-      <tr><td class="k">당사자능력·소송능력</td><td><b>보정</b>(능력자로 정정·법정대리인 추인) → 안 되면 소각하 <b>판결</b></td></tr>
-      <tr><td class="k">당사자적격</td><td>소각하 <b>판결</b> (청구기각 아님)</td></tr>
-    </tbody>
-  </table></div>
-</section>
-
-<section id="out">
-  <div class="theme-h"><h2>2학기로 미룰 것 — 속기에 나와도 지금은 용어만</h2></div>
-  <div class="block out"><ul>
-    <li><b>소송물 이론</b>(구실체법설, 750조·390조 경합) · <b>청구의 병합 형태</b>(단순·선택적·예비적)</li>
-    <li><b>공동소송</b>(통상 vs 필수적 — 단, "연대채무 = 통상공동소송"은 지금 외워 두기) · <b>선정당사자</b> 세부</li>
-    <li><b>소송승계</b>(81·82조, 당연승계·참가승계·인수승계) — "제일 어렵다"</li>
-    <li><b>참가</b> 제도 세부(보조참가·공동소송적 보조참가·공동소송참가) — 이번엔 THEME 19 표 수준</li>
-    <li><b>중복제소금지</b> · <b>기판력</b> 세부 · <b>소의 이익</b></li>
-    <li><b>적법한 대리</b>(법정대리·소송대리)</li>
-  </ul></div>
-</section>
-
-<section id="skip">
-  <div class="theme-h"><h2>사담 모음 — 읽고 넘겨도 되는 것</h2></div>
-  <p class="lede">속기록에서 시간을 많이 잡아먹지만 답안과 무관한 부분입니다. 본문에 이해용으로 쓴 것(도롱뇽, 종전 판례의 약점, 안암동 2억 예시)은 빼고 남은 것만.</p>
-  <div class="block aside"><ul>
-    <li><b>[관할]</b> 김해공항 추락 사고 당시 상황 묘사, 징용 판결 이후 일본 수출규제·지소미아 얘기, 네팔 히말라야 항공사고 하급심 판례 배경</li>
-    <li><b>[관할]</b> 두바이에서 아르바이트비 떼인 예(준거법 설명용), 미국에서 폭발한 무선전화기 얘기(국제사법공조 설명용)</li>
-    <li><b>[관할]</b> 국제사법 개정위원회와 민소법 교수들의 반발, "재판적"의 어원(학적·호적) 장황한 설명</li>
-    <li><b>[관할]</b> 초임 검사·판사 발령지와 성적(서울중앙·안양지원), 기아 "프라이드" 상호 분쟁, 간통죄 폐지와 위자료 소송 얘기, 강의실 마이크 소음</li>
-    <li><b>[이송]</b> 기업구조조정촉진법·워크아웃 절차 상세(금융채권자협의회 3/4 가결 등), 주식매수청구권 가액결정 절차 상세</li>
-    <li><b>[당사자]</b> 일본 당사자권 "3파 이론", "일본 사람들은 긍정설·부정설·절충설을 또 쪼갠다"는 얘기</li>
-    <li><b>[당사자]</b> 정지조건·해제조건을 "효력발생조건·효력소멸조건"으로 바꾸자는 얘기 (태아 부분에서)</li>
-    <li><b>[당사자]</b> 한강조망권 가처분, 재벌 건물 얘기 (피보전권리 설명용 비유)</li>
-    <li><b>[당사자]</b> UN이 한국을 인권침해국으로 분류했다는 금치산 제도 얘기, 민소법 개정위원회 비화</li>
-    <li><b>[당사자]</b> 토지거래허가 유동적 무효 판례가 남산 타임캡슐에 들어갔다는 얘기</li>
-    <li><b>[당사자]</b> 이혼 소송에서 집을 반으로 잘라 달라던 당사자 (변론능력 설명용)</li>
-    <li><b>[당사자]</b> 형사소송의 신뢰관계인 동석·진술조력인 비교 (진술보조인 도입 배경)</li>
-    <li><b>[적격]</b> 전세대출 시 은행의 질권 설정 통지를 집주인이 잊으면 이중지급한다는 얘기 (채권질권 설명용)</li>
-    <li><b>[적격]</b> IMF 때 제일은행 주주 주식 소각 경위, 한국자산관리공사(옛 성업공사) 직원 교육 얘기</li>
-    <li><b>[적격]</b> 다른 교과서가 운 좋게 판례를 반영했다는 얘기, 대법원 판결문의 "승계" 표현 비판, 교수님 논문에 대한 반응</li>
-  </ul></div>
-  <div class="block aside"><p><span class="tag t-aside">참고</span>속기상 공지: 시험 범위는 당사자적격(교과서 249면)까지, 노트북 지참. 수업은 10시 20분 시작으로 앞당겨짐.</p></div>
+  <a class="top" href="#contents">↑ Contents</a>
 </section>
 
 </div>
